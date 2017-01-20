@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
+pushd /var/www/owncloud >/dev/null
+  su-exec www-data php /var/www/owncloud/occ ${@}
+popd >/dev/null

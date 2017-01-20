@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+set -e
+
+function create_folders {
+  echo "Creating folders..."
+  mkdir -p /mnt/data/{config,files,certs,apps}
+  chown www-data:www-data /mnt/data/*
+}
+
+function chown_files {
+  echo "Fixing permissions..."
+  find /var/www/owncloud \( \! -user www-data -o \! -group www-data \) -exec chown www-data:www-data {} +
+  find /mnt/data/files \( \! -user www-data -o \! -group www-data \) -exec chown www-data:www-data {} +
+}
+
+function wait_database {
+  case ${OWNCLOUD_DB_TYPE} in
+    "mysql")
+      if ! grep -q ":" <<<${OWNCLOUD_DB_HOST}
+      then
+        OWNCLOUD_DB_HOST=${OWNCLOUD_DB_HOST}:3306
+      fi
+
+      wait-for-it -t ${OWNCLOUD_DB_TIMEOUT} ${OWNCLOUD_DB_HOST}
+
+      if [[ $? -ne 0 && "${OWNCLOUD_DB_FAIL}" == "true" ]]
+      then
+        echo "Database didn't came up in time!"
+        exit 1
+      fi
+      ;;
+    "pgsql")
+      if ! grep -q ":" <<<${OWNCLOUD_DB_HOST}
+      then
+        OWNCLOUD_DB_HOST=${OWNCLOUD_DB_HOST}:5432
+      fi
+
+      wait-for-it -t ${OWNCLOUD_DB_TIMEOUT} ${OWNCLOUD_DB_HOST}
+
+      if [[ $? -ne 0 && "${OWNCLOUD_DB_FAIL}" == "true" ]]
+      then
+        echo "Database didn't came up in time!"
+        exit 1
+      fi
+      ;;
+  esac
+}
+
+function install_owncloud {
+  if [[ $(is_installed) == "true" ]]
+  then
+    echo "Upgrading database..."
+    link_config
+    migrate_database
+  else
+    echo "Installing database..."
+    copy_config
+    install_database
+  fi
+
+  generate_certs
+  configure_domains
+  configure_memcached
+  configure_redis
+  configure_locking
+  configure_caching
+}
+
+function link_config {
+  echo "Linking folder..."
+  rm -rf /var/www/owncloud/config
+  ln -sf /mnt/data/config /var/www/owncloud/config
+}
+
+function copy_config {
+  link_config
+
+  echo "Copying config..."
+  cp /root/owncloud/config.php /mnt/data/config/
+}
+
+function install_database {
+  local command="occ maintenance:install --no-interaction --data-dir /mnt/data/files"
+
+  [[ -n "${OWNCLOUD_DB_TYPE}" ]] && command="${command} --database ${OWNCLOUD_DB_TYPE}"
+  [[ -n "${OWNCLOUD_DB_NAME}" ]] && command="${command} --database-name ${OWNCLOUD_DB_NAME}"
+  [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && command="${command} --database-user ${OWNCLOUD_DB_USERNAME}"
+  [[ -n "${OWNCLOUD_DB_PASSWORD}" ]] && command="${command} --database-pass ${OWNCLOUD_DB_PASSWORD}"
+  [[ -n "${OWNCLOUD_DB_HOST}" ]] && command="${command} --database-host ${OWNCLOUD_DB_HOST}"
+  [[ -n "${OWNCLOUD_DB_PREFIX}" ]] && command="${command} --database-table-prefix ${OWNCLOUD_DB_PREFIX}"
+  [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && command="${command} --admin-user ${OWNCLOUD_ADMIN_USERNAME}"
+  [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && command="${command} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
+
+  ${command}
+}
+
+function migrate_database {
+  occ upgrade --skip-migration-test --no-interaction
+}
+
+function generate_certs {
+  if [[ $(cert_exists) == "false" ]]
+  then
+    echo "Generating cert..."
+    local subj="/C=DE/ST=Bavaria/L=Nuremberg/O=ownCloud GmbH/CN=${OWNCLOUD_DOMAIN}"
+    local crt=/mnt/data/certs/ssl-cert.crt
+    local key=/mnt/data/certs/ssl-cert.key
+
+    openssl req -x509 -subj "$subj" -sha256 -nodes -days 1825 -newkey rsa:4096 -keyout $key -out $crt
+  fi
+}
+
+function configure_domains {
+  echo "Configure domains..."
+  occ config:system:set trusted_domains 0 --value localhost
+  occ config:system:set trusted_domains 1 --value ${OWNCLOUD_IPADDRESS}
+  occ config:system:set trusted_domains 2 --value ${OWNCLOUD_DOMAIN}
+  occ config:system:set overwrite.cli.url --value http://${OWNCLOUD_DOMAIN}
+}
+
+function configure_memcached {
+  if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]]
+  then
+    wait-for-it -t 60 ${OWNCLOUD_MEMCACHED_HOST}:${OWNCLOUD_MEMCACHED_PORT}
+
+    if [[ $? -ne 0 ]]
+    then
+      echo "Memcached didn't came up in time!"
+      exit 1
+    fi
+
+    echo "Enabling memcached..."
+    occ config:system:set memcache.distributed --value "\OC\Memcache\Memcached"
+    occ config:system:set memcache.locking --value "\OC\Memcache\Memcached"
+    occ config:system:set memcached_servers --value MEMCACHED
+
+    sed -i "s|'MEMCACHED'|array('${OWNCLOUD_MEMCACHED_HOST}', ${OWNCLOUD_MEMCACHED_PORT})|" /var/www/owncloud/config/config.php
+  else
+    echo "Disabling memcached..."
+    occ config:system:delete memcache.distributed
+    occ config:system:delete memcache.locking
+    occ config:system:delete memcached_servers
+  fi
+}
+
+function configure_redis {
+  if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]]
+  then
+    wait-for-it -t 60 ${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}
+
+    if [[ $? -ne 0 ]]
+    then
+      echo "Redis didn't came up in time!"
+      exit 1
+    fi
+
+    echo "Enabling redis..."
+    occ config:system:set memcache.distributed --value "\OC\Memcache\Redis"
+    occ config:system:set memcache.locking --value "\OC\Memcache\Redis"
+    occ config:system:set redis --value REDIS
+
+    sed -i "s|'REDIS'|array('host' => '${OWNCLOUD_REDIS_HOST}', 'port' => ${OWNCLOUD_REDIS_PORT})|" /var/www/owncloud/config/config.php
+  else
+    echo "Disabling redis..."
+    occ config:system:delete memcache.distributed
+    occ config:system:delete memcache.locking
+    occ config:system:delete redis
+  fi
+}
+
+function configure_locking {
+  if [[ ${OWNCLOUD_LOCKING_ENABLED} == "true" ]]
+  then
+    echo "Enabling locking..."
+    occ config:system:set filelocking.enabled --value true
+  else
+    echo "Disabling locking..."
+    occ config:system:set filelocking.enabled --value false
+  fi
+}
+
+function configure_caching {
+  echo "Configure caching..."
+  occ config:system:set memcache.local --value "\OC\Memcache\APCu"
+}
+
+function touch_logfiles {
+  echo "Touching logfile..."
+  su-exec www-data touch /mnt/data/files/owncloud.log
+}
+
+function set_loglevel {
+  echo "Setting loglevel..."
+  occ config:system:set loglevel --value ${OWNCLOUD_LOGLEVEL}
+}
+
+function start_services {
+  echo "Starting services..."
+  service apache2 start >/dev/null
+  service cron start >/dev/null
+}
+
+function is_installed {
+  occ -V | awk -F- '$1=="ownCloud is not installed "{print "false"}'
+}
+
+function cert_exists {
+  if [[ -f /mnt/data/certs/ssl-cert.key && -f /mnt/data/certs/ssl-cert.crt ]]
+  then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
+
+env | grep OWNCLOUD | sort
+
+create_folders
+chown_files
+wait_database
+install_owncloud
+touch_logfiles
+set_loglevel
+start_services
+
+dockerize -stdout /mnt/data/files/owncloud.log -stdout /var/log/apache2/access.log -stderr /var/log/apache2/error.log
