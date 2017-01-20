@@ -49,12 +49,16 @@ function wait_database {
 function install_owncloud {
   if [[ $(is_installed) == "true" ]]
   then
-    echo "Upgrading database..."
     link_config
+    chown_files
+
+    echo "Upgrading database..."
     migrate_database
   else
-    echo "Installing database..."
     copy_config
+    chown_files
+
+    echo "Installing database..."
     install_database
   fi
 
@@ -216,7 +220,6 @@ function cert_exists {
 env | grep OWNCLOUD | sort
 
 create_folders
-chown_files
 wait_database
 install_owncloud
 touch_logfiles
