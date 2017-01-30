@@ -29,7 +29,6 @@ RUN apt-get update -y && \
     php-ldap \
     php-apcu \
     php-redis \
-    php-xdebug \
     smbclient \
     php-smbclient \
     mysql-client \
