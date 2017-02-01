@@ -36,7 +36,7 @@ RUN apt-get update -y && \
     sqlite && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/apache2/sites-available/default-ssl.conf && \
-  a2enmod rewrite headers env dir mime ssl && \
+  a2enmod rewrite headers env dir mime ssl expires && \
   mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs && \
   chown -R www-data:www-data /var/www/owncloud /mnt/data && \
   chsh -s /bin/bash www-data
