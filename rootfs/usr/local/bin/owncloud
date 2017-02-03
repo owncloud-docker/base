@@ -10,7 +10,7 @@ function create_folders {
 function chown_files {
   echo "Fixing permissions..."
   find /var/www/owncloud \( \! -user www-data -o \! -group www-data \) -exec chown www-data:www-data {} +
-  find /mnt/data/files \( \! -user www-data -o \! -group www-data \) -exec chown www-data:www-data {} +
+  find /mnt/data \( \! -user www-data -o \! -group www-data \) -exec chown www-data:www-data {} +
 }
 
 function wait_database {
