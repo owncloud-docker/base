@@ -1,7 +1,7 @@
 FROM owncloud/ubuntu:latest
 MAINTAINER ownCloud DevOps <devops@owncloud.com>
 
-VOLUME ["/var/www/owncloud", "/mnt/data"]
+VOLUME ["/mnt/data"]
 
 EXPOSE 80
 EXPOSE 443
@@ -45,6 +45,7 @@ RUN curl -sS https://getcomposer.org/installer \
   | php -- --install-dir=/usr/bin --filename=composer
 
 COPY rootfs /
+WORKDIR /var/www/owncloud
 
 ARG VERSION
 ARG BUILD_DATE

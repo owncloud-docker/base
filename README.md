@@ -34,12 +34,13 @@ IMAGE_NAME=owncloud/base ./hooks/build
 
 ## Volumes
 
-* None
+* /mnt/data
 
 
 ## Ports
 
-* None
+* 80
+* 443
 
 
 ## Available environment variables
