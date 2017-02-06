@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+declare -x OWNCLOUD_REDIS_ENABLED
+[[ -z "${OWNCLOUD_REDIS_ENABLED}" ]] && OWNCLOUD_REDIS_ENABLED="false"
+
+declare -x OWNCLOUD_REDIS_HOST
+[[ -z "${OWNCLOUD_REDIS_HOST}" ]] && OWNCLOUD_REDIS_HOST="redis"
+
+declare -x OWNCLOUD_REDIS_PORT
+[[ -z "${OWNCLOUD_REDIS_PORT}" ]] && OWNCLOUD_REDIS_PORT="6379"
