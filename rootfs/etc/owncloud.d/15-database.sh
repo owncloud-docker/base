@@ -32,3 +32,5 @@ case ${OWNCLOUD_DB_TYPE} in
     fi
     ;;
 esac
+
+true

@@ -8,3 +8,5 @@ declare -x OWNCLOUD_IPADDRESS
 
 declare -x OWNCLOUD_LOGLEVEL
 [[ -z "${OWNCLOUD_LOGLEVEL}" ]] && OWNCLOUD_LOGLEVEL="0"
+
+true

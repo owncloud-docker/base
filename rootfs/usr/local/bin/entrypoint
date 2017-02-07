@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-for FILE in $(ls /etc/entrypoint.d/*.sh | sort)
+for FILE in /etc/entrypoint.d/*.sh
 do
   source ${FILE}
 done

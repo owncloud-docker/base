@@ -23,3 +23,5 @@ else
   occ config:system:delete memcache.locking
   occ config:system:delete redis
 fi
+
+true

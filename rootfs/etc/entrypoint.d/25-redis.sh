@@ -8,3 +8,5 @@ declare -x OWNCLOUD_REDIS_HOST
 
 declare -x OWNCLOUD_REDIS_PORT
 [[ -z "${OWNCLOUD_REDIS_PORT}" ]] && OWNCLOUD_REDIS_PORT="6379"
+
+true

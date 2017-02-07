@@ -9,3 +9,5 @@ then
   echo "Generating cert..."
   openssl req -x509 -subj "${SUBJ}" -sha256 -nodes -days 1825 -newkey rsa:4096 -keyout ${KEY} -out ${CERT}
 fi
+
+true

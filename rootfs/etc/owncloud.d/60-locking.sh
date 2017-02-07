@@ -8,3 +8,5 @@ else
   echo "Disabling locking..."
   occ config:system:set filelocking.enabled --value false
 fi
+
+true

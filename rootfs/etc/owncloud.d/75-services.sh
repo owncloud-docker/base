@@ -5,3 +5,5 @@ service cron start >/dev/null
 
 echo "Starting Apache..."
 service apache2 start >/dev/null
+
+true

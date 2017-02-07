@@ -14,3 +14,5 @@ then
   echo "Copying config..."
   cp /root/owncloud/config.php /mnt/data/config/
 fi
+
+true

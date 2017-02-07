@@ -23,3 +23,5 @@ declare -x OWNCLOUD_DB_TIMEOUT
 
 declare -x OWNCLOUD_DB_FAIL
 [[ -z "${OWNCLOUD_DB_FAIL}" ]] && OWNCLOUD_DB_FAIL="true"
+
+true

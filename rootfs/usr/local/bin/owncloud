@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-for FILE in $(ls /etc/owncloud.d/*.sh | sort)
+for FILE in /etc/owncloud.d/*.sh
 do
   source ${FILE}
 done

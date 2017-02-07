@@ -23,3 +23,5 @@ else
   occ config:system:delete memcache.locking
   occ config:system:delete memcached_servers
 fi
+
+true

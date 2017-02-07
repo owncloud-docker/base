@@ -8,3 +8,5 @@ else
   echo "Installing database..."
   /usr/local/bin/owncloud-install
 fi
+
+true
