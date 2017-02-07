@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 if [[ ${OWNCLOUD_LOCKING_ENABLED} == "true" ]]
 then

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 declare -x OWNCLOUD_ADMIN_USERNAME
 [[ -z "${OWNCLOUD_ADMIN_USERNAME}" ]] && OWNCLOUD_ADMIN_USERNAME="admin"

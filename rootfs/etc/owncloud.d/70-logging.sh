@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 echo "Touching logfile..."
 su-exec www-data touch /mnt/data/files/owncloud.log

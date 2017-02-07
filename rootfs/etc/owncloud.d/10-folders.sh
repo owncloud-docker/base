@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 echo "Creating folders..."
 mkdir -p /mnt/data/{config,files,certs,apps}

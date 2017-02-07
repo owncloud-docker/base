@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 case ${OWNCLOUD_DB_TYPE} in
   "mysql")

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 declare -x OWNCLOUD_DOMAIN
 [[ -z "${OWNCLOUD_DOMAIN}" ]] && OWNCLOUD_DOMAIN="${HOSTNAME}"

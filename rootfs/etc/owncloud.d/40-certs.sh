@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=ownCloud GmbH/CN=${OWNCLOUD_DOMAIN}"
 KEY=/mnt/data/certs/ssl-cert.key

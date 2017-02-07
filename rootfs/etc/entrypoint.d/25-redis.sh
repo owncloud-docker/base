@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 declare -x OWNCLOUD_REDIS_ENABLED
 [[ -z "${OWNCLOUD_REDIS_ENABLED}" ]] && OWNCLOUD_REDIS_ENABLED="false"

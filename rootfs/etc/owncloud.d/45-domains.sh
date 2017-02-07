@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 echo "Configure domains..."
 occ config:system:set trusted_domains 0 --value localhost

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 if [[ ! -L /var/www/owncloud/config ]]
 then

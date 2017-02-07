@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 declare -x OWNCLOUD_DB_TYPE
 [[ -z "${OWNCLOUD_DB_TYPE}" ]] && OWNCLOUD_DB_TYPE="sqlite"

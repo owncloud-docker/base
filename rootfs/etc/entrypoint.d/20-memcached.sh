@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 declare -x OWNCLOUD_MEMCACHED_ENABLED
 [[ -z "${OWNCLOUD_MEMCACHED_ENABLED}" ]] && OWNCLOUD_MEMCACHED_ENABLED="false"
