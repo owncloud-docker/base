@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 for FILE in /etc/entrypoint.d/*.sh
 do
