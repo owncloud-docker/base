@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
 echo "Configure domains..."
-occ config:system:set trusted_domains 0 --value localhost
-occ config:system:set trusted_domains 1 --value ${OWNCLOUD_IPADDRESS}
-occ config:system:set trusted_domains 2 --value ${OWNCLOUD_DOMAIN}
-occ config:system:set overwrite.cli.url --value http://${OWNCLOUD_DOMAIN}
+COUNTER=0
+
+for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
+do
+  occ config:system:set trusted_domains ${COUNTER} --value ${DOMAIN}
+  let COUNTER+=1
+done
+
+occ config:system:set overwrite.cli.url --value http://localhost
 
 true
