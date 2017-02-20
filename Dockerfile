@@ -10,6 +10,7 @@ ENTRYPOINT ["/usr/local/bin/entrypoint"]
 CMD ["/usr/local/bin/owncloud"]
 
 RUN apt-get update -y && \
+  apt-get upgrade -y && \
   apt-get install -y \
     apache2 \
     libapache2-mod-php \
@@ -33,7 +34,8 @@ RUN apt-get update -y && \
     php-smbclient \
     mysql-client \
     postgresql-client \
-    sqlite && \
+    sqlite \
+    gettext-base && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/apache2/sites-available/default-ssl.conf && \
   a2enmod rewrite headers env dir mime ssl expires && \
