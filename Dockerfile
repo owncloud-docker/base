@@ -39,7 +39,7 @@ RUN apt-get update -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/apache2/sites-available/default-ssl.conf && \
   a2enmod rewrite headers env dir mime ssl expires && \
-  mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs && \
+  mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs /mnt/data/sessions && \
   chown -R www-data:www-data /var/www/owncloud /mnt/data && \
   chsh -s /bin/bash www-data
 
