@@ -10,7 +10,7 @@ then
 
   for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
   do
-    RESULT="${RESULT}${COUNTER} => \"${DOMAIN}\""
+    RESULT="${RESULT}${COUNTER}=>\"${DOMAIN}\","
     let COUNTER+=1
   done
 
