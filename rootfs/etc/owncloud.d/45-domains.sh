@@ -1,13 +1,31 @@
 #!/usr/bin/env bash
 
-echo "Configure domains..."
-COUNTER=0
+if dpkg --compare-versions $(occ config:system:get version) "lt" "9.0"
+then
+  echo "Configure domains..."
+  occ config:system:set trusted_domains --value DOMAINS
 
-for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
-do
-  occ config:system:set trusted_domains ${COUNTER} --value ${DOMAIN}
-  let COUNTER+=1
-done
+  COUNTER=0
+  RESULT="array("
+
+  for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
+  do
+    RESULT="${RESULT}${COUNTER} => \"${DOMAIN}\""
+    let COUNTER+=1
+  done
+
+  RESULT="${RESULT})"
+  sed -i "s|'DOMAINS'|${RESULT}|" /var/www/owncloud/config/config.php
+else
+  echo "Configure domains..."
+  COUNTER=0
+
+  for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
+  do
+    occ config:system:set trusted_domains ${COUNTER} --value ${DOMAIN}
+    let COUNTER+=1
+  done
+fi
 
 occ config:system:set overwrite.cli.url --value http://localhost
 
