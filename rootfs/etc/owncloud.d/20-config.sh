@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+if [[ ! -L /var/www/owncloud/custom ]]
+then
+  echo "Removing custom..."
+  rm -rf /var/www/owncloud/custom
+
+  echo "Linking custom..."
+  ln -sf /mnt/data/apps /var/www/owncloud/custom
+fi
+
 if [[ ! -L /var/www/owncloud/config ]]
 then
   echo "Removing folder..."
