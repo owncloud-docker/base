@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -e
 
-COMMAND="occ upgrade --skip-migration-test --no-interaction"
+COMMAND="occ upgrade --no-interaction"
 exec ${COMMAND}
