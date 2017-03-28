@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if dpkg --compare-versions $(occ config:system:get version) "lt" "9.0"
+if dpkg --compare-versions $(occ config:system:get version | tail -1) "lt" "9.0"
 then
   echo "Configure domains..."
   occ config:system:set trusted_domains --value DOMAINS
