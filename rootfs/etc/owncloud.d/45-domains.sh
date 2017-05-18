@@ -2,7 +2,7 @@
 
 if dpkg --compare-versions $(occ config:system:get version | tail -1) "lt" "9.0"
 then
-  echo "Configure domains..."
+  echo "Configure trusted domains..."
   occ config:system:set trusted_domains --value DOMAINS
 
   COUNTER=0
@@ -17,7 +17,7 @@ then
   RESULT="${RESULT})"
   sed -i "s|'DOMAINS'|${RESULT}|" /var/www/owncloud/config/config.php
 else
-  echo "Configure domains..."
+  echo "Configure trusted domains..."
   COUNTER=0
 
   for DOMAIN in localhost ${OWNCLOUD_IPADDRESS} $(echo ${OWNCLOUD_DOMAIN} | tr "," "\n")
@@ -27,6 +27,7 @@ else
   done
 fi
 
+echo "Enforcing cli url..."
 occ config:system:set overwrite.cli.url --value http://localhost
 
 true

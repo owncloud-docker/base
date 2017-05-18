@@ -11,14 +11,14 @@ then
     exit 1
   fi
 
-  echo "Enabling redis..."
+  echo "Enabling redis config..."
   occ config:system:set memcache.distributed --value "\OC\Memcache\Redis"
   occ config:system:set memcache.locking --value "\OC\Memcache\Redis"
   occ config:system:set redis --value REDIS
 
   sed -i "s|'REDIS'|array('host' => '${OWNCLOUD_REDIS_HOST}', 'port' => ${OWNCLOUD_REDIS_PORT})|" /var/www/owncloud/config/config.php
 else
-  echo "Disabling redis..."
+  echo "Disabling redis config..."
   occ config:system:delete memcache.distributed
   occ config:system:delete memcache.locking
   occ config:system:delete redis

@@ -1,7 +1,6 @@
 <?php
-
 $CONFIG = array(
-  "data_directory" => "/mnt/data/files",
+  "data_directory" => "${OWNCLOUD_VOLUME_FILES}",
   "apps_paths" => array(
     0 => array(
       "path" => OC::$SERVERROOT . "/apps",
@@ -9,7 +8,7 @@ $CONFIG = array(
       "writable" => false
     ),
     1 => array(
-      "path" => "/mnt/data/apps",
+      "path" => "${OWNCLOUD_VOLUME_APPS}",
       "url" => "/custom",
       "writable" => true
     )

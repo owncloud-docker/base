@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-echo "Creating folders..."
-mkdir -p /mnt/data/{config,files,certs,apps,sessions}
+echo "Creating volume folders..."
+mkdir -p \
+  ${OWNCLOUD_VOLUME_CONFIG} \
+  ${OWNCLOUD_VOLUME_FILES} \
+  ${OWNCLOUD_VOLUME_CERTS} \
+  ${OWNCLOUD_VOLUME_APPS} \
+  ${OWNCLOUD_VOLUME_SESSIONS}
 
 true

@@ -2,10 +2,10 @@
 
 if /usr/local/bin/owncloud-installed
 then
-  echo "Upgrading database..."
+  echo "Upgrading server database..."
   /usr/local/bin/owncloud-migrate
 else
-  echo "Installing database..."
+  echo "Installing server database..."
   /usr/local/bin/owncloud-install
 fi
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Setting language..."
+echo "Enabling background cron..."
 occ background:cron
 
 true

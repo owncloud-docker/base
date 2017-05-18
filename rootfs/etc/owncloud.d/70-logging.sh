@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-echo "Touching logfile..."
-su-exec www-data touch /mnt/data/files/owncloud.log
+echo "Touching log file..."
+su-exec www-data touch ${OWNCLOUD_VOLUME_FILES}/owncloud.log
 
-echo "Setting loglevel..."
+echo "Setting log level..."
 occ config:system:set loglevel --value ${OWNCLOUD_LOGLEVEL}
 
 true

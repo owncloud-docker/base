@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 
-echo "Starting Cron..."
+echo "Writing apache env..."
+if [[ "${OWNCLOUD_SUB_URL}" == "/" ]]
+then
+  envsubst \
+    '${OWNCLOUD_SUB_URL}' \
+      < /root/owncloud/toppath.conf > /etc/apache2/sites-enabled/000-default.conf
+else
+  envsubst \
+    '${OWNCLOUD_SUB_URL}' \
+      < /root/owncloud/subpath.conf > /etc/apache2/sites-enabled/000-default.conf
+fi
+
+echo "Starting cron daemon..."
 service cron start >/dev/null
 
-echo "Starting Apache..."
+echo "Starting apache daemon..."
 service apache2 start >/dev/null
 
 true

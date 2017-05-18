@@ -2,10 +2,10 @@
 
 if [[ ${OWNCLOUD_LOCKING_ENABLED} == "true" ]]
 then
-  echo "Enabling locking..."
+  echo "Enabling file locking..."
   occ config:system:set filelocking.enabled --value true
 else
-  echo "Disabling locking..."
+  echo "Disabling file locking..."
   occ config:system:set filelocking.enabled --value false
 fi
 
