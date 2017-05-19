@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo "Setting rewrite base..."
+occ config:system:set htaccess.RewriteBase --value ${OWNCLOUD_SUB_URL}
+occ maintenance:update:htaccess
+
 echo "Writing apache config..."
 if [[ "${OWNCLOUD_SUB_URL}" == "/" ]]
 then
