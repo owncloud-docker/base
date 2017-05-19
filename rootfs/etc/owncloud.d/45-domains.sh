@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ -n "${OWNCLOUD_DOMAIN_FILE}" && -f "${OWNCLOUD_DOMAIN_FILE}" ]]
+then
+  OWNCLOUD_DOMAIN="${OWNCLOUD_DOMAIN} $(cat ${OWNCLOUD_DOMAIN_FILE})"
+fi
+
 if dpkg --compare-versions $(occ config:system:get version | tail -1) "lt" "9.0"
 then
   echo "Configure trusted domains..."
