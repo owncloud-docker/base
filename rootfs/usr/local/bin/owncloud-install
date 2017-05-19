@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-COMMAND="occ maintenance:install --no-interaction --data-dir /mnt/data/files"
+COMMAND="occ maintenance:install --no-interaction --data-dir ${OWNCLOUD_VOLUME_FILES}"
 [[ -n "${OWNCLOUD_DB_TYPE}" ]] && COMMAND="${COMMAND} --database ${OWNCLOUD_DB_TYPE}"
 [[ -n "${OWNCLOUD_DB_NAME}" ]] && COMMAND="${COMMAND} --database-name ${OWNCLOUD_DB_NAME}"
 [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && COMMAND="${COMMAND} --database-user ${OWNCLOUD_DB_USERNAME}"
