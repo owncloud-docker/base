@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Writing apache env..."
+echo "Writing apache config..."
 if [[ "${OWNCLOUD_SUB_URL}" == "/" ]]
 then
   envsubst \
@@ -11,6 +11,11 @@ else
     '${OWNCLOUD_SUB_URL} ${OWNCLOUD_VOLUME_CERTS}' \
       < /root/owncloud/subpath.conf > /etc/apache2/sites-enabled/000-default.conf
 fi
+
+echo "Writing php config..."
+  envsubst \
+    '${OWNCLOUD_VOLUME_SESSIONS} ${OWNCLOUD_MAX_UPLOAD}' \
+      < /root/owncloud/php.ini > /etc/php/7.0/mods-available/owncloud.ini
 
 echo "Starting cron daemon..."
 service cron start >/dev/null
