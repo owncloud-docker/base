@@ -22,7 +22,7 @@ then
   then
     for VAL in $(echo ${OWNCLOUD_APPS_ENABLE} | tr "," " ")
     do
-      if [[ -d ${OWNCLOUD_VOLUME_APPS}/${VAL} ]]
+      if [[ -d ${OWNCLOUD_VOLUME_APPS}/${VAL} || -d /var/www/owncloud/apps/${VAL} ]]
       then
         echo "Enabling ${VAL} app..."
         occ app:enable -n ${VAL}
