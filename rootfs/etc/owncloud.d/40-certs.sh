@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=ownCloud GmbH/CN=${OWNCLOUD_DOMAIN}"
+SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=ownCloud GmbH/CN=localhost"
 KEY=${OWNCLOUD_VOLUME_CERTS}/ssl-cert.key
 CERT=${OWNCLOUD_VOLUME_CERTS}/ssl-cert.crt
 
