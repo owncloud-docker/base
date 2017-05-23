@@ -26,4 +26,12 @@ then
       < /root/owncloud/config.php > ${OWNCLOUD_VOLUME_CONFIG}/config.php
 fi
 
+if [[ ! -f ${OWNCLOUD_VOLUME_CONFIG}/domains.config.php ]]
+then
+  echo "Copying domains file..."
+  cp \
+    /root/owncloud/domains.php \
+    ${OWNCLOUD_VOLUME_CONFIG}/domains.config.php
+fi
+
 true
