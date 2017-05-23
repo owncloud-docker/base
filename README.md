@@ -46,8 +46,6 @@ IMAGE_NAME=owncloud/base ./hooks/build
 ## Available environment variables
 
 ```
-OWNCLOUD_DOMAIN ${HOSTNAME}
-OWNCLOUD_IPADDRESS $(hostname -i)
 OWNCLOUD_LOGLEVEL 0
 OWNCLOUD_MAX_UPLOAD 20G
 OWNCLOUD_DEFAULT_LANGUAGE en

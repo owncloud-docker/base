@@ -12,5 +12,8 @@ $CONFIG = array(
       "url" => "/custom",
       "writable" => true
     )
+  ),
+  "trusted_domains" => array(
+    0 => $_SERVER["SERVER_NAME"]
   )
 );
