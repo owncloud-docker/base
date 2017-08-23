@@ -8,7 +8,7 @@ $CONFIG = array(
       "writable" => false
     ),
     1 => array(
-      "path" => "${OWNCLOUD_VOLUME_APPS}",
+      "path" => OC::$SERVERROOT . "/custom",
       "url" => "/custom",
       "writable" => true
     )
