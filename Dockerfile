@@ -43,9 +43,6 @@ RUN apt-get update -y && \
   chown -R www-data:www-data /var/www/owncloud /mnt/data && \
   chsh -s /bin/bash www-data
 
-RUN curl -sS https://getcomposer.org/installer \
-  | php -- --install-dir=/usr/bin --filename=composer
-
 COPY rootfs /
 WORKDIR /var/www/owncloud
 
