@@ -18,7 +18,7 @@ fi
 
 echo "Writing php config..."
   envsubst \
-    '${OWNCLOUD_VOLUME_SESSIONS} ${OWNCLOUD_MAX_UPLOAD}' \
+    '${OWNCLOUD_VOLUME_SESSIONS} ${OWNCLOUD_MAX_UPLOAD} ${OWNCLOUD_MAX_EXECUTION_TIME} ${OWNCLOUD_MAX_INPUT_TIME}' \
       < /root/owncloud/php.ini > /etc/php/7.0/mods-available/owncloud.ini
 
 echo "Starting cron daemon..."
