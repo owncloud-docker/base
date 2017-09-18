@@ -29,6 +29,8 @@ then
       fi
     done
   fi
+
+  occ upgrade
 fi
 
 true
