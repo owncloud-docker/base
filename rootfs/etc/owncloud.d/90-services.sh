@@ -21,8 +21,11 @@ echo "Writing php config..."
     '${OWNCLOUD_VOLUME_SESSIONS} ${OWNCLOUD_MAX_UPLOAD} ${OWNCLOUD_MAX_EXECUTION_TIME} ${OWNCLOUD_MAX_INPUT_TIME}' \
       < /root/owncloud/php.ini > /etc/php/7.0/mods-available/owncloud.ini
 
-echo "Starting cron daemon..."
-service cron start >/dev/null
+if [[ ${OWNCLOUD_CROND_ENABLED} == "true" ]]
+then
+  echo "Starting cron daemon..."
+  service cron start >/dev/null
+fi
 
 echo "Starting apache daemon..."
 service apache2 start >/dev/null
