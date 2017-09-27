@@ -34,4 +34,9 @@ then
     ${OWNCLOUD_VOLUME_CONFIG}/domains.config.php
 fi
 
+echo "Copying db file..."
+envsubst \
+  '${OWNCLOUD_DB_TYPE} ${OWNCLOUD_DB_HOST} ${OWNCLOUD_DB_NAME} ${OWNCLOUD_DB_USERNAME} ${OWNCLOUD_DB_PASSWORD} ${OWNCLOUD_DB_PREFIX}' \
+    < /root/owncloud/database.php > ${OWNCLOUD_VOLUME_CONFIG}/database.config.php
+
 true

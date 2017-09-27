@@ -12,8 +12,5 @@ $CONFIG = array(
       "url" => "/custom",
       "writable" => true
     )
-  ),
-  "trusted_domains" => array(
-    0 => isset($_SERVER["SERVER_NAME"]) ? $_SERVER["SERVER_NAME"] : "localhost"
   )
 );
