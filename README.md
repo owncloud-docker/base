@@ -5,27 +5,18 @@
 This is our basic ownCloud webserver image that shares the functionality for the ownCloud community and enterprise edition, it is based on our [Ubuntu container](https://registry.hub.docker.com/u/owncloud/ubuntu/).
 
 
-## Usage
-
-```bash
-docker run -ti \
-  --name base \
-  owncloud/base:latest
-```
-
-
 ## Build locally
 
 The available versions should be already pushed to the Docker Hub, but in case you want to try a change locally you can always execute the following command to get this image built locally:
 
 ```
-IMAGE_NAME=owncloud/base ./hooks/build
+IMAGE_NAME=owncloud/base:latest ./hooks/build
 ```
 
 
 ## Versions
 
-* [latest](https://github.com/owncloud-docker/base/tree/master) available as ```owncloud/base:latest``` at [Docker Hub](https://registry.hub.docker.com/u/owncloud/base/)
+To get an overview about the available versions please take a look at the [GitHub branches](https://github.com/owncloud-docker/base/branches/all) or our [Docker Hub tags](https://hub.docker.com/r/owncloud/base/tags/), these lists are always up to date.
 
 
 ## Volumes
