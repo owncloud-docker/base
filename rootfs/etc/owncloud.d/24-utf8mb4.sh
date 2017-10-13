@@ -6,6 +6,7 @@ then
   envsubst \
     '${OWNCLOUD_UTF8MB4_ENABLED}' \
       < /root/owncloud/utf8mb4.php > ${OWNCLOUD_VOLUME_CONFIG}/utf8mb4.config.php
+  occ db:convert-mysql-charset
 else
   if [[ -f ${OWNCLOUD_VOLUME_CONFIG}/utf8mb4.config.php ]]
   then
