@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+declare -x OWNCLOUD_PRE_INSTALL_PATH
+[[ -z "${OWNCLOUD_PRE_INSTALL_PATH}" ]] && OWNCLOUD_PRE_INSTALL_PATH="/etc/pre_install.d"
+
+declare -x OWNCLOUD_POST_INSTALL_PATH
+[[ -z "${OWNCLOUD_POST_INSTALL_PATH}" ]] && OWNCLOUD_POST_INSTALL_PATH="/etc/post_install.d"
+
+declare -x OWNCLOUD_PRE_SERVER_PATH
+[[ -z "${OWNCLOUD_PRE_SERVER_PATH}" ]] && OWNCLOUD_PRE_SERVER_PATH="/etc/pre_server.d"
+
+declare -x OWNCLOUD_POST_SERVER_PATH
+[[ -z "${OWNCLOUD_POST_SERVER_PATH}" ]] && OWNCLOUD_POST_SERVER_PATH="/etc/post_server.d"
+
 declare -x OWNCLOUD_LOGLEVEL
 [[ -z "${OWNCLOUD_LOGLEVEL}" ]] && OWNCLOUD_LOGLEVEL="0"
 
