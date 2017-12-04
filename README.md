@@ -82,6 +82,7 @@ OWNCLOUD_PRE_INSTALL_PATH /etc/pre_install.d
 OWNCLOUD_POST_INSTALL_PATH /etc/post_install.d
 OWNCLOUD_PRE_SERVER_PATH /etc/pre_server.d
 OWNCLOUD_POST_SERVER_PATH /etc/post_server.d
+OWNCLOUD_LOCKING_ENABLED true
 ```
 
 
