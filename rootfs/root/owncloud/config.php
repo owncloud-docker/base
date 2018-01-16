@@ -1,6 +1,8 @@
 <?php
 $CONFIG = array(
-  "data_directory" => "${OWNCLOUD_VOLUME_FILES}",
+  "datadirectory" => "${OWNCLOUD_VOLUME_FILES}",
+  "updatechecker" => false,
+  "upgrade.disable-web" => true,
   "apps_paths" => array(
     0 => array(
       "path" => OC::$SERVERROOT . "/apps",
