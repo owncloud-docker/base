@@ -4,6 +4,16 @@ echo "Setting rewrite base..."
 occ config:system:set htaccess.RewriteBase --value ${OWNCLOUD_SUB_URL}
 occ maintenance:update:htaccess
 
+# enable local folder mounting as external storage if required
+if [[ -n "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" ]]
+then
+  if [[ "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" == "true" ]] || [[ "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" == "false" ]]
+  then
+    echo "Setting files_external_allow_create_new_local to ${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}..."
+    occ config:system:set files_external_allow_create_new_local --type=boolean --value=${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}
+  fi
+fi
+
 echo "Writing apache config..."
 if [[ "${OWNCLOUD_SUB_URL}" == "/" ]]
 then
