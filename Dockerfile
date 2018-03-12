@@ -35,7 +35,8 @@ RUN apt-get update -y && \
     mysql-client \
     postgresql-client \
     sqlite \
-    gettext-base && \
+    gettext-base \
+    patch && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/apache2/sites-available/default-ssl.conf && \
   a2enmod rewrite headers env dir mime ssl expires && \
