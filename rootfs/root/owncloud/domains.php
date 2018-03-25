@@ -13,5 +13,3 @@ $CONFIG = array(
     0 => $domain
   )
 );
-
-var_dump($CONFIG);
