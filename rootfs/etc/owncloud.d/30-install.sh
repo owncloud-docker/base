@@ -2,7 +2,7 @@
 
 if [[ -d "${OWNCLOUD_PRE_INSTALL_PATH}" ]]
 then
-  for FILE in $(find ${OWNCLOUD_PRE_INSTALL_PATH} -type f -iname *.sh | sort)
+  for FILE in $(find ${OWNCLOUD_PRE_INSTALL_PATH} -iname *.sh | sort)
   do
     source ${FILE}
   done
@@ -19,7 +19,7 @@ fi
 
 if [[ -d "${OWNCLOUD_POST_INSTALL_PATH}" ]]
 then
-  for FILE in $(find ${OWNCLOUD_POST_INSTALL_PATH} -type f -iname *.sh | sort)
+  for FILE in $(find ${OWNCLOUD_POST_INSTALL_PATH} -iname *.sh | sort)
   do
     source ${FILE}
   done

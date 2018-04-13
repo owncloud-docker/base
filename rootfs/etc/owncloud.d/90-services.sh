@@ -39,7 +39,7 @@ fi
 
 if [[ -d "${OWNCLOUD_PRE_SERVER_PATH}" ]]
 then
-  for FILE in $(find ${OWNCLOUD_PRE_SERVER_PATH} -type f -iname *.sh | sort)
+  for FILE in $(find ${OWNCLOUD_PRE_SERVER_PATH} -iname *.sh | sort)
   do
     source ${FILE}
   done
@@ -50,7 +50,7 @@ service apache2 start >/dev/null
 
 if [[ -d "${OWNCLOUD_POST_SERVER_PATH}" ]]
 then
-  for FILE in $(find ${OWNCLOUD_POST_SERVER_PATH} -type f -iname *.sh | sort)
+  for FILE in $(find ${OWNCLOUD_POST_SERVER_PATH} -iname *.sh | sort)
   do
     source ${FILE}
   done
