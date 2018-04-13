@@ -33,6 +33,7 @@ To get an overview about the available versions please take a look at the [GitHu
 ## Available environment variables
 
 ```
+OWNCLOUD_DOMAIN localhost
 OWNCLOUD_LOGLEVEL 0
 OWNCLOUD_MAX_UPLOAD 20G
 OWNCLOUD_MAX_EXECUTION_TIME 3600

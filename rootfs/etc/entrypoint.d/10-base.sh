@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+declare -x OWNCLOUD_DOMAIN
+[[ -z "${OWNCLOUD_DOMAIN}" ]] && OWNCLOUD_DOMAIN="localhost"
+
 declare -x OWNCLOUD_PRE_INSTALL_PATH
 [[ -z "${OWNCLOUD_PRE_INSTALL_PATH}" ]] && OWNCLOUD_PRE_INSTALL_PATH="/etc/pre_install.d"
 
