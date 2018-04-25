@@ -4,7 +4,6 @@ echo "Setting rewrite base..."
 occ config:system:set htaccess.RewriteBase --value ${OWNCLOUD_SUB_URL}
 occ maintenance:update:htaccess
 
-# enable local folder mounting as external storage if required
 if [[ -n "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" ]]
 then
   if [[ "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" == "true" ]] || [[ "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" == "false" ]]
@@ -18,11 +17,11 @@ echo "Writing apache config..."
 if [[ "${OWNCLOUD_SUB_URL}" == "/" ]]
 then
   envsubst \
-    '${OWNCLOUD_SUB_URL} ${OWNCLOUD_VOLUME_CERTS}' \
+    '${OWNCLOUD_SUB_URL} ${OWNCLOUD_VOLUME_CERTS} ${OWNCLOUD_ERRORLOG_LOCATION} ${OWNCLOUD_ACCESSLOG_LOCATION}' \
       < /root/owncloud/toppath.conf > /etc/apache2/sites-enabled/000-default.conf
 else
   envsubst \
-    '${OWNCLOUD_SUB_URL} ${OWNCLOUD_VOLUME_CERTS}' \
+    '${OWNCLOUD_SUB_URL} ${OWNCLOUD_VOLUME_CERTS} ${OWNCLOUD_ERRORLOG_LOCATION} ${OWNCLOUD_ACCESSLOG_LOCATION}' \
       < /root/owncloud/subpath.conf > /etc/apache2/sites-enabled/000-default.conf
 fi
 
@@ -33,6 +32,9 @@ echo "Writing php config..."
 
 if [[ ${OWNCLOUD_CROND_ENABLED} == "true" ]]
 then
+  echo "Touching cron configs..."
+  touch /etc/cron.d/*
+
   echo "Starting cron daemon..."
   service cron start >/dev/null
 fi
