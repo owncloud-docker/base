@@ -25,7 +25,6 @@ RUN apt-get update -y && \
     php-pgsql \
     php-curl \
     php-intl \
-    php-mcrypt \
     php-imagick \
     php-zip \
     php-xml \
