@@ -11,7 +11,6 @@ else
   then
     echo "Removing license config..."
     rm -f ${OWNCLOUD_VOLUME_CONFIG}/license.config.php
-    occ config:system:delete license-key
   fi
 fi
 

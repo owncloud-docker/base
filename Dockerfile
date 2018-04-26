@@ -1,13 +1,17 @@
 FROM owncloud/ubuntu:latest
-MAINTAINER ownCloud DevOps <devops@owncloud.com>
+
+LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
+  org.label-schema.name="ownCloud Base" \
+  org.label-schema.vendor="ownCloud GmbH" \
+  org.label-schema.schema-version="1.0"
 
 VOLUME ["/mnt/data"]
 
 EXPOSE 80
 EXPOSE 443
 
-ENTRYPOINT ["/usr/local/bin/entrypoint"]
-CMD ["/usr/local/bin/owncloud"]
+ENTRYPOINT ["/usr/bin/entrypoint"]
+CMD ["/usr/bin/owncloud"]
 
 RUN apt-get update -y && \
   apt-get upgrade -y && \
@@ -46,15 +50,3 @@ RUN apt-get update -y && \
 
 COPY rootfs /
 WORKDIR /var/www/owncloud
-
-ARG VERSION
-ARG BUILD_DATE
-ARG VCS_REF
-
-LABEL org.label-schema.version=$VERSION
-LABEL org.label-schema.build-date=$BUILD_DATE
-LABEL org.label-schema.vcs-ref=$VCS_REF
-LABEL org.label-schema.vcs-url="https://github.com/owncloud-docker/base.git"
-LABEL org.label-schema.name="ownCloud Base"
-LABEL org.label-schema.vendor="ownCloud GmbH"
-LABEL org.label-schema.schema-version="1.0"

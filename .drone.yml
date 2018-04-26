@@ -1,0 +1,91 @@
+workspace:
+  base: /var/www
+  path: base
+
+branches:
+  - master
+
+clone:
+  git:
+    image: plugins/git:1
+    pull: true
+
+pipeline:
+  tarball:
+    image: plugins/download:latest
+    pull: true
+    secrets: [ download_username, download_password ]
+    source: https://download.owncloud.org/community/owncloud-10.0.8.tar.bz2
+    sha256: 9eef77a171cf69fc89b0628b083b4b1dd15eec375599c7eb5ac0b6d37ab6f903
+
+  extract:
+    image: owncloud/ubuntu:latest
+    pull: true
+    commands:
+      - tar -xjf owncloud-10.0.8.tar.bz2 -C /var/www
+
+  wait:
+    image: owncloud/ubuntu:latest
+    pull: true
+    commands:
+      - wait-for-it -t 600 docker:2375
+
+  build:
+    image: toolhippie/docker:latest
+    pull: true
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    commands:
+      - docker build -t owncloud/base:latest .
+
+  server:
+    image: toolhippie/docker:latest
+    pull: true
+    detach: true
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    commands:
+      - docker run -p 8000:80 -v /var/www/owncloud:/var/www/owncloud owncloud/base:latest
+
+  test:
+    image: owncloud/ubuntu:latest
+    pull: true
+    commands:
+      - wait-for-it -t 600 docker:8000
+      - curl -sSf http://docker:8000/status.php
+
+  publish:
+    image: toolhippie/docker:latest
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    commands:
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push owncloud/base:latest
+    when:
+      event: [ push ]
+
+  microbadger:
+    image: plugins/webhook:1
+    pull: true
+    secrets: [ webhook_urls ]
+    when:
+      local: false
+      event: [ push ]
+
+  slack:
+    image: plugins/slack:1
+    pull: true
+    secrets: [ slack_webhook ]
+    channel: docker
+    template: >
+      *{{build.status}}* <{{build.link}}|{{repo.owner}}/{{repo.name}}#{{truncate build.commit 8}}> @ latest
+    when:
+      local: false
+      event: [ push ]
+      status: [ changed, failure ]
+
+services:
+  docker:
+    image: docker:18.04-dind

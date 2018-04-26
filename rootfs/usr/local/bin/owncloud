@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+set -eo pipefail
 
-for FILE in /etc/owncloud.d/*.sh
+for FILE in $(find /etc/owncloud.d -iname *.sh | sort)
 do
   source ${FILE}
 done

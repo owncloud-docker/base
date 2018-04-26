@@ -11,7 +11,6 @@ else
   then
     echo "Removing utf8mb4 config..."
     rm -f ${OWNCLOUD_VOLUME_CONFIG}/utf8mb4.config.php
-    occ config:system:delete mysql.utf8mb4
   fi
 fi
 

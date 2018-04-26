@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 COMMAND="occ maintenance:install --no-interaction --data-dir ${OWNCLOUD_VOLUME_FILES}"
 [[ -n "${OWNCLOUD_DB_TYPE}" ]] && COMMAND="${COMMAND} --database ${OWNCLOUD_DB_TYPE}"

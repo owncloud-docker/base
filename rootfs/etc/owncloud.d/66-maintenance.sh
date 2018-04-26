@@ -2,10 +2,10 @@
 
 if [[ ${OWNCLOUD_MAINTENANCE_MODE} == "true" ]]
 then
-  echo "Enabling maintenace mode..."
+  echo "Enabling maintenance mode..."
   occ maintenance:mode --on
 else
-  echo "Disabling maintenace mode..."
+  echo "Disabling maintenance mode..."
   occ maintenance:mode --off
 fi
 
