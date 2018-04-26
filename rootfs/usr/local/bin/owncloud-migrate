@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+COMMAND="occ upgrade --no-interaction"
+exec ${COMMAND}

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+for FILE in $(find /etc/entrypoint.d -iname *.sh | sort)
+do
+  source ${FILE}
+done
+
+exec $@
