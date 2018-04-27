@@ -74,6 +74,23 @@ pipeline:
       local: false
       event: [ push ]
 
+  downstream:
+    image: plugins/downstream:1
+    pull: true
+    secrets: [ drone_token ]
+    server: https://drone.owncloud.com
+    repositories:
+      - owncloud-docker/server@master
+      - owncloud-docker/server@9.1.x
+      - owncloud-docker/server@9.0.x
+      - owncloud-docker/enterprise@master
+      - owncloud-docker/enterprise@9.1.x
+      - owncloud-docker/enterprise@9.0.x
+    when:
+      local: false
+      event: [ push ]
+      status: [ success ]
+
   slack:
     image: plugins/slack:1
     pull: true
