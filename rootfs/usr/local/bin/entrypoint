@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -eo pipefail
-
-declare -x DEBUG
 [[ "${DEBUG}" == "true" ]] && set -x
 
 for FILE in $(find /etc/entrypoint.d -iname *.sh | sort)
