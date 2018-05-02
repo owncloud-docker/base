@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
-set -eo pipefail
 
 COMMAND="occ upgrade --no-interaction"
-exec ${COMMAND}
+
+${COMMAND}
+RES=$?
+
+if [[ "${RES}" -ge "4" ]]
+then
+  exit ${RES}
+else
+  exit 0
+fi
