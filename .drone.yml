@@ -79,6 +79,7 @@ pipeline:
     pull: true
     secrets: [ drone_token ]
     server: https://drone.owncloud.com
+    last_successful: true
     repositories:
       - owncloud-docker/server@master
       - owncloud-docker/server@9.1.x
