@@ -25,7 +25,6 @@ To get an overview about the available versions please take a look at the [GitHu
 ## Available environment variables
 
 ```
-DEBUG
 OWNCLOUD_DOMAIN localhost
 OWNCLOUD_LOGLEVEL 0
 OWNCLOUD_LOGSIZE
