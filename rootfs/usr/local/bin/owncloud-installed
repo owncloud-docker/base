@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -eo pipefail
 
 if [[ $(occ -V | awk -F- '$1=="ownCloud is not installed "{print "false"}') == "false" ]]
 then
