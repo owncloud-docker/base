@@ -2,7 +2,12 @@
 
 echo "Setting rewrite base..."
 occ config:system:set htaccess.RewriteBase --value ${OWNCLOUD_SUB_URL}
-occ maintenance:update:htaccess
+
+if dpkg --compare-versions $(occ config:system:get version | tail -1) "ge" "9.0.3"
+then
+  echo "Updating htaccess config..."
+  occ maintenance:update:htaccess
+fi
 
 if [[ -n "${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}" ]]
 then
