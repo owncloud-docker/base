@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+CHECK="$(curl -sL -w %{http_code} -o /dev/null http://localhost/status.php)"
+
+if [[ "${CHECK}" == "200" ]]
+then
+  exit 0
+fi
+
+exit 1
