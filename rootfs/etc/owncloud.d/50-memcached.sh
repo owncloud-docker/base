@@ -14,11 +14,11 @@ then
     fi
 
     echo "Enabling memcached config..."
+
+    occ config:system:set memcached_servers --value MEMCACHED
+    sed -i "s|'MEMCACHED'|array('${OWNCLOUD_MEMCACHED_HOST}', ${OWNCLOUD_MEMCACHED_PORT})|" /var/www/owncloud/config/config.php
     occ config:system:set memcache.distributed --value "\OC\Memcache\Memcached"
     occ config:system:set memcache.locking --value "\OC\Memcache\Memcached"
-    occ config:system:set memcached_servers --value MEMCACHED
-
-    sed -i "s|'MEMCACHED'|array('${OWNCLOUD_MEMCACHED_HOST}', ${OWNCLOUD_MEMCACHED_PORT})|" /var/www/owncloud/config/config.php
   else
     echo "Disabling memcached config..."
     occ config:system:delete memcache.distributed
