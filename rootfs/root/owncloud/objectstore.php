@@ -13,6 +13,7 @@ $CONFIG = array (
           'secret' => '${OWNCLOUD_OBJECTSTORE_SECRET}',
         ],
         'endpoint' => '${OWNCLOUD_OBJECTSTORE_ENDPOINT}',
+        'use_path_style_endpoint' => ${OWNCLOUD_OBJECTSTORE_PATHSTYLE},
         'command.params' => [
           'PathStyle' => ${OWNCLOUD_OBJECTSTORE_PATHSTYLE},
         ]
