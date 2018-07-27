@@ -9,7 +9,7 @@ then
 
     if [[ $? -ne 0 ]]
     then
-      echo "Redis didn't came up in time!"
+      echo "Redis didn't come up in time!"
       exit 1
     fi
 

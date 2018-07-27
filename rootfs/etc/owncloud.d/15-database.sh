@@ -12,7 +12,7 @@ case ${OWNCLOUD_DB_TYPE} in
 
     if [[ $? -ne 0 && "${OWNCLOUD_DB_FAIL}" == "true" ]]
     then
-      echo "Database didn't came up in time!"
+      echo "Database didn't come up in time!"
       exit 1
     fi
     ;;
@@ -27,7 +27,7 @@ case ${OWNCLOUD_DB_TYPE} in
 
     if [[ $? -ne 0 && "${OWNCLOUD_DB_FAIL}" == "true" ]]
     then
-      echo "Database didn't came up in time!"
+      echo "Database didn't come up in time!"
       exit 1
     fi
     ;;

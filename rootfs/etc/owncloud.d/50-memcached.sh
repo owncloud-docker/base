@@ -9,7 +9,7 @@ then
 
     if [[ $? -ne 0 ]]
     then
-      echo "Memcached didn't came up in time!"
+      echo "Memcached didn't come up in time!"
       exit 1
     fi
 
