@@ -81,6 +81,7 @@ pipeline:
     server: https://drone.owncloud.com
     last_successful: true
     repositories:
+      - owncloud-docker/server@testing
       - owncloud-docker/server@master
       - owncloud-docker/server@9.1.x
       - owncloud-docker/server@9.0.x
