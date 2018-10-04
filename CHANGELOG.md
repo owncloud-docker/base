@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-10-04
+* Added
+  * Ability to specify php session handler [#63](https://github.com/owncloud-docker/base/pull/63)
+
 ## 2018-06-12
 
 * Fixed
