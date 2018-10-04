@@ -32,7 +32,7 @@ fi
 
 echo "Writing php config..."
   envsubst \
-    '${OWNCLOUD_VOLUME_SESSIONS} ${OWNCLOUD_MAX_UPLOAD} ${OWNCLOUD_MAX_EXECUTION_TIME} ${OWNCLOUD_MAX_INPUT_TIME}' \
+    '${OWNCLOUD_SESSION_HANDLER} ${OWNCLOUD_SESSION_PATH} ${OWNCLOUD_MAX_UPLOAD} ${OWNCLOUD_MAX_EXECUTION_TIME} ${OWNCLOUD_MAX_INPUT_TIME}' \
       < /root/owncloud/php.ini > /etc/php/7.0/mods-available/owncloud.ini
 
 if [[ ${OWNCLOUD_CROND_ENABLED} == "true" ]]
