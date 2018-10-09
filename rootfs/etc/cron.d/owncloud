@@ -1,1 +1,1 @@
-*/1  *  *  *  * www-data /usr/bin/php -f /var/www/owncloud/cron.php
+*/1  *  *  *  * www-data /usr/bin/cronjob
