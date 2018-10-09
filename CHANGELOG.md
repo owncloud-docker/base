@@ -15,6 +15,15 @@
 * Removed
   * Removed Apache configuration, part of base image now
   * Removed `/usr/local/bin` scripts, moved to `/usr/bin`
+* Deprecated
+  * Replaced env variable `OWNCLOUD_MARKETPLACE_URL` with `OWNCLOUD_APPSTORE_URL`
+  * Replaced env variable `OWNCLOUD_LOCKING_ENABLED` with `OWNCLOUD_FILELOCKING_ENABLED`
+  * Replaced env variable `OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE` with `OWNCLOUD_FILES_EXTERNAL_ALLOW_NEW_LOCAL`
+  * Replaced env variable `OWNCLOUD_LOGSIZE` with `OWNCLOUD_LOG_ROTATE_SIZE`
+  * Replaced env variable `OWNCLOUD_MAINTENANCE_MODE` with `OWNCLOUD_MAINTENANCE`
+  * Replaced env variable `OWNCLOUD_MARKETPLACE_APIKEY` with `OWNCLOUD_MARKETPLACE_KEY`
+  * Replaced env variable `OWNCLOUD_CACHING_CLASS` with `OWNCLOUD_MEMCACHE_LOCAL`
+  * Replaced env variable `OWNCLOUD_UTF8MB4_ENABLED` with `OWNCLOUD_MYSQL_UTF8MB4`
 
 ## 2018-06-12
 
