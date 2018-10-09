@@ -51,11 +51,11 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_VERSION_HIDE') != '') {
-    $config['version.hide'] = (bool) getenv('OWNCLOUD_VERSION_HIDE');
+    $config['version.hide'] = getenv('OWNCLOUD_VERSION_HIDE') == 'true';
   }
 
   if (getenv('OWNCLOUD_SHOW_SERVER_HOSTNAME') != '') {
-    $config['show_server_hostname'] = (bool) getenv('OWNCLOUD_SHOW_SERVER_HOSTNAME');
+    $config['show_server_hostname'] = getenv('OWNCLOUD_SHOW_SERVER_HOSTNAME') == 'true';
   }
 
   if (getenv('OWNCLOUD_DEFAULT_LANGUAGE') != '') {
@@ -67,15 +67,15 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_KNOWLEDGEBASE_ENABLED') != '') {
-    $config['knowledgebaseenabled'] = (bool) getenv('OWNCLOUD_KNOWLEDGEBASE_ENABLED');
+    $config['knowledgebaseenabled'] = getenv('OWNCLOUD_KNOWLEDGEBASE_ENABLED') == 'true';
   }
 
   if (getenv('OWNCLOUD_ENABLE_AVATARS') != '') {
-    $config['enable_avatars'] = (bool) getenv('OWNCLOUD_ENABLE_AVATARS');
+    $config['enable_avatars'] = getenv('OWNCLOUD_ENABLE_AVATARS') == 'true';
   }
 
   if (getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME') != '') {
-    $config['allow_user_to_change_display_name'] = (bool) getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME');
+    $config['allow_user_to_change_display_name'] = getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME') == 'true';
   }
 
   if (getenv('OWNCLOUD_REMEMBER_LOGIN_COOKIE_LIFETIME') != '') {
@@ -87,15 +87,15 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_SESSION_KEEPALIVE') != '') {
-    $config['session_keepalive'] = (bool) getenv('OWNCLOUD_SESSION_KEEPALIVE');
+    $config['session_keepalive'] = getenv('OWNCLOUD_SESSION_KEEPALIVE') == 'true';
   }
 
   if (getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') != '') {
-    $config['token_auth_enforced'] = (bool) getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED');
+    $config['token_auth_enforced'] = getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') == 'true';
   }
 
   if (getenv('OWNCLOUD_CSRF_DISABLED') != '') {
-    $config['csrf.disabled'] = (bool) getenv('OWNCLOUD_CSRF_DISABLED');
+    $config['csrf.disabled'] = getenv('OWNCLOUD_CSRF_DISABLED') == 'true';
   }
 
   if (getenv('OWNCLOUD_SKELETON_DIRECTORY') != '') {
@@ -107,7 +107,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_ACCOUNTS_ENABLE_MEDIAL_SEARCH') != '') {
-    $config['accounts.enable_medial_search'] = (bool) getenv('OWNCLOUD_ACCOUNTS_ENABLE_MEDIAL_SEARCH');
+    $config['accounts.enable_medial_search'] = getenv('OWNCLOUD_ACCOUNTS_ENABLE_MEDIAL_SEARCH') == 'true';
   }
 
   if (getenv('OWNCLOUD_USER_SEARCH_MIN_LENGTH') != '') {
@@ -123,7 +123,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_MAIL_SMTP_DEBUG') != '') {
-    $config['mail_smtpdebug'] = (bool) getenv('OWNCLOUD_MAIL_SMTP_DEBUG');
+    $config['mail_smtpdebug'] = getenv('OWNCLOUD_MAIL_SMTP_DEBUG') == 'true';
   }
 
   if (getenv('OWNCLOUD_MAIL_SMTP_MODE') != '') {
@@ -147,7 +147,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_MAIL_SMTP_AUTH') != '') {
-    $config['mail_smtpauth'] = (bool) getenv('OWNCLOUD_MAIL_SMTP_AUTH');
+    $config['mail_smtpauth'] = getenv('OWNCLOUD_MAIL_SMTP_AUTH') == 'true';
   }
 
   if (getenv('OWNCLOUD_MAIL_SMTP_AUTH_TYPE') != '') {
@@ -207,7 +207,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_UPDATE_CHECKER') != '') {
-    $config['updatechecker'] = (bool) getenv('OWNCLOUD_UPDATE_CHECKER');
+    $config['updatechecker'] = getenv('OWNCLOUD_UPDATE_CHECKER') == 'true';
   }
 
   if (getenv('OWNCLOUD_UPDATER_SERVER_URL') != '') {
@@ -215,11 +215,11 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_HAS_INTERNET_CONNECTION') != '') {
-    $config['has_internet_connection'] = (bool) getenv('OWNCLOUD_HAS_INTERNET_CONNECTION');
+    $config['has_internet_connection'] = getenv('OWNCLOUD_HAS_INTERNET_CONNECTION') == 'true';
   }
 
   if (getenv('OWNCLOUD_CHECK_FOR_WORKING_WELLKNOWN_SETUP') != '') {
-    $config['check_for_working_wellknown_setup'] = (bool) getenv('OWNCLOUD_CHECK_FOR_WORKING_WELLKNOWN_SETUP');
+    $config['check_for_working_wellknown_setup'] = getenv('OWNCLOUD_CHECK_FOR_WORKING_WELLKNOWN_SETUP') == 'true';
   }
 
   if (getenv('OWNCLOUD_OPERATION_MODE') != '') {
@@ -243,7 +243,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_CRON_LOG') != '') {
-    $config['cron_log'] = (bool) getenv('OWNCLOUD_CRON_LOG');
+    $config['cron_log'] = getenv('OWNCLOUD_CRON_LOG') == 'true';
   }
 
   if (getenv('OWNCLOUD_LOG_ROTATE_SIZE') != '') {
@@ -251,7 +251,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_ENABLE_PREVIEWS') != '') {
-    $config['enable_previews'] = (bool) getenv('OWNCLOUD_ENABLE_PREVIEWS');
+    $config['enable_previews'] = getenv('OWNCLOUD_ENABLE_PREVIEWS') == 'true';
   }
 
   if (getenv('OWNCLOUD_PREVIEW_MAX_X') != '') {
@@ -291,7 +291,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_MAINTENANCE') != '') {
-    $config['maintenance'] = (bool) getenv('OWNCLOUD_MAINTENANCE');
+    $config['maintenance'] = getenv('OWNCLOUD_MAINTENANCE') == 'true';
   }
 
   if (getenv('OWNCLOUD_SINGLEUSER') != '') {
@@ -323,7 +323,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_SHARING_FEDERATION_ALLOW_HTTP_FALLBACK') != '') {
-    $config['sharing.federation.allowHttpFallback'] = (bool) getenv('OWNCLOUD_SHARING_FEDERATION_ALLOW_HTTP_FALLBACK');
+    $config['sharing.federation.allowHttpFallback'] = getenv('OWNCLOUD_SHARING_FEDERATION_ALLOW_HTTP_FALLBACK') == 'true';
   }
 
   if (getenv('OWNCLOUD_SQLITE_JOURNAL_MODE') != '') {
@@ -371,7 +371,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_QUOTA_INCLUDE_EXTERNAL_STORAGE') != '') {
-    $config['quota_include_external_storage'] = (bool) getenv('OWNCLOUD_QUOTA_INCLUDE_EXTERNAL_STORAGE');
+    $config['quota_include_external_storage'] = getenv('OWNCLOUD_QUOTA_INCLUDE_EXTERNAL_STORAGE') == 'true';
   }
 
   if (getenv('OWNCLOUD_FILESYSTEM_CHECK_CHANGES') != '') {
@@ -379,7 +379,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_PART_FILE_IN_STORAGE') != '') {
-    $config['part_file_in_storage'] = (bool) getenv('OWNCLOUD_PART_FILE_IN_STORAGE');
+    $config['part_file_in_storage'] = getenv('OWNCLOUD_PART_FILE_IN_STORAGE') == 'true';
   }
 
   if (getenv('OWNCLOUD_MOUNT_FILE') != '') {
@@ -387,7 +387,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_FILESYSTEM_CACHE_READONLY') != '') {
-    $config['filesystem_cache_readonly'] = (bool) getenv('OWNCLOUD_FILESYSTEM_CACHE_READONLY');
+    $config['filesystem_cache_readonly'] = getenv('OWNCLOUD_FILESYSTEM_CACHE_READONLY') == 'true';
   }
 
   if (getenv('OWNCLOUD_SECRET') != '') {
@@ -407,7 +407,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_FILELOCKING_ENABLED') != '') {
-    $config['filelocking.enabled'] = (bool) getenv('OWNCLOUD_FILELOCKING_ENABLED');
+    $config['filelocking.enabled'] = getenv('OWNCLOUD_FILELOCKING_ENABLED') == 'true';
   }
 
   if (getenv('OWNCLOUD_FILELOCKING_TTL') != '') {
@@ -419,15 +419,15 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_UPGRADE_AUTOMATIC_APP_UPDATES') != '') {
-    $config['upgrade.automatic-app-update'] = (bool) getenv('OWNCLOUD_UPGRADE_AUTOMATIC_APP_UPDATES');
+    $config['upgrade.automatic-app-update'] = getenv('OWNCLOUD_UPGRADE_AUTOMATIC_APP_UPDATES') == 'true';
   }
 
   if (getenv('OWNCLOUD_DEBUG') != '') {
-    $config['debug'] = (bool) getenv('OWNCLOUD_DEBUG');
+    $config['debug'] = getenv('OWNCLOUD_DEBUG') == 'true';
   }
 
   if (getenv('OWNCLOUD_FILES_EXTERNAL_ALLOW_NEW_LOCAL') != '') {
-    $config['files_external_allow_create_new_local'] = (bool) getenv('OWNCLOUD_FILES_EXTERNAL_ALLOW_NEW_LOCAL');
+    $config['files_external_allow_create_new_local'] = getenv('OWNCLOUD_FILES_EXTERNAL_ALLOW_NEW_LOCAL') == 'true';
   }
 
   if (getenv('OWNCLOUD_SMB_LOGGING_ENABLE') != '') {
@@ -473,9 +473,9 @@ function getConfigFromEnv() {
           'endpoint' => getenv('OWNCLOUD_OBJECTSTORE_ENDPOINT'),
           'version' => getenv('OWNCLOUD_OBJECTSTORE_VERSION'),
           'region' => getenv('OWNCLOUD_OBJECTSTORE_REGION'),
-          'use_path_style_endpoint' => (bool) getenv('OWNCLOUD_OBJECTSTORE_PATHSTYLE'),
+          'use_path_style_endpoint' => getenv('OWNCLOUD_OBJECTSTORE_PATHSTYLE') == 'true',
           'command.params' => [
-            'PathStyle' => (bool) getenv('OWNCLOUD_OBJECTSTORE_PATHSTYLE'),
+            'PathStyle' => getenv('OWNCLOUD_OBJECTSTORE_PATHSTYLE') == 'true',
           ],
           'credentials' => [
             'key'   => getenv('OWNCLOUD_OBJECTSTORE_KEY'),
