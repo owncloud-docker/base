@@ -87,6 +87,8 @@ pipeline:
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - docker tag owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER} owncloud/base:latest
       - docker push owncloud/base:latest
+      - docker tag owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER} owncloud/base:latest-$(date '+%Y%m%d')
+      - docker push owncloud/base:latest-$(date '+%Y%m%d')
     when:
       event: [ push ]
 
