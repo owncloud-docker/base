@@ -14,8 +14,6 @@ CMD ["/usr/bin/owncloud", "server"]
 
 RUN apt-get update -y && \
   apt-get upgrade -y && \
-  apt-get install -y \
-    gettext-base && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs /mnt/data/sessions && \
