@@ -8,13 +8,13 @@ then
   done
 fi
 
-if /usr/local/bin/owncloud-installed
+if /usr/bin/owncloud installed
 then
   echo "Upgrading server database..."
-  /usr/local/bin/owncloud-migrate
+  /usr/bin/owncloud migrate
 else
   echo "Installing server database..."
-  /usr/local/bin/owncloud-install
+  /usr/bin/owncloud install
 fi
 
 if [[ -d "${OWNCLOUD_POST_INSTALL_PATH}" ]]

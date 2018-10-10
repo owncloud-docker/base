@@ -15,14 +15,14 @@ pipeline:
     image: plugins/download:latest
     pull: true
     secrets: [ download_username, download_password ]
-    source: https://download.owncloud.org/community/owncloud-10.0.8.tar.bz2
-    sha256: 9eef77a171cf69fc89b0628b083b4b1dd15eec375599c7eb5ac0b6d37ab6f903
+    source: https://download.owncloud.org/community/owncloud-10.0.10.tar.bz2
+    sha256: a2efe484678c1659b9640ea247746a2174d77870d29c7d60abd565c20eb5aa84
 
   extract:
     image: owncloud/ubuntu:latest
     pull: true
     commands:
-      - tar -xjf owncloud-10.0.8.tar.bz2 -C /var/www
+      - tar -xjf owncloud-10.0.10.tar.bz2 -C /var/www
 
   wait:
     image: owncloud/ubuntu:latest
@@ -36,7 +36,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://docker:2375
     commands:
-      - docker build -t owncloud/base:bionic .
+      - docker build -t owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER} .
 
   server:
     image: toolhippie/docker:latest
@@ -45,7 +45,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://docker:2375
     commands:
-      - docker run -p 8000:80 -v /var/www/owncloud:/var/www/owncloud owncloud/base:bionic
+      - docker run -p 8000:8080 -v /var/www/owncloud:/var/www/owncloud owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
 
   test:
     image: owncloud/ubuntu:latest
@@ -53,6 +53,29 @@ pipeline:
     commands:
       - wait-for-it -t 600 docker:8000
       - curl -sSf http://docker:8000/status.php
+
+  prepublish:
+    image: toolhippie/docker:latest
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    commands:
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
+    when:
+      event: [ push ]
+
+  clair:
+    image: toolhippie/klar:latest
+    pull: true
+    environment:
+      - CLAIR_ADDR=clair.owncloud.com
+      - CLAIR_OUTPUT=High
+    commands:
+      - klar owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
+    when:
+      event: [ push ]
 
   publish:
     image: toolhippie/docker:latest
@@ -62,9 +85,24 @@ pipeline:
       - DOCKER_HOST=tcp://docker:2375
     commands:
       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker tag owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER} owncloud/base:bionic
       - docker push owncloud/base:bionic
+      - docker tag owncloud/base:${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER} owncloud/base:bionic-$(date '+%Y%m%d')
+      - docker push owncloud/base:bionic-$(date '+%Y%m%d')
     when:
       event: [ push ]
+
+  cleanup:
+    image: toolhippie/jq:latest
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    commands:
+      - |
+        TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'"$DOCKER_USERNAME"'", "password": "'"$DOCKER_PASSWORD"'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+        curl --fail -o /dev/null -H "Authorization: JWT $TOKEN" -H "Content-Type: application/json" -X DELETE https://hub.docker.com/v2/repositories/owncloud/base/tags/${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}/
+    when:
+      event: [ push ]
+      status: [ success, failure ]
 
   microbadger:
     image: plugins/webhook:1
@@ -81,8 +119,13 @@ pipeline:
     server: https://drone.owncloud.com
     last_successful: true
     repositories:
-      - owncloud-docker/server@daily
-      - owncloud-docker/enterprise@daily
+      - owncloud-docker/server@master
+      - owncloud-docker/server@daily-master
+      - owncloud-docker/server@daily-stable10
+      - owncloud-docker/enterprise@master
+      - owncloud-docker/enterprise@daily-master
+      - owncloud-docker/enterprise@daily-stable10
+      - owncloud-docker/appliance@master
     when:
       local: false
       event: [ push ]
@@ -93,8 +136,6 @@ pipeline:
     pull: true
     secrets: [ slack_webhook ]
     channel: docker
-    template: >
-      *{{build.status}}* <{{build.link}}|{{repo.owner}}/{{repo.name}}#{{truncate build.commit 8}}> @ bionic
     when:
       local: false
       event: [ push ]

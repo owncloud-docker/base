@@ -33,4 +33,28 @@ case ${OWNCLOUD_DB_TYPE} in
     ;;
 esac
 
+if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]]
+then
+  echo "Waiting for Memcached..."
+  wait-for-it -t 60 ${OWNCLOUD_MEMCACHED_HOST}:${OWNCLOUD_MEMCACHED_PORT}
+
+  if [[ $? -ne 0 ]]
+  then
+    echo "Memcached didn't came up in time!"
+    exit 1
+  fi
+fi
+
+if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]]
+then
+  echo "Waiting for Redis..."
+  wait-for-it -t 60 ${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}
+
+  if [[ $? -ne 0 ]]
+  then
+    echo "Redis didn't came up in time!"
+    exit 1
+  fi
+fi
+
 true
