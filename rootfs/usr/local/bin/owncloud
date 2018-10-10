@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -eo pipefail
-[[ "${DEBUG}" == "true" ]] && set -x
-
-for FILE in $(find /etc/owncloud.d -iname \*.sh | sort)
-do
-  source ${FILE}
-done
