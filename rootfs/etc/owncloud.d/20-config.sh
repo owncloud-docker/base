@@ -18,25 +18,9 @@ then
   ln -sf ${OWNCLOUD_VOLUME_CONFIG} /var/www/owncloud/config
 fi
 
-if [[ ! -f ${OWNCLOUD_VOLUME_CONFIG}/config.php ]]
-then
-  echo "Copying config file..."
-  envsubst \
-    '${OWNCLOUD_VOLUME_FILES} ${OWNCLOUD_VOLUME_APPS}' \
-      < /root/owncloud/config.php > ${OWNCLOUD_VOLUME_CONFIG}/config.php
-fi
-
-if [[ ! -f ${OWNCLOUD_VOLUME_CONFIG}/domains.config.php ]]
-then
-  echo "Copying domains file..."
-  cp \
-    /root/owncloud/domains.php \
-    ${OWNCLOUD_VOLUME_CONFIG}/domains.config.php
-fi
-
-echo "Copying db file..."
-envsubst \
-  '${OWNCLOUD_DB_TYPE} ${OWNCLOUD_DB_HOST} ${OWNCLOUD_DB_NAME} ${OWNCLOUD_DB_USERNAME} ${OWNCLOUD_DB_PASSWORD} ${OWNCLOUD_DB_PREFIX}' \
-    < /root/owncloud/database.php > ${OWNCLOUD_VOLUME_CONFIG}/database.config.php
+echo "Copying config file..."
+gomplate \
+  -f /etc/templates/config.php \
+  -o ${OWNCLOUD_VOLUME_CONFIG}/overwrite.config.php
 
 true
