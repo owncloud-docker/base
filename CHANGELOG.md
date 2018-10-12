@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-10-12
+
+* Fixed
+  * Load objectstore config later in the processing
+
 ## 2018-10-09
 
 * Added
