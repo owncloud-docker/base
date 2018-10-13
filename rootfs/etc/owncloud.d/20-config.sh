@@ -18,7 +18,7 @@ then
   ln -sf ${OWNCLOUD_VOLUME_CONFIG} /var/www/owncloud/config
 fi
 
-echo "Copying config file..."
+echo "Writing config file..."
 gomplate \
   -f /etc/templates/config.php \
   -o ${OWNCLOUD_VOLUME_CONFIG}/overwrite.config.php
