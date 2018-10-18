@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-10-18
+
+* Fixed
+  * Fix chown to `www-data:root`, these are correct perms
+
 ## 2018-10-12
 
 * Fixed
