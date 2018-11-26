@@ -63,7 +63,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_DEFAULT_APP') != '') {
-    $config['default_app'] = getenv('OWNCLOUD_DEFAULT_APP');
+    $config['defaultapp'] = getenv('OWNCLOUD_DEFAULT_APP');
   }
 
   if (getenv('OWNCLOUD_KNOWLEDGEBASE_ENABLED') != '') {
