@@ -1,5 +1,11 @@
 # Changelog
 
+## 2018-12-17
+
+* Fixed
+  * Only touch logfile if it does not exist
+  * Fix apache default output to stdout
+
 ## 2018-10-18
 
 * Fixed
