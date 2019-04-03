@@ -331,7 +331,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_MYSQL_UTF8MB4') != '') {
-    $config['mysql.utf8mb4'] = getenv('OWNCLOUD_MYSQL_UTF8MB4');
+    $config['mysql.utf8mb4'] = getenv('OWNCLOUD_MYSQL_UTF8MB4') == 'true';
   }
 
   if (getenv('OWNCLOUD_TEMP_DIRECTORY') != '') {
