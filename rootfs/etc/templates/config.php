@@ -468,23 +468,45 @@ function getConfigFromEnv() {
       $config = array_merge_recursive($config, [
         'memcache.distributed' => '\OC\Memcache\Redis',
         'memcache.locking' => '\OC\Memcache\Redis',
-
-        'redis' => [
-          'host' => getenv('OWNCLOUD_REDIS_HOST'),
-          'port' => getenv('OWNCLOUD_REDIS_PORT'),
-        ],
       ]);
+      switch (true) {
+        case getenv('OWNCLOUD_REDIS_SEEDS') != '':
+          $config['redis.cluster']['seeds'] = explode(',', getenv('OWNCLOUD_REDIS_SEEDS'));
 
-      if (getenv('OWNCLOUD_REDIS_DB') != '') {
-        $config['redis']['dbindex'] = getenv('OWNCLOUD_REDIS_DB');
-      }
+          if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
+            $config['redis.cluster']['timeout'] = (float) getenv('OWNCLOUD_REDIS_TIMEOUT');
+          }
 
-      if (getenv('OWNCLOUD_REDIS_PASSWORD') != '') {
-        $config['redis']['password'] = getenv('OWNCLOUD_REDIS_PASSWORD');
-      }
+          if (getenv('OWNCLOUD_REDIS_READ_TIMEOUT') != '') {
+            $config['redis.cluster']['read_timeout'] = (float) getenv('OWNCLOUD_REDIS_READ_TIMEOUT');
+          }
 
-      if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
-        $config['redis']['timeout'] = (float) getenv('OWNCLOUD_REDIS_TIMEOUT');
+          if (getenv('OWNCLOUD_REDIS_FAILOVER_MODE') != '') {
+            switch (getenv('OWNCLOUD_REDIS_FAILOVER_MODE')) {
+              case 'FAILOVER_NONE':
+                $config['redis.cluster']['failover_mode'] = \RedisCluster::FAILOVER_NONE;
+              case 'FAILOVER_ERROR':
+                $config['redis.cluster']['failover_mode'] = \RedisCluster::FAILOVER_ERROR;
+              case 'FAILOVER_DISTRIBUTE':
+                $config['redis.cluster']['failover_mode'] = \RedisCluster::FAILOVER_DISTRIBUTE;
+            }
+          }
+
+        case getenv('OWNCLOUD_REDIS_HOST') != '':
+          $config['redis']['host'] = getenv('OWNCLOUD_REDIS_HOST');
+          $config['redis']['port'] = getenv('OWNCLOUD_REDIS_PORT');
+
+          if (getenv('OWNCLOUD_REDIS_DB') != '') {
+            $config['redis']['dbindex'] = getenv('OWNCLOUD_REDIS_DB');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_PASSWORD') != '') {
+            $config['redis']['password'] = getenv('OWNCLOUD_REDIS_PASSWORD');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
+            $config['redis']['timeout'] = (float) getenv('OWNCLOUD_REDIS_TIMEOUT');
+          }
       }
 
       break;
