@@ -1,5 +1,10 @@
 # Changelog
 
+## 2019-07-29
+
+* Removed
+  * Drop docker and docker-compose examples
+
 ## 2018-12-17
 
 * Fixed
