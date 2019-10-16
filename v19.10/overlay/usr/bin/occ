@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eo pipefail
+[[ "${DEBUG}" == "true" ]] && set -x
+
+if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]
+then
+  for FILE in $(find /etc/entrypoint.d -iname \*.sh | sort)
+  do
+    source ${FILE}
+  done
+fi
+
+if [[ "$(id -u)" == "0" ]]
+then
+  su-exec www-data php /var/www/owncloud/occ "${@}"
+else
+  php /var/www/owncloud/occ "${@}"
+fi

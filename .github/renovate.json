@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "docker:pinDigests",
+    "docker:disableMajor"
+  ],
+  "ignorePaths": [
+    "archive/"
+  ],
+  "dockerfile": {
+    "fileMatch": [
+      "latest/Dockerfile.*"
+      "v.*/Dockerfile.*"
+    ]
+  }
+}
