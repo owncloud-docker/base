@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+declare -x OWNCLOUD_ADMIN_USERNAME
+[[ -z "${OWNCLOUD_ADMIN_USERNAME}" ]] && OWNCLOUD_ADMIN_USERNAME="admin"
+
+declare -x OWNCLOUD_ADMIN_PASSWORD
+[[ -z "${OWNCLOUD_ADMIN_PASSWORD}" ]] && OWNCLOUD_ADMIN_PASSWORD="admin"
+
+true

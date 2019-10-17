@@ -1,0 +1,18 @@
+image: owncloud/base:18.04
+tags:
+  - bionic
+manifests:
+  - image: owncloud/base:18.04-amd64
+    platform:
+      architecture: 18.04-amd64
+      os: linux
+  - image: owncloud/base:18.04-arm64v8
+    platform:
+      architecture: arm64
+      variant: v8
+      os: linux
+  - image: owncloud/base:18.04-arm32v7
+    platform:
+      architecture: arm
+      variant: v7
+      os: linux

@@ -3,23 +3,24 @@
 [![Build Status](https://drone.owncloud.com/api/badges/owncloud-docker/base/status.svg)](https://drone.owncloud.com/owncloud-docker/base)
 [![](https://images.microbadger.com/badges/image/owncloud/base.svg)](https://microbadger.com/images/owncloud/base "Get your own image badge on microbadger.com")
 
-This is our basic ownCloud webserver image that shares the functionality for the ownCloud community and enterprise edition, it is based on our [Ubuntu container](https://registry.hub.docker.com/u/owncloud/ubuntu/).
-
+This is our basic ownCloud webserver image that shares the functionality for the ownCloud community and enterprise edition, it is based on our [PHP container](https://registry.hub.docker.com/u/owncloud/php/).
 
 ## Versions
 
-To get an overview about the available versions please take a look at the [GitHub branches](https://github.com/owncloud-docker/base/branches/all) or our [Docker Hub tags](https://hub.docker.com/r/owncloud/base/tags/), these lists are always up to date. Please note that release candidates or alpha/beta versions are only temporary available, they will be removed after the final release of a version.
-
+* [latest](./latest) available as `owncloud/base:latest`
+* [19.10](./v19.10) available as `owncloud/base:19.10`
+* [19.04](./v19.04) available as `owncloud/base:19.04`
+* [18.10](./v18.10) available as `owncloud/base:18.10`
+* [18.04](./v18.04) available as `owncloud/base:18.04`
+* [16.04](./v16.04) available as `owncloud/base:16.04`
 
 ## Volumes
 
 * /mnt/data
 
-
 ## Ports
 
 * 8080
-
 
 ## Available environment variables
 
@@ -192,33 +193,27 @@ OWNCLOUD_VOLUME_ROOT /mnt/data
 OWNCLOUD_VOLUME_SESSIONS ${OWNCLOUD_VOLUME_ROOT}/sessions
 ```
 
-
 ## Inherited environment variables
 
 * [owncloud/php](https://github.com/owncloud-docker/php#available-environment-variables)
 * [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
 
-
 ## Issues, Feedback and Ideas
 
 Open an [Issue](https://github.com/owncloud-docker/base/issues)
 
-
 ## Contributing
 
 Fork -> Patch -> Push -> Pull Request
-
 
 ## Authors
 
 * [Thomas Boerger](https://github.com/tboerger)
 * [Felix Boehm](https://github.com/felixboehm)
 
-
 ## License
 
 MIT
-
 
 ## Copyright
 

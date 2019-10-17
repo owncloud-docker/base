@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "docker:pinDigests",
+    "docker:disableMajor"
+  ],
+  "ignorePaths": [
+    "archive/"
+  ]
+}
