@@ -3,32 +3,32 @@ def main(ctx):
     {
       'value': 'latest',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
       'value': '19.10',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
       'value': '19.04',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
       'value': '18.10',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
       'value': '18.04',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
       'value': '16.04',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'sha256': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
   ]
 
@@ -58,10 +58,10 @@ def main(ctx):
 
 def docker(ctx, version, arch):
   if version['value'] == 'latest':
-    prefix = 'latest'
+    suffix = 'latest'
     tag = arch
   else:
-    prefix = 'v%s' % version['value']
+    suffix = 'v%s' % version['value']
     tag = '%s-%s' % (version['value'], arch)
 
   if arch == 'amd64':
@@ -81,7 +81,7 @@ def docker(ctx, version, arch):
   return {
     'kind': 'pipeline',
     'type': 'docker',
-    'name': '%s-%s' % (arch, prefix),
+    'name': '%s-%s' % (arch, suffix),
     'platform': {
       'os': 'linux',
       'arch': platform,
@@ -100,8 +100,8 @@ def docker(ctx, version, arch):
             'from_secret': 'download_password',
           },
           'source': version['tarball'],
-          'sha256': version['sha256'],
-          'destination': 'owncloud.tar.bz2'
+          'sha256': version['tarball_sha'],
+          'destination': 'owncloud.tar.bz2',
         },
       },
       {
@@ -109,12 +109,12 @@ def docker(ctx, version, arch):
         'image': 'owncloud/ubuntu:latest',
         'pull': 'always',
         'commands': [
-          'tar -xjf owncloud.tar.bz2 -C /var/www'
+          'tar -xjf owncloud.tar.bz2 -C /var/www',
         ],
         'volumes': [
           {
             'name': 'owncloud',
-            'path': '/var/www/owncloud'
+            'path': '/var/www/owncloud',
           },
         ],
       },
@@ -130,16 +130,16 @@ def docker(ctx, version, arch):
             'from_secret': 'internal_password',
           },
           'tags': prepublish,
-          'dockerfile': '%s/Dockerfile.%s' % (prefix, arch),
+          'dockerfile': '%s/Dockerfile.%s' % (suffix, arch),
           'repo': 'registry.drone.owncloud.com/build/base',
           'registry': 'registry.drone.owncloud.com',
-          'context': prefix,
+          'context': suffix,
           'purge': False,
         },
         'volumes': [
           {
             'name': 'docker',
-            'path': '/var/lib/docker'
+            'path': '/var/lib/docker',
           },
         ],
       },
@@ -189,7 +189,7 @@ def docker(ctx, version, arch):
         'volumes': [
           {
             'name': 'owncloud',
-            'path': '/var/www/owncloud'
+            'path': '/var/www/owncloud',
           },
         ],
       },
@@ -221,14 +221,15 @@ def docker(ctx, version, arch):
             'from_secret': 'public_password',
           },
           'tags': tag,
-          'dockerfile': '%s/Dockerfile.%s' % (prefix, arch),
+          'dockerfile': '%s/Dockerfile.%s' % (suffix, arch),
           'repo': 'owncloud/base',
-          'context': prefix,
+          'context': suffix,
+          'pull_image': False,
         },
         'volumes': [
           {
             'name': 'docker',
-            'path': '/var/lib/docker'
+            'path': '/var/lib/docker',
           },
         ],
         'when': {
@@ -256,9 +257,9 @@ def docker(ctx, version, arch):
         'when': {
           'status': [
             'success',
-            'failure'
-          ]
-        }
+            'failure',
+          ],
+        },
       },
     ],
     'volumes': [
@@ -285,19 +286,19 @@ def docker(ctx, version, arch):
 
 def manifest(ctx, version, arches):
   if version['value'] == 'latest':
-    prefix = 'latest'
+    suffix = 'latest'
   else:
-    prefix = 'v%s' % version['value']
+    suffix = 'v%s' % version['value']
 
   depends = []
 
   for arch in arches:
-    depends.append('%s-%s' % (arch, prefix))
+    depends.append('%s-%s' % (arch, suffix))
 
   return {
     'kind': 'pipeline',
     'type': 'docker',
-    'name': 'manifest-%s' % prefix,
+    'name': 'manifest-%s' % suffix,
     'platform': {
       'os': 'linux',
       'arch': 'amd64',
@@ -314,7 +315,7 @@ def manifest(ctx, version, arches):
           'password': {
             'from_secret': 'public_password',
           },
-          'spec': '%s/manifest.tmpl' % prefix,
+          'spec': '%s/manifest.tmpl' % suffix,
           'ignore_missing': 'true',
         },
       },
@@ -323,8 +324,8 @@ def manifest(ctx, version, arches):
     'trigger': {
       'ref': [
         'refs/heads/master',
-      ]
-    }
+      ],
+    },
   }
 
 def microbadger(ctx):
