@@ -1,9 +1,13 @@
 {
   "extends": [
-    "docker:pinDigests",
-    "docker:disableMajor"
+    "docker:pinDigests"
   ],
   "ignorePaths": [
     "archive/"
-  ]
+  ],
+  "packageRules": [{
+    "datasources": ["docker"],
+    "updateTypes": ["major", "minor", "patch"],
+    "enabled": false
+  }]
 }

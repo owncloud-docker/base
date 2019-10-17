@@ -175,7 +175,7 @@ def docker(ctx, version, arch):
           },
         },
         'commands': [
-          'klar registry.drone.owncloud.com/build/base:%s' % prepublish,
+          'retry -- klar registry.drone.owncloud.com/build/base:%s' % prepublish,
         ],
       },
       {
