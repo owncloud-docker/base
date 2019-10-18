@@ -1,6 +1,7 @@
 {
   "extends": [
-    "docker:pinDigests"
+    "docker:pinDigests",
+    "default:automergeDigest"
   ],
   "ignorePaths": [
     "archive/"
