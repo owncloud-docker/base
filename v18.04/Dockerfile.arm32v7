@@ -1,4 +1,4 @@
-FROM owncloud/php:18.04-arm32v7@sha256:58c5040eb1b052de691394877dad7cd05705b580f5711027754bf77f994687f3
+FROM owncloud/php:18.04-arm32v7@sha256:fcd1bd1982f892ee69a5e98e739205aea1e8338f3372e79376556fdf09405021
 
 LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
   org.label-schema.name="ownCloud Base" \
