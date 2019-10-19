@@ -45,7 +45,7 @@ then
   fi
 fi
 
-if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]] && [[ ${OWNCLOUD_REDIS_SEEDS} == "" ]]
+if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]] && [[ ${OWNCLOUD_REDIS_SEEDS} == "" ]] && [[ ${OWNCLOUD_REDIS_PORT} != "0" ]]
 then
   echo "Waiting for Redis..."
   wait-for-it -t 60 ${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}
