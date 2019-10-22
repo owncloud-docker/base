@@ -38,16 +38,54 @@ def main(ctx):
     'arm64v8',
   ]
 
+  config = {
+    'version': None,
+    'arch': None,
+  }
+
   stages = []
 
   for version in versions:
+    config['version'] = version
+
+    if config['version']['value'] == 'latest':
+      config['path'] = 'latest'
+    else:
+      config['path'] = 'v%s' % config['version']['value']
+
+    m = manifest(config)
+    inner = []
+
     for arch in arches:
-      stages.append(docker(ctx, version, arch))
-    stages.append(manifest(ctx, version, arches))
+      config['arch'] = arch
+
+      if config['version']['value'] == 'latest':
+        config['tag'] = arch
+      else:
+        config['tag'] = '%s-%s' % (config['version']['value'], arch)
+
+      if config['arch'] == 'amd64':
+        config['platform'] = 'amd64'
+
+      if config['arch'] == 'arm64v8':
+        config['platform'] = 'arm64'
+
+      if config['arch'] == 'arm32v7':
+        config['platform'] = 'arm'
+
+      config['internal'] = '%s-%s' % (ctx.build.commit, config['tag'])
+
+      d = docker(config)
+      m['depends_on'].append(d['name'])
+
+      inner.append(d)
+
+    inner.append(m)
+    stages.extend(inner)
 
   after = [
-    microbadger(ctx),
-    rocketchat(ctx),
+    microbadger(config),
+    rocketchat(config),
   ]
 
   for s in stages:
@@ -57,223 +95,18 @@ def main(ctx):
   return stages + after
 
 def docker(ctx, version, arch):
-  if version['value'] == 'latest':
-    suffix = 'latest'
-    tag = arch
-  else:
-    suffix = 'v%s' % version['value']
-    tag = '%s-%s' % (version['value'], arch)
-
-  if arch == 'amd64':
-    platform = 'amd64'
-    variant = ''
-
-  if arch == 'arm64v8':
-    platform = 'arm64'
-    variant = 'v8'
-
-  if arch == 'arm32v7':
-    platform = 'arm'
-    variant = 'v7'
-
-  prepublish = '%s-%s' % (ctx.build.commit, tag)
-
   return {
     'kind': 'pipeline',
     'type': 'docker',
-    'name': '%s-%s' % (arch, suffix),
+    'name': '%s-%s' % (config['arch'], config['path']),
     'platform': {
       'os': 'linux',
-      'arch': platform,
-      'variant': variant,
+      'arch': config['platform'],
     },
-    'steps': [
-      {
-        'name': 'download',
-        'image': 'plugins/download',
-        'pull': 'always',
-        'settings': {
-          'username': {
-            'from_secret': 'download_username',
-          },
-          'password': {
-            'from_secret': 'download_password',
-          },
-          'source': version['tarball'],
-          'sha256': version['tarball_sha'],
-          'destination': 'owncloud.tar.bz2',
-        },
-      },
-      {
-        'name': 'extract',
-        'image': 'owncloud/ubuntu:latest',
-        'pull': 'always',
-        'commands': [
-          'tar -xjf owncloud.tar.bz2 -C /var/www',
-        ],
-        'volumes': [
-          {
-            'name': 'owncloud',
-            'path': '/var/www/owncloud',
-          },
-        ],
-      },
-      {
-        'name': 'prepublish',
-        'image': 'plugins/docker',
-        'pull': 'always',
-        'settings': {
-          'username': {
-            'from_secret': 'internal_username',
-          },
-          'password': {
-            'from_secret': 'internal_password',
-          },
-          'tags': prepublish,
-          'dockerfile': '%s/Dockerfile.%s' % (suffix, arch),
-          'repo': 'registry.drone.owncloud.com/build/base',
-          'registry': 'registry.drone.owncloud.com',
-          'context': suffix,
-          'purge': False,
-        },
-        'volumes': [
-          {
-            'name': 'docker',
-            'path': '/var/lib/docker',
-          },
-        ],
-      },
-      {
-        'name': 'sleep',
-        'image': 'toolhippie/reg:latest',
-        'pull': 'always',
-        'environment': {
-          'DOCKER_USER': {
-            'from_secret': 'internal_username',
-          },
-          'DOCKER_PASSWORD': {
-            'from_secret': 'internal_password',
-          },
-        },
-        'commands': [
-          'retry -- reg digest --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/build/base:%s' % prepublish,
-        ],
-      },
-      {
-        'name': 'clair',
-        'image': 'toolhippie/klar:latest',
-        'pull': 'always',
-        'environment': {
-          'CLAIR_ADDR': 'clair.owncloud.com',
-          'CLAIR_OUTPUT': 'High',
-          'CLAIR_TIMEOUT': '5',
-          'DOCKER_USER': {
-            'from_secret': 'internal_username',
-          },
-          'DOCKER_PASSWORD': {
-            'from_secret': 'internal_password',
-          },
-        },
-        'commands': [
-          'retry -- klar registry.drone.owncloud.com/build/base:%s' % prepublish,
-        ],
-      },
-      {
-        'name': 'server',
-        'image': 'registry.drone.owncloud.com/build/base:%s' % prepublish,
-        'pull': 'always',
-        'detach': True,
-        'commands': [
-          '/usr/bin/owncloud server',
-        ],
-        'volumes': [
-          {
-            'name': 'owncloud',
-            'path': '/var/www/owncloud',
-          },
-        ],
-      },
-      {
-        'name': 'wait',
-        'image': 'owncloud/ubuntu:latest',
-        'pull': 'always',
-        'commands': [
-          'wait-for-it -t 600 server:8080',
-        ],
-      },
-      {
-        'name': 'test',
-        'image': 'owncloud/ubuntu:latest',
-        'pull': 'always',
-        'commands': [
-          'curl -sSf http://server:8080/status.php',
-        ],
-      },
-      {
-        'name': 'publish',
-        'image': 'plugins/docker',
-        'pull': 'always',
-        'settings': {
-          'username': {
-            'from_secret': 'public_username',
-          },
-          'password': {
-            'from_secret': 'public_password',
-          },
-          'tags': tag,
-          'dockerfile': '%s/Dockerfile.%s' % (suffix, arch),
-          'repo': 'owncloud/base',
-          'context': suffix,
-          'pull_image': False,
-        },
-        'volumes': [
-          {
-            'name': 'docker',
-            'path': '/var/lib/docker',
-          },
-        ],
-        'when': {
-          'ref': [
-            'refs/heads/master',
-          ],
-        },
-      },
-      {
-        'name': 'cleanup',
-        'image': 'toolhippie/reg:latest',
-        'pull': 'always',
-        'failure': 'ignore',
-        'environment': {
-          'DOCKER_USER': {
-            'from_secret': 'internal_username',
-          },
-          'DOCKER_PASSWORD': {
-            'from_secret': 'internal_password',
-          },
-        },
-        'commands': [
-          'reg rm --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/build/base:%s' % prepublish,
-        ],
-        'when': {
-          'status': [
-            'success',
-            'failure',
-          ],
-        },
-      },
-    ],
-    'volumes': [
-      {
-        'name': 'docker',
-        'temp': {},
-      },
-      {
-        'name': 'owncloud',
-        'temp': {},
-      },
-    ],
+    'steps': steps(config),
+    'volumes': volumes(config),
     'image_pull_secrets': [
-      'dockerconfigjson',
+      'registries',
     ],
     'depends_on': [],
     'trigger': {
@@ -284,21 +117,11 @@ def docker(ctx, version, arch):
     },
   }
 
-def manifest(ctx, version, arches):
-  if version['value'] == 'latest':
-    suffix = 'latest'
-  else:
-    suffix = 'v%s' % version['value']
-
-  depends = []
-
-  for arch in arches:
-    depends.append('%s-%s' % (arch, suffix))
-
+def manifest(config):
   return {
     'kind': 'pipeline',
     'type': 'docker',
-    'name': 'manifest-%s' % suffix,
+    'name': 'manifest-%s' % config['path'],
     'platform': {
       'os': 'linux',
       'arch': 'amd64',
@@ -315,20 +138,21 @@ def manifest(ctx, version, arches):
           'password': {
             'from_secret': 'public_password',
           },
-          'spec': '%s/manifest.tmpl' % suffix,
+          'spec': '%s/manifest.tmpl' % config['path'],
           'ignore_missing': 'true',
         },
       },
     ],
-    'depends_on': depends,
+    'depends_on': [],
     'trigger': {
       'ref': [
         'refs/heads/master',
+        'refs/tags/**',
       ],
     },
   }
 
-def microbadger(ctx):
+def microbadger(config):
   return {
     'kind': 'pipeline',
     'type': 'docker',
@@ -357,11 +181,12 @@ def microbadger(ctx):
     'trigger': {
       'ref': [
         'refs/heads/master',
+        'refs/tags/**',
       ],
     },
   }
 
-def rocketchat(ctx):
+def rocketchat(config):
   return {
     'kind': 'pipeline',
     'type': 'docker',
@@ -391,6 +216,7 @@ def rocketchat(ctx):
     'trigger': {
       'ref': [
         'refs/heads/master',
+        'refs/tags/**',
       ],
       'status': [
         'changed',
@@ -398,3 +224,242 @@ def rocketchat(ctx):
       ],
     },
   }
+
+def download(config):
+  return [{
+    'name': 'download',
+    'image': 'plugins/download',
+    'pull': 'always',
+    'settings': {
+      'username': {
+        'from_secret': 'download_username',
+      },
+      'password': {
+        'from_secret': 'download_password',
+      },
+      'source': version['tarball'],
+      'sha256': version['tarball_sha'],
+      'destination': 'owncloud.tar.bz2',
+    },
+    'volumes': [
+      {
+        'name': 'docker',
+        'path': '/var/lib/docker',
+      },
+    ],
+  }]
+
+def extract(config):
+  return [{
+    'name': 'extract',
+    'image': 'owncloud/ubuntu:latest',
+    'pull': 'always',
+    'commands': [
+      'tar -xjf owncloud.tar.bz2 -C /var/www',
+    ],
+    'volumes': [
+      {
+        'name': 'owncloud',
+        'path': '/var/www/owncloud',
+      },
+    ],
+  }]
+
+def prepublish(config):
+  return [{
+    'name': 'prepublish',
+    'image': 'plugins/docker',
+    'pull': 'always',
+    'settings': {
+      'username': {
+        'from_secret': 'internal_username',
+      },
+      'password': {
+        'from_secret': 'internal_password',
+      },
+      'tags': config['internal'],
+      'dockerfile': '%s/Dockerfile.%s' % (config['path'], config['arch']),
+      'repo': 'registry.drone.owncloud.com/owncloud/base',
+      'registry': 'registry.drone.owncloud.com',
+      'context': config['path'],
+      'purge': False,
+    },
+    'volumes': [
+      {
+        'name': 'docker',
+        'path': '/var/lib/docker',
+      },
+    ],
+  }]
+
+def sleep(config):
+  return [{
+    'name': 'sleep',
+    'image': 'toolhippie/reg:latest',
+    'pull': 'always',
+    'environment': {
+      'DOCKER_USER': {
+        'from_secret': 'internal_username',
+      },
+      'DOCKER_PASSWORD': {
+        'from_secret': 'internal_password',
+      },
+    },
+    'commands': [
+      'retry -- reg digest --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+    ],
+  }]
+
+def trivy(config):
+  if config['arch'] != 'amd64':
+    return []
+
+  return [
+    {
+      'name': 'database',
+      'image': 'plugins/download',
+      'pull': 'always',
+      'settings': {
+        'source': 'https://download.owncloud.com/internal/trivy.db',
+        'destination': 'trivy/db/trivy.db',
+        'username': {
+          'from_secret': 'download_username',
+        },
+        'password': {
+          'from_secret': 'download_password',
+        },
+      },
+    },
+    {
+      'name': 'trivy',
+      'image': 'toolhippie/trivy:latest',
+      'pull': 'always',
+      'environment': {
+        'TRIVY_AUTH_URL': 'https://registry.drone.owncloud.com',
+        'TRIVY_USERNAME': {
+          'from_secret': 'internal_username',
+        },
+        'TRIVY_PASSWORD': {
+          'from_secret': 'internal_password',
+        },
+        'TRIVY_SKIP_UPDATE': True,
+        'TRIVY_NO_PROGRESS': True,
+        'TRIVY_IGNORE_UNFIXED': True,
+        'TRIVY_TIMEOUT': '5m',
+        'TRIVY_EXIT_CODE': '1',
+        'TRIVY_SEVERITY': 'HIGH,CRITICAL',
+        'TRIVY_CACHE_DIR': '/drone/src/trivy'
+      },
+      'commands': [
+        'retry -- trivy registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+      ],
+    },
+  ]
+
+def server(config):
+  return [{
+    'name': 'server',
+    'image': 'registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+    'pull': 'always',
+    'detach': True,
+    'commands': [
+      'owncloud server',
+    ],
+    'volumes': [
+      {
+        'name': 'owncloud',
+        'path': '/var/www/owncloud',
+      },
+    ],
+  }]
+
+def wait(config):
+  return [{
+    'name': 'wait',
+    'image': 'owncloud/ubuntu:latest',
+    'pull': 'always',
+    'commands': [
+      'wait-for-it -t 600 server:8080',
+    ],
+  }]
+
+def tests(config):
+  return [{
+    'name': 'test',
+    'image': 'owncloud/ubuntu:latest',
+    'pull': 'always',
+    'commands': [
+      'curl -sSf http://server:8080/status.php',
+    ],
+  }]
+
+def publish(config):
+  return [{
+    'name': 'publish',
+    'image': 'plugins/docker',
+    'pull': 'always',
+    'settings': {
+      'username': {
+        'from_secret': 'public_username',
+      },
+      'password': {
+        'from_secret': 'public_password',
+      },
+      'tags': config['tag'],
+      'dockerfile': '%s/Dockerfile.%s' % (config['path'], config['arch']),
+      'repo': 'owncloud/base',
+      'context': config['path'],
+      'pull_image': False,
+    },
+    'volumes': [
+      {
+        'name': 'docker',
+        'path': '/var/lib/docker',
+      },
+    ],
+    'when': {
+      'ref': [
+        'refs/heads/master',
+      ],
+    },
+  }]
+
+def cleanup(config):
+  return [{
+    'name': 'cleanup',
+    'image': 'toolhippie/reg:latest',
+    'pull': 'always',
+    'failure': 'ignore',
+    'environment': {
+      'DOCKER_USER': {
+        'from_secret': 'internal_username',
+      },
+      'DOCKER_PASSWORD': {
+        'from_secret': 'internal_password',
+      },
+    },
+    'commands': [
+      'reg rm --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+    ],
+    'when': {
+      'status': [
+        'success',
+        'failure',
+      ],
+    },
+  }]
+
+def volumes(config):
+  return [
+    {
+      'name': 'docker',
+      'temp': {},
+    },
+    {
+      'name': 'owncloud',
+      'temp': {},
+    },
+  ]
+
+def steps(config):
+  return download(config) + extract(config) + prepublish(config) + sleep(config) + trivy(config) + server(config) + wait(config) + tests(config) + publish(config) + cleanup(config)
