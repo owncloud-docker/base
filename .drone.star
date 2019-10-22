@@ -94,7 +94,7 @@ def main(ctx):
 
   return stages + after
 
-def docker(ctx, version, arch):
+def docker(config):
   return {
     'kind': 'pipeline',
     'type': 'docker',
