@@ -237,8 +237,8 @@ def download(config):
       'password': {
         'from_secret': 'download_password',
       },
-      'source': version['tarball'],
-      'sha256': version['tarball_sha'],
+      'source': config['version']['tarball'],
+      'sha256': config['version']['tarball_sha'],
       'destination': 'owncloud.tar.bz2',
     },
     'volumes': [
