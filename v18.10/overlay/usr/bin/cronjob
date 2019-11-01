@@ -2,14 +2,6 @@
 set -eo pipefail
 [[ "${DEBUG}" == "true" ]] && set -x
 
-if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]
-then
-  for FILE in $(find /etc/entrypoint.d -iname \*.sh | sort)
-  do
-    source ${FILE}
-  done
-fi
-
 if [[ -d "${OWNCLOUD_PRE_CRONJOB_PATH}" ]]
 then
   for FILE in $(find ${OWNCLOUD_PRE_CRONJOB_PATH} -iname \*.sh | sort)
