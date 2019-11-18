@@ -42,9 +42,9 @@ def main(ctx):
     'version': None,
     'arch': None,
     'downstream': [
-      'owncloud-docker/server',
-      'owncloud-docker/enterprise',
-      'owncloud-docker/appliance',
+      'owncloud-docker/server@master',
+      'owncloud-docker/enterprise@master',
+      'owncloud-docker/appliance@master',
     ],
   }
 
