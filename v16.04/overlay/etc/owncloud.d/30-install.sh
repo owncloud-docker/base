@@ -12,11 +12,8 @@ if /usr/bin/owncloud installed
 then
   for VAL in $(echo ${OWNCLOUD_APPS_DEPRECATED} | tr "," " ")
   do
-    if /usr/bin/occ app:list -nq ${VAL} | grep -q Enabled
-    then
-      echo "Disabling deprecated ${VAL}..."
-      /usr/bin/occ app:disable ${VAL}
-    fi
+    echo "Disabling deprecated ${VAL}..."
+    /usr/bin/occ app:disable ${VAL} || true
   done
 
   echo "Upgrading server database..."
