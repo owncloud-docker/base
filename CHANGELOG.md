@@ -1,5 +1,10 @@
 # Changelog
 
+## 2020-02-06
+
+* Added
+  * Add env variables for redis session handler
+
 ## 2019-10-16
 
 * Changed
