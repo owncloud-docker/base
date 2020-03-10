@@ -3,7 +3,7 @@
 ## 2020-03-10
 
 * Fixed
-  * HTTP_X_FORWARDED_HOST
+  * Split HTTP_X_FORWARDED_HOST for getting first domain
 
 ## 2020-02-06
 
