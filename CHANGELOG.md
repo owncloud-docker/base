@@ -1,5 +1,10 @@
 # Changelog
 
+## 2020-03-10
+
+* Fixed
+  * HTTP_X_FORWARDED_HOST
+
 ## 2020-02-06
 
 * Added
