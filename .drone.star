@@ -11,16 +11,6 @@ def main(ctx):
       'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
     {
-      'value': '19.04',
-      'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
-    },
-    {
-      'value': '18.10',
-      'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
-    },
-    {
       'value': '18.04',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
       'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
