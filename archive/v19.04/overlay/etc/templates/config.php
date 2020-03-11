@@ -2,7 +2,12 @@
 
 function getConfigFromEnv() {
   if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-    $domain = $_SERVER['HTTP_X_FORWARDED_HOST'];
+    $domain = trim(
+      explode(
+        ",",
+        $_SERVER['HTTP_X_FORWARDED_HOST']
+      )[0]
+    );
   } else if (isset($_SERVER['SERVER_NAME'])) {
     $domain = $_SERVER['SERVER_NAME'];
   } else {

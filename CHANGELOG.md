@@ -1,5 +1,10 @@
 # Changelog
 
+## 2020-03-10
+
+* Fixed
+  * Split HTTP_X_FORWARDED_HOST for getting first domain
+
 ## 2020-02-06
 
 * Added
