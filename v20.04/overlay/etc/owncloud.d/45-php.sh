@@ -8,6 +8,6 @@ gomplate \
 echo "Writing php config..."
 gomplate \
   -f /etc/templates/owncloud.ini \
-  -o /etc/php/7.3/mods-available/owncloud.ini
+  -o /etc/php/7.4/mods-available/owncloud.ini
 
 true
