@@ -1,10 +1,12 @@
-image: owncloud/base:latest
+image: owncloud/base:20.04
+tags:
+  - focal
 manifests:
-  - image: owncloud/base:amd64
+  - image: owncloud/base:20.04-amd64
     platform:
       architecture: amd64
       os: linux
-  - image: owncloud/base:arm64v8
+  - image: owncloud/base:20.04-arm64v8
     platform:
       architecture: arm64
       variant: v8

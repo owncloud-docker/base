@@ -1,5 +1,15 @@
 # Changelog
 
+## 2020-05-25
+
+* Added
+  * Add Ubuntu 20.04 for owncloud-community-10.5.0beta1
+
+## 2020-02-06
+
+* Added
+  * Add env variables for redis session handler
+
 ## 2020-03-10
 
 * Fixed

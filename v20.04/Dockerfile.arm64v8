@@ -1,4 +1,4 @@
-FROM owncloud/php:amd64
+FROM owncloud/php:20.04-arm64v8
 
 LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
   org.label-schema.name="ownCloud Base" \

@@ -24,5 +24,5 @@ RUN apt-get update -y && \
 COPY ./overlay /
 WORKDIR /var/www/owncloud
 
-RUN chgrp root /etc/apache2/sites-enabled/default.conf /etc/php/7.2/mods-available/owncloud.ini && \
-  chmod g+w /etc/apache2/sites-enabled/default.conf /etc/php/7.2/mods-available/owncloud.ini
+RUN chgrp root /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini && \
+  chmod g+w /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini

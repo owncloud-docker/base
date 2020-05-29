@@ -2,14 +2,22 @@ def main(ctx):
   versions = [
     {
       'value': 'latest',
-      'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
-      'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
+      'tarball': 'https://download.owncloud.org/community/testing/owncloud-10.5.0beta1.tar.bz2',
+      'tarball_sha': '1d89e25106ede5c4d5827edd995dbe9311194b1dfafcada22a89f3ed16dafdf5',
     },
+
+    {
+      'value': '20.04',
+      'tarball': 'https://download.owncloud.org/community/testing/owncloud-10.5.0beta1.tar.bz2',
+      'tarball_sha': '1d89e25106ede5c4d5827edd995dbe9311194b1dfafcada22a89f3ed16dafdf5',
+    },
+
     {
       'value': '19.10',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
       'tarball_sha': '3fc96799af93e10f1228970371668c83d8c07a3fdca67369105e56420ff36e64',
     },
+
     {
       'value': '18.04',
       'tarball': 'https://download.owncloud.org/community/owncloud-10.3.0.tar.bz2',
@@ -51,7 +59,13 @@ def main(ctx):
     m = manifest(config)
     inner = []
 
-    for arch in arches:
+    if version['value'] == 'latest' or version['value'] == '20.04':
+      # skip arm32v7-20.04 while https://bugs.launchpad.net/ubuntu/+source/glibc/+bug/1867675
+      myarches = [ 'amd64', 'arm64v8' ]
+    else:
+      myarches = arches
+
+    for arch in myarches:
       config['arch'] = arch
 
       if config['version']['value'] == 'latest':

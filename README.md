@@ -8,6 +8,7 @@ This is our basic ownCloud webserver image that shares the functionality for the
 ## Versions
 
 * [latest](./latest) available as `owncloud/base:latest`
+* [20.04](./v20.04) available as `owncloud/base:20.04`
 * [19.10](./v19.10) available as `owncloud/base:19.10`
 * [19.04](./v19.04) available as `owncloud/base:19.04`
 * [18.10](./v18.10) available as `owncloud/base:18.10`
