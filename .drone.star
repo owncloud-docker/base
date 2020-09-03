@@ -300,7 +300,7 @@ def download(config):
 def extract(config):
   return [{
     'name': 'extract',
-    'image': 'owncloud/ubuntu:latest',
+    'image': 'owncloud/ubuntu:19.04',
     'pull': 'always',
     'commands': [
       'tar -xjf owncloud.tar.bz2 -C /var/www',
@@ -358,6 +358,7 @@ def sleep(config):
     ],
   }]
 
+# container vulnerability scanning, see: https://github.com/aquasecurity/trivy
 def trivy(config):
   if config['arch'] != 'amd64':
     return []
@@ -407,7 +408,7 @@ def server(config):
 def wait(config):
   return [{
     'name': 'wait',
-    'image': 'owncloud/ubuntu:latest',
+    'image': 'owncloud/ubuntu:19.04',
     'pull': 'always',
     'commands': [
       'wait-for-it -t 600 server:8080',
@@ -417,7 +418,7 @@ def wait(config):
 def tests(config):
   return [{
     'name': 'test',
-    'image': 'owncloud/ubuntu:latest',
+    'image': 'owncloud/ubuntu:19.04',
     'pull': 'always',
     'commands': [
       'curl -sSf http://server:8080/status.php',
