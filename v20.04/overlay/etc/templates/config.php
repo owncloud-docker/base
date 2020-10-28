@@ -356,7 +356,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') != '') {
-    $config['integrity.check.disabled'] = getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') == 'false';
+    $config['integrity.check.disabled'] = getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') == 'true';
   }
 
   if (getenv('OWNCLOUD_INTEGRITY_EXCLUDED_FILES') != '') {
