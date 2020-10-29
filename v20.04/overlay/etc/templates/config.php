@@ -355,6 +355,10 @@ function getConfigFromEnv() {
     $config['excluded_directories'] = explode(',', getenv('OWNCLOUD_EXCLUDED_DIRECTORIES'));
   }
 
+  if (getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') != '') {
+    $config['integrity.check.disabled'] = getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') == 'true';
+  }
+
   if (getenv('OWNCLOUD_INTEGRITY_EXCLUDED_FILES') != '') {
     $config['integrity.excluded.files'] = explode(',', getenv('OWNCLOUD_INTEGRITY_EXCLUDED_FILES'));
   }
