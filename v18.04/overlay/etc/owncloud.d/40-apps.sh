@@ -12,6 +12,8 @@ then
       curl -sSfLo /tmp/${NAME} -H "Accept: application/octet-stream" ${VAL}
 
       echo "Installing ${NAME} app..."
+      APPNAME=$(echo $NAME | sed -e 's/-[^-]*$//')
+      occ market:uninstall -n $APPNAME > /dev/null	# in case it is a major version upgrade
       occ market:install -n -l /tmp/${NAME}
 
       echo "Deleting ${NAME} tarball..."
