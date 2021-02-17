@@ -10,11 +10,6 @@ def main(ctx):
       'tarball': 'https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2',
       'tarball_sha': 'e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a',
     },
-    {
-      'value': '18.04',
-      'tarball': 'https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2',
-      'tarball_sha': 'e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a',
-    },
   ]
 
   arches = [
