@@ -9,9 +9,6 @@ This is our basic ownCloud webserver image that shares the functionality for the
 
 * [latest](./latest) available as `owncloud/base:latest`
 * [20.04](./v20.04) available as `owncloud/base:20.04`
-* [19.04](./v19.04) available as `owncloud/base:19.04`
-* [18.04](./v18.04) available as `owncloud/base:18.04`
-* [16.04](./v16.04) available as `owncloud/base:16.04`
 
 ## Volumes
 
