@@ -2,13 +2,13 @@ def main(ctx):
   versions = [
     {
       'value': 'latest',
-      'tarball': 'https://download.owncloud.org/community/testing/owncloud-10.5.0beta1.tar.bz2',
-      'tarball_sha': '1d89e25106ede5c4d5827edd995dbe9311194b1dfafcada22a89f3ed16dafdf5',
+      'tarball': 'https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2',
+      'tarball_sha': 'e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a',
     },
     {
       'value': '20.04',
-      'tarball': 'https://download.owncloud.org/community/testing/owncloud-10.5.0beta1.tar.bz2',
-      'tarball_sha': '1d89e25106ede5c4d5827edd995dbe9311194b1dfafcada22a89f3ed16dafdf5',
+      'tarball': 'https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2',
+      'tarball_sha': 'e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a',
     },
   ]
 
@@ -265,18 +265,12 @@ def download(config):
       'sha256': config['version']['tarball_sha'],
       'destination': 'owncloud.tar.bz2',
     },
-    'volumes': [
-      {
-        'name': 'docker',
-        'path': '/var/lib/docker',
-      },
-    ],
   }]
 
 def extract(config):
   return [{
     'name': 'extract',
-    'image': 'owncloud/ubuntu:19.10',
+    'image': 'owncloud/ubuntu:20.04',
     'pull': 'always',
     'commands': [
       'tar -xjf owncloud.tar.bz2 -C /var/www',
@@ -308,12 +302,6 @@ def prepublish(config):
       'context': config['path'],
       'purge': False,
     },
-    'volumes': [
-      {
-        'name': 'docker',
-        'path': '/var/lib/docker',
-      },
-    ],
   }]
 
 def sleep(config):
@@ -400,7 +388,7 @@ def server(config):
 def wait(config):
   return [{
     'name': 'wait',
-    'image': 'owncloud/ubuntu:19.10',
+    'image': 'owncloud/ubuntu:20.04',
     'pull': 'always',
     'commands': [
       'wait-for-it -t 600 server:8080',
@@ -410,7 +398,7 @@ def wait(config):
 def tests(config):
   return [{
     'name': 'test',
-    'image': 'owncloud/ubuntu:19.10',
+    'image': 'owncloud/ubuntu:20.04',
     'pull': 'always',
     'commands': [
       'curl -sSf http://server:8080/status.php',
@@ -435,12 +423,6 @@ def publish(config):
       'context': config['path'],
       'pull_image': False,
     },
-    'volumes': [
-      {
-        'name': 'docker',
-        'path': '/var/lib/docker',
-      },
-    ],
     'when': {
       'ref': [
         'refs/heads/master',
