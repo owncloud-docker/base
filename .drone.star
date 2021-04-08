@@ -23,7 +23,6 @@ def main(ctx):
     'arch': None,
     'downstream': [
       'owncloud-docker/server@master',
-      'owncloud-docker/enterprise@master',
       'owncloud-docker/appliance@master',
     ],
   }
@@ -162,7 +161,7 @@ def downstream(config):
           'token': {
             'from_secret': 'drone_token',
           },
-          'server': 'https://cloud.drone.io',
+          'server': 'https://drone.owncloud.com',
           'repositories': config['downstream'],
         },
       },

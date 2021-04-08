@@ -7,20 +7,20 @@ This is our basic ownCloud webserver image that shares the functionality for the
 
 ## Versions
 
-* [latest](./latest) available as `owncloud/base:latest`
-* [20.04](./v20.04) available as `owncloud/base:20.04`
+- [latest](./latest) available as `owncloud/base:latest`
+- [20.04](./v20.04) available as `owncloud/base:20.04`
 
 ## Volumes
 
-* /mnt/data
+- /mnt/data
 
 ## Ports
 
-* 8080
+- 8080
 
 ## Available environment variables
 
-```
+```Shell
 OWNCLOUD_ACCESSLOG_LOCATION /dev/stdout
 OWNCLOUD_ACCOUNTS_ENABLE_MEDIAL_SEARCH
 OWNCLOUD_ADMIN_PASSWORD admin
@@ -195,21 +195,8 @@ OWNCLOUD_VOLUME_SESSIONS ${OWNCLOUD_VOLUME_ROOT}/sessions
 
 ## Inherited environment variables
 
-* [owncloud/php](https://github.com/owncloud-docker/php#available-environment-variables)
-* [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
-
-## Issues, Feedback and Ideas
-
-Open an [Issue](https://github.com/owncloud-docker/base/issues)
-
-## Contributing
-
-Fork -> Patch -> Push -> Pull Request
-
-## Authors
-
-* [Thomas Boerger](https://github.com/tboerger)
-* [Felix Boehm](https://github.com/felixboehm)
+- [owncloud/php](https://github.com/owncloud-docker/php#available-environment-variables)
+- [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
 
 ## License
 
@@ -217,6 +204,6 @@ MIT
 
 ## Copyright
 
-```
-Copyright (c) 2018 Thomas Boerger <tboerger@owncloud.com>
+```Text
+Copyright (c) 2021 ownCloud GmbH
 ```
