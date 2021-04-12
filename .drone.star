@@ -184,16 +184,11 @@ def documentation(config):
       'os': 'linux',
       'arch': 'amd64',
     },
-    'clone': {
-      'disable': True,
-    },
     'steps': [
       {
         'name': 'link-check',
         'image': 'ghcr.io/tcort/markdown-link-check:stable',
         'commands': [
-          'pwd',
-          'ls -lha',
           '/src/markdown-link-check README.md',
         ],
       },
