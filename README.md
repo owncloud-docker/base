@@ -1,14 +1,28 @@
 # ownCloud: Base
 
-[![Build Status](https://drone.owncloud.com/api/badges/owncloud-docker/base/status.svg)](https://drone.owncloud.com/owncloud-docker/base)
-[![](https://images.microbadger.com/badges/image/owncloud/base.svg)](https://microbadger.com/images/owncloud/base "Get your own image badge on microbadger.com")
+[![Build Status](https://img.shields.io/drone/build/owncloud-docker/base?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-docker/base)
+[![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/owncloud/base)
+[![GitHub contributors](https://img.shields.io/github/contributors/owncloud-docker/base)](https://github.com/owncloud-docker/base/graphs/contributors)
+[![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-docker/base)
+[![License: MIT](https://img.shields.io/github/license/owncloud-docker/base)](https://github.com/owncloud-docker/base/blob/main/LICENSE)
 
-This is our basic ownCloud webserver image that shares the functionality for the ownCloud community and enterprise edition, it is based on our [PHP container](https://registry.hub.docker.com/u/owncloud/php/).
+This is our basic ownCloud webserver image.
 
-## Versions
+## Quick reference
 
-- [latest](./latest) available as `owncloud/base:latest`
-- [20.04](./v20.04) available as `owncloud/base:20.04`
+- **Where to file issues:**\
+  [github.com/owncloud-docker](https://github.com/owncloud-docker/base/issues)
+
+- **Supported architectures:**\
+  `amd64`, `arm32v7`, `arm64v8`
+
+- **Inherited environments:**\
+  [owncloud/php](https://github.com/owncloud-docker/php#available-environment-variables), [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
+
+## Docker Tags and respective Dockerfile links
+
+- [`latest`](https://github.com/owncloud-docker/base/blob/master/latest/Dockerfile.amd64) available as `owncloud/base:latest`
+- [`20.04`](https://github.com/owncloud-docker/base/blob/master/20.04/Dockerfile.amd64) available as `owncloud/base:20.04`
 
 ## Volumes
 
@@ -193,14 +207,9 @@ OWNCLOUD_VOLUME_ROOT /mnt/data
 OWNCLOUD_VOLUME_SESSIONS ${OWNCLOUD_VOLUME_ROOT}/sessions
 ```
 
-## Inherited environment variables
-
-- [owncloud/php](https://github.com/owncloud-docker/php#available-environment-variables)
-- [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
-
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/owncloud-docker/base/blob/master/LICENSE) file for details.
 
 ## Copyright
 
