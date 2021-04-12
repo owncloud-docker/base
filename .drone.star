@@ -192,6 +192,8 @@ def documentation(config):
         'name': 'link-check',
         'image': 'ghcr.io/tcort/markdown-link-check:stable',
         'commands': [
+          'pwd',
+          'ls -lha',
           '/src/markdown-link-check README.md',
         ],
       },
