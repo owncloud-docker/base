@@ -22,17 +22,17 @@ This is our basic ownCloud webserver image.
 ## Docker Tags and respective Dockerfile links
 
 - [`latest`](https://github.com/owncloud-docker/base/blob/master/latest/Dockerfile.amd64) available as `owncloud/base:latest`
-- [`20.04`](https://github.com/owncloud-docker/base/blob/master/20.04/Dockerfile.amd64) available as `owncloud/base:20.04`
+- [`20.04`](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.amd64) available as `owncloud/base:20.04`
 
-## Volumes
+## Default volumes
 
 - /mnt/data
 
-## Ports
+## Exposed ports
 
 - 8080
 
-## Available environment variables
+## Environment variables
 
 ```Shell
 OWNCLOUD_ACCESSLOG_LOCATION /dev/stdout
