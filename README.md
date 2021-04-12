@@ -11,7 +11,7 @@ This is our basic ownCloud webserver image.
 ## Quick reference
 
 - **Where to file issues:**\
-  [github.com/owncloud-docker](https://github.com/owncloud-docker/base/issues)
+  [owncloud-docker/base](https://github.com/owncloud-docker/base/issues)
 
 - **Supported architectures:**\
   `amd64`, `arm32v7`, `arm64v8`
