@@ -17,8 +17,8 @@ This is our basic ownCloud webserver image.
   `amd64`, `arm32v7`, `arm64v8`
 
 - **Inherited environments:**\
-  [owncloud/php](https://github.com/owncloud-docker/php#environment-variables),
-  [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#environment-variables)
+  [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#environment-variables),
+  [owncloud/php](https://github.com/owncloud-docker/php#environment-variables)
 
 ## Docker Tags and respective Dockerfile links
 
