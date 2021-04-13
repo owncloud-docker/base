@@ -6,7 +6,7 @@
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-docker/base)
 [![License: MIT](https://img.shields.io/github/license/owncloud-docker/base)](https://github.com/owncloud-docker/base/blob/master/LICENSE)
 
-This is our basic ownCloud webserver image.
+ownCloud Docker base image.
 
 ## Quick reference
 
