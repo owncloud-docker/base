@@ -1,9 +1,11 @@
 FROM owncloud/php:20.04-amd64
 
-LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
-  org.label-schema.name="ownCloud Base" \
-  org.label-schema.vendor="ownCloud GmbH" \
-  org.label-schema.schema-version="1.0"
+LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
+  org.opencontainers.image.authors="ownCloud DevOps <devops@owncloud.com>" \
+  org.opencontainers.image.title="ownCloud Base" \
+  org.opencontainers.image.url="https://hub.docker.com/r/owncloud/base" \
+  org.opencontainers.image.source="https://github.com/owncloud-docker/base" \
+  org.opencontainers.image.documentation="https://github.com/owncloud-docker/base"
 
 VOLUME ["/mnt/data"]
 EXPOSE 8080
