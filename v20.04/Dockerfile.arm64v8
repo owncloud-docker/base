@@ -13,11 +13,7 @@ EXPOSE 8080
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/usr/bin/owncloud", "server"]
 
-RUN apt-get update -y && \
-  apt-get upgrade -y && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs /mnt/data/sessions && \
+RUN mkdir -p /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs /mnt/data/sessions && \
   chown -R www-data:www-data /var/www/owncloud /mnt/data && \
   chgrp root /var/run /var/lock/apache2 /var/run/apache2 /etc/environment  && \
   chmod g+w /var/run /var/lock/apache2 /var/run/apache2 /etc/environment && \
