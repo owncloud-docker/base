@@ -13,8 +13,6 @@ EXPOSE 8080
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/usr/bin/owncloud", "server"]
 
-RUN apt update && apt install libnss-wrapper
-
 RUN mkdir -p /home/owncloud /var/www/owncloud /mnt/data/files /mnt/data/config /mnt/data/certs /mnt/data/sessions && \
   chown -R www-data:www-data /var/www/owncloud /mnt/data && \
   chgrp root /home/owncloud /var/run /var/lock/apache2 /var/run/apache2 /etc/environment  && \
