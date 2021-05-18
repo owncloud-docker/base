@@ -26,6 +26,7 @@ def main(ctx):
       'owncloud-docker/appliance@master',
     ],
     'description': 'ownCloud base image',
+    'repo': ctx.repo.name,
   }
 
   stages = []
@@ -311,7 +312,7 @@ def prepublish(config):
       },
       'tags': config['internal'],
       'dockerfile': '%s/Dockerfile.%s' % (config['path'], config['arch']),
-      'repo': 'registry.drone.owncloud.com/owncloud/base',
+      'repo': 'registry.drone.owncloud.com/owncloud/%s', config['repo'],
       'registry': 'registry.drone.owncloud.com',
       'context': config['path'],
       'purge': False,
@@ -332,7 +333,7 @@ def sleep(config):
       },
     },
     'commands': [
-      'retry -- reg digest --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+      "retry -- 'reg digest --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/%s:%s'" % (config['repo'], config['internal']),
     ],
   }]
 
@@ -377,7 +378,7 @@ def trivy(config):
       },
       'commands': [
         'tar -xf trivy.tar.gz',
-        'trivy registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+        'trivy registry.drone.owncloud.com/owncloud/%s:%s' % (config['repo'], config['internal']),
       ],
     },
   ]
@@ -385,7 +386,7 @@ def trivy(config):
 def server(config):
   return [{
     'name': 'server',
-    'image': 'registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+    'image': 'registry.drone.owncloud.com/owncloud/%s:%s' % (config['repo'], config['internal']),
     'pull': 'always',
     'detach': True,
     'commands': [
@@ -433,7 +434,7 @@ def publish(config):
       },
       'tags': config['tag'],
       'dockerfile': '%s/Dockerfile.%s' % (config['path'], config['arch']),
-      'repo': 'owncloud/base',
+      'repo': 'owncloud/%s' % config['repo'],
       'context': config['path'],
       'pull_image': False,
     },
@@ -459,7 +460,7 @@ def cleanup(config):
       },
     },
     'commands': [
-      'reg rm --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/base:%s' % config['internal'],
+      'reg rm --username $DOCKER_USER --password $DOCKER_PASSWORD registry.drone.owncloud.com/owncloud/%s:%s' % (config['repo'], config['internal']),
     ],
     'when': {
       'status': [
