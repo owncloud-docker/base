@@ -463,6 +463,10 @@ function getConfigFromEnv() {
     $config['appstoreurl'] = getenv('OWNCLOUD_APPSTORE_URL');
   }
 
+  if (getenv('OWNCLOUD_HTTP_COOKIE_SAMESITE') != '') {
+    $config['http.cookie.samesite'] = getenv('OWNCLOUD_HTTP_COOKIE_SAMESITE');
+  }
+
   if (getenv('OWNCLOUD_LOGIN_ALTERNATIVES') != '') {
     $rows = explode(',', getenv('OWNCLOUD_LOGIN_ALTERNATIVES'));
 
