@@ -14,6 +14,11 @@ then
       echo "Installing ${NAME} app..."
       occ market:install -n -l /tmp/${NAME}
 
+      if [[ $OWNCLOUD_APPS_INSTALL_MAJOR == "true" ]]; then
+          APPNAME=$(echo $NAME | sed -e 's/[-|.].*$//')
+          occ market:upgrade -n -q --major ${APPNAME}
+      fi
+
       echo "Deleting ${NAME} tarball..."
       rm -f /tmp/${NAME}
     else
@@ -21,6 +26,10 @@ then
       then
         echo "Installing ${VAL} app..."
         occ market:install -n ${VAL}
+      fi
+
+      if [[ $OWNCLOUD_APPS_INSTALL_MAJOR == "true" ]]; then
+          occ market:upgrade -n -q --major ${VAL}
       fi
     fi
   done
