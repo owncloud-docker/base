@@ -15,8 +15,7 @@ then
       occ market:install -n -l /tmp/${NAME}
 
       if [[ $OWNCLOUD_APPS_INSTALL_MAJOR == "true" ]]; then
-          APPNAME=$(echo $NAME | sed -e 's/[-|.].*$//')
-          occ market:upgrade -n -q --major ${APPNAME}
+          occ market:upgrade -n -q --major -l /tmp/${NAME}
       fi
 
       echo "Deleting ${NAME} tarball..."
