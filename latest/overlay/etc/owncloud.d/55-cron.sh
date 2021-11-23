@@ -17,6 +17,15 @@ esac
 
 if [[ ${OWNCLOUD_CROND_ENABLED} == "true" ]]
 then
+
+  if [[ ! -f /etc/cron.d/owncloud ]]
+  then
+    echo "Writing crontab file..."
+    gomplate \
+      -f /etc/templates/owncloud.cron \
+      -o /etc/cron.d/owncloud
+  fi
+
   echo "Touching cron configs..."
   touch /etc/cron.d/*
 
