@@ -300,7 +300,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_SINGLEUSER') != '') {
-    $config['singleuser'] = getenv('OWNCLOUD_SINGLEUSER');
+    $config['singleuser'] = getenv('OWNCLOUD_SINGLEUSER') == 'true';
   }
 
   if (getenv('OWNCLOUD_ENABLE_CERTIFICATE_MANAGEMENT') != '') {
