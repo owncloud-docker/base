@@ -52,8 +52,7 @@ ownCloud Docker base image.
 |OWNCLOUD_BACKGROUND_MODE| cron|**not found in overwrite**|
 |OWNCLOUD_BLACKLISTED_FILES||Define blacklisted files (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-blacklisted-files)|
 |OWNCLOUD_CACHE_CHUNK_GC_TTL||Define the TTL for garbage collection (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-ttl-for-garbage-collection)|
-|OWNCLOUD_CACHE_PATH||Define the location of the cache folder
-(see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-location-of-the-cache-folder)|
+|OWNCLOUD_CACHE_PATH||Define the location of the cache folder (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-location-of-the-cache-folder)|
 |OWNCLOUD_CHECK_FOR_WORKING_WELLKNOWN_SETUP||Check for a .well-known setup (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#check-for-a-well-known-setup)|
 |OWNCLOUD_CIPHER||Define the default cipher for encrypting files (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-default-cipher-for-encrypting-files)|
 |OWNCLOUD_COMMENTS_MANAGER_FACTORY||Define an alternative Comments Manager (see https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-an-alternative-comments-manager)|
