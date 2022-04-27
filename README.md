@@ -389,7 +389,7 @@ ownCloud Docker base image.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE]([documentation](https://github.com/owncloud-docker/base/blob/master/LICENSE) file for details).
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/owncloud-docker/base/blob/master/LICENSE) file for details).
 
 ## Copyright
 
