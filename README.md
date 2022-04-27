@@ -52,8 +52,7 @@ ownCloud Docker base image.
 * `OWNCLOUD_APPS_DISABLE=`<br>
   **not found in overwrite**
 * `OWNCLOUD_APPS_ENABLE=${OWNCLOUD_APPS_INSTALL}`<br>
-  <not found in ><br>
-  overwrit
+  **not found in overwrite**  
 * `OWNCLOUD_APPS_INSTALL=`<br>
   **not found in overwrite**
 * `OWNCLOUD_APPS_INSTALL_MAJOR=false`<br>
@@ -144,7 +143,7 @@ ownCloud Docker base image.
   Define the hashing cost (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-hashing-cost))
 * `OWNCLOUD_HAS_INTERNET_CONNECTION=`<br>
   Check for an internet connection (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#check-for-an-internet-connection))
-* `OWNCLOUD_HTACCESS_REWRITE_BASE=${OWNCLOUD_SUB_URL}<br>
+* `OWNCLOUD_HTACCESS_REWRITE_BASE=${OWNCLOUD_SUB_URL}`<br>
   Define clean URLs without /index.php (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-clean-urls-without-index-php))
 * `OWNCLOUD_HTTP_COOKIE_SAMESITE=`<br>
   Define how to relax same site cookie settings (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-how-to-relax-same-site-cookie-settings))
@@ -258,7 +257,7 @@ ownCloud Docker base image.
   Override automatic proxy detection (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#override-automatic-proxy-detection))
 * `OWNCLOUD_OVERWRITE_PROTOCOL=`<br>
   Override protocol (http/[documentation](https) usage (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#override-protocol-http[documentation](https-usage))
-* `OWNCLOUD_OVERWRITE_WEBROOT=`<br)>
+* `OWNCLOUD_OVERWRITE_WEBROOT=`<br>
   Override ownClouds webroot (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#override-ownclouds-webroot))
 * `OWNCLOUD_PART_FILE_IN_STORAGE=`<br>
   Define where part files are located (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#define-where-part-files-are-located))
