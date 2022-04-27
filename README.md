@@ -11,19 +11,19 @@ ownCloud Docker base image.
 ## Quick reference
 
 - **Where to file issues:**\
-  [owncloud-docker/base](<[documentation](https://github.com/owncloud-docker/base/issues)>)
+  [owncloud-docker/base](https://github.com/owncloud-docker/base/issues)
 
 - **Supported architectures:**\
   `amd64`, `arm32v7`, `arm64v8`
 
 - **Inherited environments:**\
-  [owncloud/ubuntu](<[documentation](https://github.com/owncloud-docker/ubuntu#environment-variables)>),
-  [owncloud/php](<[documentation](https://github.com/owncloud-docker/php#environment-variables)>)
+  [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#environment-variables),
+  [owncloud/php](https://github.com/owncloud-docker/php#environment-variables)
 
 ## Docker Tags and respective Dockerfile links
 
-- [`latest`]([documentation](https://github.com/owncloud-docker/base/blob/master/latest/Dockerfile.amd64) available as `owncloud/base:latest)`
-- [`20.04`]([documentation](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.amd64) available as `owncloud/base:20.04)`
+- [`latest`](https://github.com/owncloud-docker/base/blob/master/latest/Dockerfile.amd64) available as `owncloud/base:latest`
+- [`20.04`](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.amd64) available as `owncloud/base:20.04`
 
 ## Default volumes
 
