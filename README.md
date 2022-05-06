@@ -149,12 +149,10 @@ ownCloud Docker base image.
   Define files that are excluded from integrity checking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-files-that-are-excluded-from-integrity-checking)).
 - `OWNCLOUD_INTEGRITY_IGNORE_MISSING_APP_SIGNATURE=` \
   Define apps or themes that are excluded from integrity checking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-apps-or-themes-that-are-excluded-from-integrity-checking)).
-- `OWNCLOUD_KNOWLEDGEBASE_ENABLED=` \
-  **knowledgebaseenabled not found**
+- `OWNCLOUD_KNOWLEDGEBASE_ENABLED=`
 - `OWNCLOUD_LICENSE_KEY=` \
   ownCloud Enterprise License Key (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
-- `OWNCLOUD_LICENSE_CLASS=` \
-  **license-class not found**
+- `OWNCLOUD_LICENSE_CLASS=`
 - `OWNCLOUD_LOGIN_ALTERNATIVES=` \
   Define additional login buttons on the logon screen (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
 - `OWNCLOUD_LOG_DATE_FORMAT=` \
@@ -221,8 +219,7 @@ ownCloud Docker base image.
   Define the memory caching backend for file locking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-memory-caching-backend-for-file-locking)).
 - `OWNCLOUD_MINIMUM_SUPPORTED_DESKTOP_VERSION=` \
   Define the minimum supported ownCloud desktop client version (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-minimum-supported-owncloud-desktop-client-version)).
-- `OWNCLOUD_MOUNT_FILE=` \
-  **mount_file not found**
+- `OWNCLOUD_MOUNT_FILE=`
 - `OWNCLOUD_MYSQL_UTF8MB4=${OWNCLOUD_UTF8MB4_ENABLED}` \
   Define MySQL 3/4 byte character handling (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-mysql-34-byte-character-handling)).
 - `OWNCLOUD_OBJECTSTORE_AUTOCREATE=true` \
