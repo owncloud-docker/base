@@ -319,6 +319,10 @@ function getConfigFromEnv() {
     $config['cache_chunk_gc_ttl'] = (int) getenv('OWNCLOUD_CACHE_CHUNK_GC_TTL');
   }
 
+  if (getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT') != '') {
+    $config['session_forced_logout_timeout'] = (int) getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT');
+  }  
+
   if (getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR') != '') {
     $config['dav.chunk_base_dir'] = getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR');
   }
