@@ -90,7 +90,7 @@ function getConfigFromEnv() {
   if (getenv('OWNCLOUD_SESSION_LIFETIME') != '') {
     $config['session_lifetime'] = (int) getenv('OWNCLOUD_SESSION_LIFETIME');
   }
-  
+
   if (getenv('OWNCLOUD_SESSION_KEEPALIVE') != '') {
     $config['session_keepalive'] = getenv('OWNCLOUD_SESSION_KEEPALIVE') === 'true';
   }
