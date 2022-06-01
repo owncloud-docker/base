@@ -321,7 +321,7 @@ ownCloud Docker base image.
 - `OWNCLOUD_SESSION_LIFETIME=` \
   Define the lifetime of a session after inactivity (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-lifetime-of-a-session-after-inactivity)).
 - `OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT=` \
-  Expires the session and logs the user out after set time. (see [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
+  Expires the session and logs the user out after set time. (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
 - `OWNCLOUD_SESSION_SAVE_HANDLER=files` \
   Sets PHP option `session.save_handler`.
 - `OWNCLOUD_SESSION_SAVE_PATH=${OWNCLOUD_VOLUME_SESSIONS}` \
