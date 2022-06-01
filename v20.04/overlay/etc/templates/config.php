@@ -90,10 +90,14 @@ function getConfigFromEnv() {
   if (getenv('OWNCLOUD_SESSION_LIFETIME') != '') {
     $config['session_lifetime'] = (int) getenv('OWNCLOUD_SESSION_LIFETIME');
   }
-
+  
   if (getenv('OWNCLOUD_SESSION_KEEPALIVE') != '') {
     $config['session_keepalive'] = getenv('OWNCLOUD_SESSION_KEEPALIVE') === 'true';
   }
+
+  if (getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT') != '') {
+    $config['session_forced_logout_timeout'] = (int) getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT');
+  }  
 
   if (getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') != '') {
     $config['token_auth_enforced'] = getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') === 'true';
