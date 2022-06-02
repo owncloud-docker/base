@@ -320,6 +320,8 @@ ownCloud Docker base image.
   Enable or disable session keep-alive when a user is logged in to the Web UI (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-or-disable-session-keep-alive-when-a-user-is-logged-in-to-the-web-ui)).
 - `OWNCLOUD_SESSION_LIFETIME=` \
   Define the lifetime of a session after inactivity (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-lifetime-of-a-session-after-inactivity)).
+- `OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT=` \
+  Force the user to get logged out after the specified number of seconds when the tab or browser gets closed. Please read the documentation carefully before changing this option. (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
 - `OWNCLOUD_SESSION_SAVE_HANDLER=files` \
   Sets PHP option `session.save_handler`.
 - `OWNCLOUD_SESSION_SAVE_PATH=${OWNCLOUD_VOLUME_SESSIONS}` \
