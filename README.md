@@ -213,6 +213,8 @@ ownCloud Docker base image.
   Define connection options for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-connection-options-for-memcached)).
 - `OWNCLOUD_MEMCACHED_PORT=11211` \
   Defines the ports for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-server-details-for-memcached-servers-to-use-for-memory-caching)).
+- `OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT=180` \
+  Time to wait for a successful connection to the memcached service on container startup.
 - `OWNCLOUD_MEMCACHE_LOCAL=${OWNCLOUD_CACHING_CLASS:-\\OC\\Memcache\\APCu}` \
   Memory caching backend for locally stored data (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-locally-stored-data)).
 - `OWNCLOUD_MEMCACHE_LOCKING=` \
@@ -310,6 +312,8 @@ ownCloud Docker base image.
   Sets PHP option `redis.session.lock_retries` if `OWNCLOUD_SESSION_SAVE_HANDLER=redis`.
 - `OWNCLOUD_REDIS_SESSION_LOCK_WAIT_TIME=20000` \
   Sets PHP option `redis.session.lock_wait_time` if `OWNCLOUD_SESSION_SAVE_HANDLER=redis`.
+- `OWNCLOUD_REDIS_STARTUP_TIMEOUT=180` \
+  Time to wait for a successful connection to the redis service on container startup.
 - `OWNCLOUD_REDIS_TIMEOUT=` \
   Sets the redis timeout value (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)).
 - `OWNCLOUD_REMEMBER_LOGIN_COOKIE_LIFETIME=` \
