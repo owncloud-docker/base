@@ -36,7 +36,7 @@ esac
 if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]]
 then
   echo "Waiting for Memcached..."
-  wait-for-it -t 60 ${OWNCLOUD_MEMCACHED_HOST}:${OWNCLOUD_MEMCACHED_PORT}
+  wait-for-it -t ${OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT} ${OWNCLOUD_MEMCACHED_HOST}:${OWNCLOUD_MEMCACHED_PORT}
 
   if [[ $? -ne 0 ]]
   then
@@ -48,7 +48,7 @@ fi
 if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]] && [[ ${OWNCLOUD_REDIS_SEEDS} == "" ]] && [[ ${OWNCLOUD_REDIS_PORT} != "0" ]]
 then
   echo "Waiting for Redis..."
-  wait-for-it -t 60 ${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}
+  wait-for-it -t ${OWNCLOUD_REDIS_STARTUP_TIMEOUT} ${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}
 
   if [[ $? -ne 0 ]]
   then
