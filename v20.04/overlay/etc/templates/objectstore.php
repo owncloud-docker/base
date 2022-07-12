@@ -7,7 +7,6 @@ function getObjectstoreFromEnv() {
         'class' => getenv('OWNCLOUD_OBJECTSTORE_CLASS'),
         'arguments' => [
           'bucket' => getenv('OWNCLOUD_OBJECTSTORE_BUCKET'),
-          'autocreate' => getenv('OWNCLOUD_OBJECTSTORE_AUTOCREATE'),
           'options' => [
             'endpoint' => getenv('OWNCLOUD_OBJECTSTORE_ENDPOINT'),
             'version' => getenv('OWNCLOUD_OBJECTSTORE_VERSION'),

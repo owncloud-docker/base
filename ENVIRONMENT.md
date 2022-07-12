@@ -191,11 +191,9 @@
 - `OWNCLOUD_MOUNT_FILE=`
 - `OWNCLOUD_MYSQL_UTF8MB4=${OWNCLOUD_UTF8MB4_ENABLED}` \
   Define MySQL 3/4 byte character handling (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-mysql-34-byte-character-handling)).
-- `OWNCLOUD_OBJECTSTORE_AUTOCREATE=true` \
-  Autocreate missing bucket.
 - `OWNCLOUD_OBJECTSTORE_BUCKET=owncloud` \
   Bucket name to store data.
-- `OWNCLOUD_OBJECTSTORE_CLASS=OCA\\ObjectStore\\S3` \
+- `OWNCLOUD_OBJECTSTORE_CLASS=OCA\Files_Primary_S3\S3Storage` \
   Class to use for the objectstore. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
 - `OWNCLOUD_OBJECTSTORE_ENABLED=false` \
   Enabled or disables the objectstore configuration.
