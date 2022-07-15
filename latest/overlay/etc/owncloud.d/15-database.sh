@@ -11,7 +11,7 @@ case ${OWNCLOUD_DB_TYPE} in
   wait-for-it -t "${OWNCLOUD_DB_TIMEOUT}" "${OWNCLOUD_DB_HOST}" || wait_error=true
 
   if [[ "${wait_error}" == true && "${OWNCLOUD_DB_FAIL}" == "true" ]]; then
-    echo "Database didn't came up in time!"
+    echo "Database didn't come up in time!"
     exit 1
   fi
   ;;
@@ -25,7 +25,7 @@ case ${OWNCLOUD_DB_TYPE} in
   wait-for-it -t "${OWNCLOUD_DB_TIMEOUT}" "${OWNCLOUD_DB_HOST}" || wait_error=true
 
   if [[ "${wait_error}" == true && "${OWNCLOUD_DB_FAIL}" == "true" ]]; then
-    echo "Database didn't came up in time!"
+    echo "Database didn't come up in time!"
     exit 1
   fi
   ;;
@@ -37,7 +37,7 @@ if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]]; then
   wait-for-it -t "${OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT}" "${OWNCLOUD_MEMCACHED_HOST}":"${OWNCLOUD_MEMCACHED_PORT}" || wait_error=true
 
   if [[ "${wait_error}" == true ]]; then
-    echo "Memcached didn't came up in time!"
+    echo "Memcached didn't come up in time!"
     exit 1
   fi
 fi
@@ -48,7 +48,7 @@ if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]] && [[ ${OWNCLOUD_REDIS_SEEDS} == ""
   wait-for-it -t "${OWNCLOUD_REDIS_STARTUP_TIMEOUT}" "${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}" || wait_error=true
 
   if [[ "${wait_error}" == true ]]; then
-    echo "Redis didn't came up in time!"
+    echo "Redis didn't come up in time!"
     exit 1
   fi
 fi
