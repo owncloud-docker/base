@@ -117,6 +117,7 @@
 - `OWNCLOUD_INTEGRITY_IGNORE_MISSING_APP_SIGNATURE=` \
   Define apps or themes that are excluded from integrity checking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-apps-or-themes-that-are-excluded-from-integrity-checking)).
 - `OWNCLOUD_KNOWLEDGEBASE_ENABLED=`
+- `OWNCLOUD_APPSTORE_ENABLED=`
 - `OWNCLOUD_LICENSE_KEY=` \
   ownCloud Enterprise License Key (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
 - `OWNCLOUD_LICENSE_CLASS=`

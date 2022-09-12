@@ -463,6 +463,10 @@ function getConfigFromEnv() {
     $config['marketplace.ca'] = getenv('OWNCLOUD_MARKETPLACE_CA');
   }
 
+  if (getenv('OWNCLOUD_APPSTORE_ENABLED') != '') {
+    $config['knowledgebaseenabled'] = getenv('OWNCLOUD_APPSTORE_ENABLED') === 'true';
+  }
+
   if (getenv('OWNCLOUD_APPSTORE_URL') != '') {
     $config['appstoreurl'] = getenv('OWNCLOUD_APPSTORE_URL');
   }
