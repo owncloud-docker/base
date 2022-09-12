@@ -468,7 +468,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_APPSTORE_ENABLED') != '') {
-    $config['knowledgebaseenabled'] = getenv('OWNCLOUD_APPSTORE_ENABLED') === 'true';
+    $config['appstoreenabled'] = getenv('OWNCLOUD_APPSTORE_ENABLED') === 'true';
   }
 
   if (getenv('OWNCLOUD_APPSTORE_URL') != '') {
