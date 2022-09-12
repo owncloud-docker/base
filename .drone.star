@@ -2,13 +2,11 @@ def main(ctx):
     versions = [
         {
             "value": "latest",
-            "tarball": "https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2",
-            "tarball_sha": "e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a",
+            "tarball": "https://download.owncloud.com/server/stable/owncloud-latest.tar.bz2",
         },
         {
             "value": "20.04",
-            "tarball": "https://download.owncloud.org/community/owncloud-10.6.0.tar.bz2",
-            "tarball_sha": "e50f88fe50a30f0251ebb315476d0f142127457878e7fd081be68ed23a556a4a",
+            "tarball": "https://download.owncloud.com/server/stable/owncloud-latest.tar.bz2",
         },
     ]
 
@@ -239,7 +237,6 @@ def download(config):
                 "from_secret": "download_password",
             },
             "source": config["version"]["tarball"],
-            "sha256": config["version"]["tarball_sha"],
             "destination": "owncloud.tar.bz2",
         },
     }]
