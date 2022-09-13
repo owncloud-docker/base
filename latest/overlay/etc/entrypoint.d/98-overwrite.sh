@@ -8,9 +8,8 @@ export APACHE_ACCESS_LOG="${OWNCLOUD_ACCESSLOG_LOCATION:-/dev/stdout}"
 export APACHE_DOCUMENT_ROOT="${APACHE_DOCUMENT_ROOT:-/var/www/owncloud}"
 export APACHE_LISTEN="${APACHE_LISTEN:-8080}"
 
-if [[ "$(id -gn)" == "root" ]]
-then
-  env >| /etc/environment
+if [[ "$(id -gn)" == "root" ]]; then
+  env >|/etc/environment
 fi
 
 true

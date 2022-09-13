@@ -7,6 +7,9 @@ function getObjectstoreFromEnv() {
         'class' => getenv('OWNCLOUD_OBJECTSTORE_CLASS'),
         'arguments' => [
           'bucket' => getenv('OWNCLOUD_OBJECTSTORE_BUCKET'),
+          {{- if .Env.OWNCLOUD_OBJECTSTORE_PART_SIZE -}}
+          'part_size' => getenv('OWNCLOUD_OBJECTSTORE_PART_SIZE'),
+          {{- end -}}
           'options' => [
             'endpoint' => getenv('OWNCLOUD_OBJECTSTORE_ENDPOINT'),
             'version' => getenv('OWNCLOUD_OBJECTSTORE_VERSION'),
