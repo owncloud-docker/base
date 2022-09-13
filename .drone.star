@@ -28,6 +28,7 @@ def main(ctx):
     }
 
     stages = []
+    shell = []
 
     for version in versions:
         config["version"] = version
@@ -38,6 +39,7 @@ def main(ctx):
             config["path"] = "v%s" % config["version"]["value"]
 
         m = manifest(config)
+        shell.extend(shellcheck(config))
         inner = []
 
         for arch in arches:
@@ -60,8 +62,7 @@ def main(ctx):
             config["internal"] = "%s-%s-%s" % (ctx.build.commit, "${DRONE_BUILD_NUMBER}", config["tag"])
 
             d = docker(config)
-            d["depends_on"].append(checkStarlark()["name"])
-            d["depends_on"].append(shellcheck()["name"])
+            d["depends_on"].append(lint(shellcheck(config))["name"])
             m["depends_on"].append(d["name"])
 
             inner.append(d)
@@ -78,7 +79,7 @@ def main(ctx):
         for a in after:
             a["depends_on"].append(s["name"])
 
-    return [checkStarlark()] + [shellcheck()] + stages + after
+    return [lint(shell)] + stages + after
 
 def docker(config):
     return {
@@ -426,21 +427,21 @@ def volumes(config):
         },
     ]
 
-def checkStarlark():
-    return {
+def lint(shell):
+    lint = {
         "kind": "pipeline",
         "type": "docker",
-        "name": "check-starlark",
+        "name": "lint",
         "steps": [
             {
-                "name": "format-check-starlark",
+                "name": "starlark-format",
                 "image": "owncloudci/bazel-buildifier",
                 "commands": [
                     "buildifier --mode=check .drone.star",
                 ],
             },
             {
-                "name": "show-diff",
+                "name": "starlark-diff",
                 "image": "owncloudci/bazel-buildifier",
                 "commands": [
                     "buildifier --mode=fix .drone.star",
@@ -462,28 +463,20 @@ def checkStarlark():
         },
     }
 
-def shellcheck():
-    return {
-        "kind": "pipeline",
-        "type": "docker",
-        "name": "shellcheck",
-        "steps": [
-            {
-                "name": "shellcheck",
-                "image": "koalaman/shellcheck-alpine:stable",
-                "commands": [
-                    "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' ./overlay/ | xargs shellcheck",
-                ],
-            },
-        ],
-        "depends_on": [],
-        "trigger": {
-            "ref": [
-                "refs/heads/master",
-                "refs/pull/**",
+    lint["steps"].extend(shell)
+
+    return lint
+
+def shellcheck(config):
+    return [
+        {
+            "name": "shellcheck-%s" % (config["path"]),
+            "image": "koalaman/shellcheck-alpine:stable",
+            "commands": [
+                "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs shellcheck" % (config["path"]),
             ],
         },
-    }
+    ]
 
 def steps(config):
     return download(config) + extract(config) + prepublish(config) + sleep(config) + trivy(config) + server(config) + wait(config) + tests(config) + publish(config) + cleanup(config)
