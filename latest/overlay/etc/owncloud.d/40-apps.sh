@@ -7,7 +7,7 @@ if dpkg --compare-versions "$(occ config:system:get version | tail -1)" "ge" "10
         NAME=$(basename "${VAL}" | cut -d? -f1)
 
         echo "Downloading ${NAME} app..."
-        curl -sSfLo "/tmp/${NAME} "-H "Accept: application/octet-stream" "${VAL}"
+        curl -sSfLo "/tmp/${NAME}" -H "Accept: application/octet-stream" "${VAL}"
 
         echo "Installing ${NAME} app..."
         occ market:install -n -l "/tmp/${NAME}"
