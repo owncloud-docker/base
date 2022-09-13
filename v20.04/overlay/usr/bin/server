@@ -17,6 +17,7 @@ if [[ -d "${OWNCLOUD_PRE_SERVER_PATH}" ]]; then
 fi
 
 echo "Starting apache daemon..."
+# shellcheck disable=SC2093
 exec apachectl -f /etc/apache2/apache2.conf -DFOREGROUND
 
 if [[ -d "${OWNCLOUD_POST_SERVER_PATH}" ]]; then
