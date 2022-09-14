@@ -2,17 +2,15 @@
 set -eo pipefail
 [[ "${DEBUG}" == "true" ]] && set -x
 
-if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]
-then
-  for FILE in $(find /etc/entrypoint.d -iname \*.sh | sort)
-  do
+if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]; then
+  for FILE in $(find /etc/entrypoint.d -iname "*.sh" | sort); do
+    # shellcheck disable=SC1090,SC2086
     source ${FILE}
   done
 fi
 
-if [[ "$(id -u)" == "0" ]]
-then
-  su-exec www-data php /var/www/owncloud/occ "${@}"
+if [[ "$(id -u)" == "0" ]]; then
+  su-exec www-data php /var/www/owncloud/occ "$@"
 else
-  php /var/www/owncloud/occ "${@}"
+  php /var/www/owncloud/occ "$@"
 fi

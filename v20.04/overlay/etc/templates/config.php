@@ -95,10 +95,6 @@ function getConfigFromEnv() {
     $config['session_keepalive'] = getenv('OWNCLOUD_SESSION_KEEPALIVE') === 'true';
   }
 
-  if (getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT') != '') {
-    $config['session_forced_logout_timeout'] = (int) getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT');
-  }  
-
   if (getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') != '') {
     $config['token_auth_enforced'] = getenv('OWNCLOUD_TOKEN_AUTH_ENFORCED') === 'true';
   }
@@ -323,6 +319,10 @@ function getConfigFromEnv() {
     $config['cache_chunk_gc_ttl'] = (int) getenv('OWNCLOUD_CACHE_CHUNK_GC_TTL');
   }
 
+  if (getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT') != '') {
+    $config['session_forced_logout_timeout'] = (int) getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT');
+  }  
+
   if (getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR') != '') {
     $config['dav.chunk_base_dir'] = getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR');
   }
@@ -357,10 +357,6 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_EXCLUDED_DIRECTORIES') != '') {
     $config['excluded_directories'] = explode(',', getenv('OWNCLOUD_EXCLUDED_DIRECTORIES'));
-  }
-
-  if (getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') != '') {
-    $config['integrity.check.disabled'] = getenv('OWNCLOUD_INTEGRITY_CHECK_DISABLED') === 'true';
   }
 
   if (getenv('OWNCLOUD_INTEGRITY_EXCLUDED_FILES') != '') {
