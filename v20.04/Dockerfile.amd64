@@ -19,7 +19,7 @@ RUN mkdir -p /home/owncloud /var/www/owncloud /mnt/data/files /mnt/data/config /
   chmod g+w /home/owncloud /var/run /var/lock/apache2 /var/run/apache2 /etc/environment && \
   chsh -s /bin/bash www-data
 
-COPY ./overlay /
+ADD overlay /
 WORKDIR /var/www/owncloud
 
 RUN chgrp root /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini && \

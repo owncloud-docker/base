@@ -19,10 +19,6 @@ def main(ctx):
     config = {
         "version": None,
         "arch": None,
-        "downstream": [
-            "owncloud-docker/server@master",
-            "owncloud-docker/appliance@master",
-        ],
         "description": "ownCloud base image",
         "repo": ctx.repo.name,
     }
@@ -473,7 +469,7 @@ def shellcheck(config):
             "name": "shellcheck-%s" % (config["path"]),
             "image": "koalaman/shellcheck-alpine:stable",
             "commands": [
-                "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs shellcheck" % (config["path"]),
+                "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs -r shellcheck" % (config["path"]),
             ],
         },
     ]
