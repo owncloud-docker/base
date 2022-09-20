@@ -9,15 +9,7 @@ if [[ -d "${OWNCLOUD_PRE_CRONJOB_PATH}" ]]; then
   done
 fi
 
-if dpkg --compare-versions "$(occ config:system:get version | tail -1)" "ge" "10.3"; then
-  occ system:cron
-else
-  if [[ "$(id -u)" == "0" ]]; then
-    su-exec www-data php -f /var/www/owncloud/cron.php
-  else
-    php -f /var/www/owncloud/cron.php
-  fi
-fi
+occ system:cron
 
 if [[ -d "${OWNCLOUD_POST_CRONJOB_PATH}" ]]; then
   for FILE in $(find "${OWNCLOUD_POST_CRONJOB_PATH}" -iname "*.sh" | sort); do
