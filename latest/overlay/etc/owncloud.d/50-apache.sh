@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-if dpkg --compare-versions "$(occ config:system:get version | tail -1)" "ge" "9.0.3"; then
-  echo "Updating htaccess config..."
-  occ maintenance:update:htaccess
-fi
+echo "Updating htaccess config..."
+occ maintenance:update:htaccess
 
 echo "Writing apache config..."
 gomplate \
