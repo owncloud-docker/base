@@ -1,19 +1,6 @@
 <?php
 
 function getConfigFromEnv() {
-  if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-    $domain = trim(
-      explode(
-        ",",
-        $_SERVER['HTTP_X_FORWARDED_HOST']
-      )[0]
-    );
-  } else if (isset($_SERVER['SERVER_NAME'])) {
-    $domain = $_SERVER['SERVER_NAME'];
-  } else {
-    $domain = 'localhost';
-  }
-
   $config = [
     'apps_paths' => [
       0 => [
@@ -27,10 +14,7 @@ function getConfigFromEnv() {
         "writable" => true
       ]
     ],
-
-    'trusted_domains' => [
-      0 => $domain
-    ],
+    'trusted_domains' => explode(',', getenv('OWNCLOUD_TRUSTED_DOMAINS')),
 
     'datadirectory' => getenv('OWNCLOUD_VOLUME_FILES'),
     'dbtype' => getenv('OWNCLOUD_DB_TYPE'),

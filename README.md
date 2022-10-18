@@ -8,6 +8,8 @@
 
 ownCloud Docker base image.
 
+> **IMPORTANT:** We had to change the behavior of the ownCloud setting for trusted domains. Instead of automatic detection, it is now required to set all trusted domains with the environment variable "OWNCLOUD_TRUSTED_DOMAINS".
+
 ## Quick reference
 
 - **Where to file issues:**\
@@ -39,6 +41,8 @@ ownCloud Docker base image.
 
 - `OWNCLOUD_DOMAIN=localhost` \
   Base domain used in `OWNCLOUD_OVERWRITE_CLI_URL` by default.
+- `OWNCLOUD_TRUSTED_DOMAINS=localhost` \
+  List of trusted domains to prevent host header poisoning (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-list-of-trusted-domains-that-users-can-log-into)).
 - `OWNCLOUD_DB_TYPE=sqlite` \
   Identify the database used with this installation (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#identify-the-database-used-with-this-installation)).
 - `OWNCLOUD_DB_NAME=owncloud` \

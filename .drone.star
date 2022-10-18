@@ -334,6 +334,9 @@ def server(config):
         "name": "server",
         "image": "registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
         "detach": True,
+        "environment": {
+            "OWNCLOUD_TRUSTED_DOMAINS": "server",
+        },
         "commands": [
             "owncloud server",
         ],
