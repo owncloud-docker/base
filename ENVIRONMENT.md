@@ -77,7 +77,7 @@
 - `OWNCLOUD_DOMAIN=localhost` \
   Base domain used in `OWNCLOUD_OVERWRITE_CLI_URL` by default.
 - `OWNCLOUD_TRUSTED_DOMAINS=localhost` \
-  List of trusted domains to prevent host header poisoning (see [documentation](https://doc.owncloud.com/server/10.11/admin_manual/configuration/server/config_sample_php_parameters.html#define-list-of-trusted-domains-that-users-can-log-into)).
+  List of trusted domains to prevent host header poisoning (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-list-of-trusted-domains-that-users-can-log-into)).
 - `OWNCLOUD_ENABLED_PREVIEW_PROVIDERS=` \
   Define preview providers (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-preview-providers)).
 - `OWNCLOUD_ENABLE_AVATARS=` \
