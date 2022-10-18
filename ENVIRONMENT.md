@@ -76,6 +76,8 @@
   Define the default language of your ownCloud instance (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-default-language-of-your-owncloud-instance)).
 - `OWNCLOUD_DOMAIN=localhost` \
   Base domain used in `OWNCLOUD_OVERWRITE_CLI_URL` by default.
+- `OWNCLOUD_TRUSTED_DOMAINS=localhost` \
+  List of trusted domains to prevent host header poisoning (see [documentation](https://doc.owncloud.com/server/10.11/admin_manual/configuration/server/config_sample_php_parameters.html#define-list-of-trusted-domains-that-users-can-log-into)).
 - `OWNCLOUD_ENABLED_PREVIEW_PROVIDERS=` \
   Define preview providers (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-preview-providers)).
 - `OWNCLOUD_ENABLE_AVATARS=` \
@@ -291,7 +293,7 @@
 - `OWNCLOUD_SESSION_LIFETIME=` \
   Define the lifetime of a session after inactivity (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-lifetime-of-a-session-after-inactivity)).
 - `OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT=` \
-  Force the user to get logged out after the specified number of seconds when the tab or browser gets closed. Please read the documentation carefully before changing this option. (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
+  Force the user to get logged out after the specified number of seconds when the tab or browser gets closed. Please read the documentation carefully before changing this option (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
 - `OWNCLOUD_SESSION_SAVE_HANDLER=files` \
   Sets PHP option `session.save_handler`.
 - `OWNCLOUD_SESSION_SAVE_PATH=${OWNCLOUD_VOLUME_SESSIONS}` \
