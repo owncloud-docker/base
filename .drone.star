@@ -295,6 +295,13 @@ def trivy(config):
 
     return [
         {
+            "name": "trivy-presets",
+            "image": "owncloudci/alpine",
+            "commands": [
+                "retry -t 3 -s 5 -- curl -sSfL https://github.com/owncloud-docker/trivy-presets/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 trivy-presets-main/base/",
+            ],
+        },
+        {
             "name": "trivy-db",
             "image": "plugins/download",
             "settings": {
