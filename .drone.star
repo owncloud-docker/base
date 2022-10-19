@@ -308,7 +308,6 @@ def trivy(config):
                 "TRIVY_IGNORE_UNFIXED": True,
             },
             "commands": [
-                "tar -xf trivy.tar.gz",
                 "trivy -v",
                 "trivy image registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
             ],
