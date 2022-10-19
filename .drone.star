@@ -305,9 +305,15 @@ def trivy(config):
                 "TRIVY_PASSWORD": {
                     "from_secret": "internal_password",
                 },
+                "TRIVY_NO_PROGRESS": True,
                 "TRIVY_IGNORE_UNFIXED": True,
+                "TRIVY_TIMEOUT": "5m",
+                "TRIVY_EXIT_CODE": "1",
+                "TRIVY_SEVERITY": "HIGH,CRITICAL",
+                "TRIVY_CACHE_DIR": "/drone/src/trivy",
             },
             "commands": [
+                "tar -xf trivy.tar.gz",
                 "trivy -v",
                 "trivy image registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
             ],
