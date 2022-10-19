@@ -295,6 +295,15 @@ def trivy(config):
 
     return [
         {
+            "name": "trivy-db",
+            "image": "plugins/download",
+            "settings": {
+                "source": {
+                    "from_secret": "trivy_db_download_url",
+                },
+            },
+        },
+        {
             "name": "trivy-scan",
             "image": "aquasec/trivy",
             "environment": {
@@ -309,10 +318,12 @@ def trivy(config):
                 "TRIVY_IGNORE_UNFIXED": True,
                 "TRIVY_TIMEOUT": "5m",
                 "TRIVY_EXIT_CODE": "1",
+                "TRIVY_SKIP_UPDATE": True,
                 "TRIVY_SEVERITY": "HIGH,CRITICAL",
                 "TRIVY_CACHE_DIR": "/drone/src/trivy",
             },
             "commands": [
+                "tar -xf trivy.tar.gz",
                 "trivy -v",
                 "trivy image registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
             ],
