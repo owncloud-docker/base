@@ -2,7 +2,7 @@
 
 function getConfigFromEnv() {
   if (getenv('OWNCLOUD_TRUSTED_DOMAINS') != '') {
-    $domain = explode(',', getenv('OWNCLOUD_TRUSTED_DOMAINS'));
+    $domain =  array_map('trim', explode(',', getenv('OWNCLOUD_TRUSTED_DOMAINS')));
   } else {
     $domain = explode(':', getenv('OWNCLOUD_DOMAIN'))[0];
   }
