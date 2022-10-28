@@ -76,7 +76,7 @@
   Define the default language of your ownCloud instance (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-default-language-of-your-owncloud-instance)).
 - `OWNCLOUD_DOMAIN=localhost` \
   Base domain used in `OWNCLOUD_OVERWRITE_CLI_URL` by default.
-- `OWNCLOUD_TRUSTED_DOMAINS=localhost` \
+- `OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_DOMAIN}` \
   List of trusted domains to prevent host header poisoning (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-list-of-trusted-domains-that-users-can-log-into)).
 - `OWNCLOUD_ENABLED_PREVIEW_PROVIDERS=` \
   Define preview providers (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-preview-providers)).
