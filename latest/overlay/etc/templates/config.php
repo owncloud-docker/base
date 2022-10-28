@@ -1,6 +1,12 @@
 <?php
 
 function getConfigFromEnv() {
+  if (getenv('OWNCLOUD_TRUSTED_DOMAINS') != '') {
+    $domain = explode(',', getenv('OWNCLOUD_TRUSTED_DOMAINS'));
+  } else {
+    $domain = explode(':', getenv('OWNCLOUD_DOMAINS'))[0];
+  }
+
   $config = [
     'apps_paths' => [
       0 => [
@@ -14,7 +20,7 @@ function getConfigFromEnv() {
         "writable" => true
       ]
     ],
-    'trusted_domains' => explode(',', getenv('OWNCLOUD_TRUSTED_DOMAINS')),
+    'trusted_domains' => $domain,
 
     'datadirectory' => getenv('OWNCLOUD_VOLUME_FILES'),
     'dbtype' => getenv('OWNCLOUD_DB_TYPE'),
