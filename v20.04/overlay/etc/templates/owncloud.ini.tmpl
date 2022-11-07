@@ -11,7 +11,7 @@ max_input_time = {{ .Env.OWNCLOUD_MAX_INPUT_TIME }}
 session.save_handler = "{{ .Env.OWNCLOUD_SESSION_SAVE_HANDLER }}"
 session.save_path = "{{ .Env.OWNCLOUD_SESSION_SAVE_PATH }}"
 
-{{- if eq .Env.OWNCLOUD_SESSION_SAVE_HANDLER "redis" -}}
+{{- if eq .Env.OWNCLOUD_SESSION_SAVE_HANDLER "redis" }}
 redis.session.locking_enabled = {{ .Env.OWNCLOUD_REDIS_SESSION_LOCKING_ENABLED }}
 redis.session.lock_wait_time = {{ .Env.OWNCLOUD_REDIS_SESSION_LOCK_WAIT_TIME }}
 redis.session.lock_retries = {{ .Env.OWNCLOUD_REDIS_SESSION_LOCK_RETRIES }}
