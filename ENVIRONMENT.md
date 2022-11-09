@@ -261,7 +261,7 @@
 - `OWNCLOUD_REDIS_DB=` \
   Define Redis connection details sets the dbindex (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-connection-details)).
 - `OWNCLOUD_REDIS_ENABLED=false` \
-  Sets memcache to Redis (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)).
+  Sets memcache to Redis (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)). If sessions need to be stored in redis as well, you must also set `OWNCLOUD_SESSION_SAVE_HANDLER=redis`.
 - `OWNCLOUD_REDIS_FAILOVER_MODE=` \
   Sets redis failover mode (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)).
 - `OWNCLOUD_REDIS_HOST=redis` \
@@ -297,7 +297,7 @@
 - `OWNCLOUD_SESSION_SAVE_HANDLER=files` \
   Sets PHP option `session.save_handler`.
 - `OWNCLOUD_SESSION_SAVE_PATH=${OWNCLOUD_VOLUME_SESSIONS}` \
-  Sets PHP option `session.save_path`. Only used if `OWNCLOUD_SESSION_SAVE_HANDLER=file`.
+  Sets the `session.save_path` PHP option. Only used if `OWNCLOUD_SESSION_SAVE_HANDLER=file` when `OWNCLOUD_SESSION_SAVE_HANDLER=file` it overwrites the value of `OWNCLOUD_SESSION_SAVE_PATH` with the Redis server address from `OWNCLOUD_REDIS_HOST` and `OWNCLOUD_REDIS_PORT`.
 - `OWNCLOUD_SHARE_FOLDER=` \
   Define a default folder for shared files and folders other than root (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-a-default-folder-for-shared-files-and-folders-other-than-root)).
 - `OWNCLOUD_SHARING_FEDERATION_ALLOW_HTTP_FALLBACK=` \
