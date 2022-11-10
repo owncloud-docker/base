@@ -9,11 +9,7 @@ max_execution_time = {{ .Env.OWNCLOUD_MAX_EXECUTION_TIME }}
 max_input_time = {{ .Env.OWNCLOUD_MAX_INPUT_TIME }}
 
 session.save_handler = "{{ .Env.OWNCLOUD_SESSION_SAVE_HANDLER }}"
-{{- if eq .Env.OWNCLOUD_SESSION_SAVE_HANDLER "redis" }}
-session.save_path = "tcp://{{ .Env.OWNCLOUD_REDIS_HOST }}:{{ .Env.OWNCLOUD_REDIS_PORT }}"
-{{- else }}
 session.save_path = "{{ .Env.OWNCLOUD_SESSION_SAVE_PATH }}"
-{{- end }}
 {{- if eq .Env.OWNCLOUD_SESSION_SAVE_HANDLER "redis" }}
 
 redis.session.locking_enabled = {{ .Env.OWNCLOUD_REDIS_SESSION_LOCKING_ENABLED }}
