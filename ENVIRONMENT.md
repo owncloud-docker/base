@@ -263,7 +263,7 @@
 - `OWNCLOUD_REDIS_ENABLED=false` \
   Sets memcache to Redis (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)). If sessions need to be stored in redis as well, you must also set `OWNCLOUD_SESSION_SAVE_HANDLER=redis`.
 - `OWNCLOUD_REDIS_FAILOVER_MODE=` \
-  Sets redis failover mode (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)).
+  Sets redis failover mode (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)). Possible values: `FAILOVER_NONE` for `\RedisCluster::FAILOVER_NONE`, `FAILOVER_ERROR` for `\RedisCluster::FAILOVER_ERROR` or `FAILOVER_DISTRIBUTE` for `\RedisCluster::FAILOVER_DISTRIBUTE`.
 - `OWNCLOUD_REDIS_HOST=redis` \
   Sets redis host (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-connection-details)).
 - `OWNCLOUD_REDIS_PASSWORD=` \
