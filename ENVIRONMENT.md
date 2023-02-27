@@ -212,6 +212,10 @@
   Secret key for the objectstore (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
 - `OWNCLOUD_OBJECTSTORE_VERSION=2006-03-01` \
   Objectstore version to use (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
+- `OWNCLOUD_OBJECTSTORE_PART_SIZE=5242880` \
+  part size, in bytes, to use when doing a multipart upload (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html#configuration)).
+- `OWNCLOUD_OBJECTSTORE_CONCURRENCY=5` \
+  maximum number of concurrent UploadPart operations allowed during the multipart upload (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html#configuration)).  
 - `OWNCLOUD_OPERATION_MODE=` \
   Define ownCloud operation modes (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-owncloud-operation-modes)).
 - `OWNCLOUD_OVERWRITE_CLI_URL=\${OWNCLOUD_PROTOCOL}://\${OWNCLOUD_DOMAIN}${OWNCLOUD_SUB_URL}` \
