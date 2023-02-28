@@ -224,12 +224,6 @@ def download(config):
         "name": "download",
         "image": "plugins/download",
         "settings": {
-            "username": {
-                "from_secret": "download_username",
-            },
-            "password": {
-                "from_secret": "download_password",
-            },
             "source": config["version"]["tarball"],
             "destination": "owncloud.tar.bz2",
         },
