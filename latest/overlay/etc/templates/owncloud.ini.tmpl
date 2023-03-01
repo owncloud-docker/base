@@ -8,7 +8,7 @@ post_max_size = "{{ .Env.OWNCLOUD_MAX_UPLOAD }}"
 max_execution_time = {{ .Env.OWNCLOUD_MAX_EXECUTION_TIME }}
 max_input_time = {{ .Env.OWNCLOUD_MAX_INPUT_TIME }}
 
-default_socket_timeout = "${{ .Env.OWNCLOUD_DEFAULT_SOCKET_TIMEOUT }}"
+default_socket_timeout = {{ .Env.OWNCLOUD_DEFAULT_SOCKET_TIMEOUT }}
 
 session.save_handler = "{{ .Env.OWNCLOUD_SESSION_SAVE_HANDLER }}"
 session.save_path = "{{ .Env.OWNCLOUD_SESSION_SAVE_PATH }}"
