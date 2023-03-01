@@ -300,6 +300,8 @@
   Force the user to get logged out after the specified number of seconds when the tab or browser gets closed. Please read the documentation carefully before changing this option (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-to-force-user-logout)).
 - `OWNCLOUD_SESSION_SAVE_HANDLER=files` \
   Sets PHP option `session.save_handler`.
+- `OWNCLOUD_DEFAULT_SOCKET_TIMEOUT=60` \
+  Sets PHP option `default_socket_timeout`.
 - `OWNCLOUD_SESSION_SAVE_PATH=${OWNCLOUD_VOLUME_SESSIONS}` \
   Sets the PHP option `session.save_path`. If `OWNCLOUD_SESSION_SAVE_HANDLER=redis` is used, this must be set to a proper connection URL including authentication parameters if required by the redis server. It usually follows the following scheme: `tcp://IPADDRESS:PORT?auth=REDISPASSWORD`.
 - `OWNCLOUD_SHARE_FOLDER=` \
