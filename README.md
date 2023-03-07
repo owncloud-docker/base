@@ -16,7 +16,7 @@ ownCloud Docker base image.
   [owncloud-docker/base](https://github.com/owncloud-docker/base/issues)
 
 - **Supported architectures:**\
-  `amd64`, `arm32v7`, `arm64v8`
+  `amd64`, `arm64v8`
 
 - **Inherited environments:**\
   [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#environment-variables),

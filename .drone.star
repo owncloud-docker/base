@@ -51,9 +51,6 @@ def main(ctx):
             if config["arch"] == "arm64v8":
                 config["platform"] = "arm64"
 
-            if config["arch"] == "arm32v7":
-                config["platform"] = "arm"
-
             config["internal"] = "%s-%s-%s" % (ctx.build.commit, "${DRONE_BUILD_NUMBER}", config["tag"])
 
             d = docker(config)
