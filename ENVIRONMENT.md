@@ -216,6 +216,8 @@
   Part size, in bytes, applies to uploads between ownCloud and S3 (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
 - `OWNCLOUD_OBJECTSTORE_CONCURRENCY=3` \
   Maximum number of concurrent UploadPart operations allowed during the multipart upload (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
+- `OWNCLOUD_OBJECTSTORE_AVAILABLE_STORAGE=` \
+  Indicates available storage size in the objectstore in bytes (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/external_storage/s3_compatible_object_storage_as_primary.html)).
 - `OWNCLOUD_OPERATION_MODE=` \
   Define ownCloud operation modes (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-owncloud-operation-modes)).
 - `OWNCLOUD_OVERWRITE_CLI_URL=\${OWNCLOUD_PROTOCOL}://\${OWNCLOUD_DOMAIN}${OWNCLOUD_SUB_URL}` \
