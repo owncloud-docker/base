@@ -1,13 +1,14 @@
 <?php
 
 function getObjectstoreFromEnv() {
+  $OBJECTSTORE = [];
+
   if (getenv('OWNCLOUD_OBJECTSTORE_ENABLED') && getenv('OWNCLOUD_OBJECTSTORE_ENABLED') === 'true') {
-    return [
+    $OBJECTSTORE = [
       'objectstore' => [
         'class' => getenv('OWNCLOUD_OBJECTSTORE_CLASS'),
         'arguments' => [
           'bucket' => getenv('OWNCLOUD_OBJECTSTORE_BUCKET'),
-          'availableStorage' => getenv('OWNCLOUD_OBJECTSTORE_AVAILABLE_STORAGE'),
           'part_size' => getenv('OWNCLOUD_OBJECTSTORE_PART_SIZE'),
           'concurrency' => getenv('OWNCLOUD_OBJECTSTORE_CONCURRENCY'),
           'options' => [
@@ -26,9 +27,13 @@ function getObjectstoreFromEnv() {
         ],
       ],
     ];
+
+    if (getenv('OWNCLOUD_OBJECTSTORE_AVAILABLE_STORAGE') != '') {
+      $OBJECTSTORE['objectstore']['arguments']['availableStorage'] = getenv('OWNCLOUD_OBJECTSTORE_AVAILABLE_STORAGE');
+    }
   }
 
-  return [];
+  return $OBJECTSTORE;
 }
 
 $CONFIG = getObjectstoreFromEnv();
