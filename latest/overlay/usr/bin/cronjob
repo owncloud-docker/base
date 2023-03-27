@@ -10,6 +10,7 @@ if [[ -d "${OWNCLOUD_PRE_CRONJOB_PATH}" ]]; then
 fi
 
 occ system:cron
+occ dav:cleanup-chunks
 
 if [[ -d "${OWNCLOUD_POST_CRONJOB_PATH}" ]]; then
   for FILE in $(find "${OWNCLOUD_POST_CRONJOB_PATH}" -iname "*.sh" | sort); do
