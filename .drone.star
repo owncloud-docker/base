@@ -229,7 +229,7 @@ def download(config):
 def extract(config):
     return [{
         "name": "extract",
-        "image": "quay.io/owncloud/ubuntu:20.04",
+        "image": "docker.io/owncloud/ubuntu:20.04",
         "commands": [
             "tar -xjf owncloud.tar.bz2 -C /var/www",
         ],
@@ -350,7 +350,7 @@ def server(config):
 def wait_server(config):
     return [{
         "name": "wait-server",
-        "image": "quay.io/owncloud/ubuntu:20.04",
+        "image": "docker.io/owncloud/ubuntu:20.04",
         "commands": [
             "wait-for-it -t 600 server:8080",
         ],
@@ -359,7 +359,7 @@ def wait_server(config):
 def tests(config):
     return [{
         "name": "test",
-        "image": "quay.io/owncloud/ubuntu:20.04",
+        "image": "docker.io/owncloud/ubuntu:20.04",
         "commands": [
             "curl -sSf http://server:8080/status.php",
         ],
