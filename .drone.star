@@ -108,7 +108,7 @@ def manifest(config):
         "steps": [
             {
                 "name": "manifest",
-                "image": "plugins/manifest",
+                "image": "docker.io/plugins/manifest",
                 "settings": {
                     "username": {
                         "from_secret": "public_username",
@@ -142,14 +142,14 @@ def documentation(config):
         "steps": [
             {
                 "name": "link-check",
-                "image": "ghcr.io/tcort/markdown-link-check:stable",
+                "image": "ghcr.io/tcort/markdown-link-check:3.11.0",
                 "commands": [
                     "/src/markdown-link-check README.md",
                 ],
             },
             {
                 "name": "publish",
-                "image": "chko/docker-pushrm:1",
+                "image": "docker.io/chko/docker-pushrm:1",
                 "environment": {
                     "DOCKER_PASS": {
                         "from_secret": "public_password",
@@ -193,7 +193,7 @@ def rocketchat(config):
         "steps": [
             {
                 "name": "notify",
-                "image": "plugins/slack",
+                "image": "docker.io/plugins/slack",
                 "failure": "ignore",
                 "settings": {
                     "webhook": {
@@ -219,7 +219,7 @@ def rocketchat(config):
 def download(config):
     return [{
         "name": "download",
-        "image": "plugins/download",
+        "image": "docker.io/plugins/download",
         "settings": {
             "source": config["version"]["tarball"],
             "destination": "owncloud.tar.bz2",
@@ -229,7 +229,7 @@ def download(config):
 def extract(config):
     return [{
         "name": "extract",
-        "image": "owncloud/ubuntu:20.04",
+        "image": "quay.io/owncloud/ubuntu:20.04",
         "commands": [
             "tar -xjf owncloud.tar.bz2 -C /var/www",
         ],
@@ -244,7 +244,7 @@ def extract(config):
 def prepublish(config):
     return [{
         "name": "prepublish",
-        "image": "plugins/docker",
+        "image": "docker.io/plugins/docker",
         "settings": {
             "username": {
                 "from_secret": "internal_username",
@@ -264,7 +264,7 @@ def prepublish(config):
 def sleep(config):
     return [{
         "name": "sleep",
-        "image": "owncloudci/alpine",
+        "image": "docker.io/owncloudci/alpine",
         "environment": {
             "DOCKER_USER": {
                 "from_secret": "internal_username",
@@ -287,14 +287,14 @@ def trivy(config):
     return [
         {
             "name": "trivy-presets",
-            "image": "owncloudci/alpine",
+            "image": "docker.io/owncloudci/alpine",
             "commands": [
                 'retry -t 3 -s 5 -- "curl -sSfL https://github.com/owncloud-docker/trivy-presets/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 trivy-presets-main/base/"',
             ],
         },
         {
             "name": "trivy-db",
-            "image": "plugins/download",
+            "image": "docker.io/plugins/download",
             "settings": {
                 "source": {
                     "from_secret": "trivy_db_download_url",
@@ -303,7 +303,7 @@ def trivy(config):
         },
         {
             "name": "trivy-scan",
-            "image": "aquasec/trivy",
+            "image": "ghcr.io/aquasecurity/trivy",
             "environment": {
                 "TRIVY_AUTH_URL": "https://registry.drone.owncloud.com",
                 "TRIVY_USERNAME": {
@@ -350,7 +350,7 @@ def server(config):
 def wait_server(config):
     return [{
         "name": "wait-server",
-        "image": "owncloud/ubuntu:20.04",
+        "image": "quay.io/owncloud/ubuntu:20.04",
         "commands": [
             "wait-for-it -t 600 server:8080",
         ],
@@ -359,7 +359,7 @@ def wait_server(config):
 def tests(config):
     return [{
         "name": "test",
-        "image": "owncloud/ubuntu:20.04",
+        "image": "quay.io/owncloud/ubuntu:20.04",
         "commands": [
             "curl -sSf http://server:8080/status.php",
         ],
@@ -368,7 +368,7 @@ def tests(config):
 def publish(config):
     return [{
         "name": "publish",
-        "image": "plugins/docker",
+        "image": "docker.io/plugins/docker",
         "settings": {
             "username": {
                 "from_secret": "public_username",
@@ -392,7 +392,7 @@ def publish(config):
 def cleanup(config):
     return [{
         "name": "cleanup",
-        "image": "owncloudci/alpine",
+        "image": "docker.io/owncloudci/alpine",
         "failure": "ignore",
         "environment": {
             "DOCKER_USER": {
@@ -434,14 +434,14 @@ def lint(shell):
         "steps": [
             {
                 "name": "starlark-format",
-                "image": "owncloudci/bazel-buildifier",
+                "image": "docker.io/owncloudci/bazel-buildifier",
                 "commands": [
                     "buildifier --mode=check .drone.star",
                 ],
             },
             {
                 "name": "starlark-diff",
-                "image": "owncloudci/bazel-buildifier",
+                "image": "docker.io/owncloudci/bazel-buildifier",
                 "commands": [
                     "buildifier --mode=fix .drone.star",
                     "git diff",
@@ -470,7 +470,7 @@ def shellcheck(config):
     return [
         {
             "name": "shellcheck-%s" % (config["path"]),
-            "image": "koalaman/shellcheck-alpine:stable",
+            "image": "docker.io/koalaman/shellcheck-alpine:stable",
             "commands": [
                 "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs -r shellcheck" % (config["path"]),
             ],
