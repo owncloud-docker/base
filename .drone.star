@@ -84,9 +84,6 @@ def docker(config):
         },
         "steps": steps(config),
         "volumes": volumes(config),
-        "image_pull_secrets": [
-            "registries",
-        ],
         "depends_on": [],
         "trigger": {
             "ref": [
