@@ -45,7 +45,7 @@ fi
 if [[ ${OWNCLOUD_REDIS_ENABLED} == "true" ]] && [[ ${OWNCLOUD_REDIS_SEEDS} == "" ]] && [[ ${OWNCLOUD_REDIS_PORT} != "0" ]]; then
   echo "Waiting for Redis..."
   wait_error=false
-  wait-for-it -t "${OWNCLOUD_REDIS_STARTUP_TIMEOUT}" "${OWNCLOUD_REDIS_HOST}:${OWNCLOUD_REDIS_PORT}" || wait_error=true
+  wait-for-it -t "${OWNCLOUD_REDIS_STARTUP_TIMEOUT}" "${OWNCLOUD_REDIS_HOST#tls://}:${OWNCLOUD_REDIS_PORT}" || wait_error=true
 
   if [[ "${wait_error}" == true ]]; then
     echo "Redis didn't come up in time!"
