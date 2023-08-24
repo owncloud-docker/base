@@ -292,6 +292,8 @@
   Sets the redis timeout value (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)).
 - `OWNCLOUD_REMEMBER_LOGIN_COOKIE_LIFETIME=` \
   Define the lifetime of the remember-login cookie (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-lifetime-of-the-remember-login-cookie)).
+- `OWNCLOUD_SAVE_VERSION_METADATA=` \
+  Enabled extened version metadata (see [description](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/file_versioning.html#extended-version-metadata) and [documentation](https://doc.owncloud.com/server/next/admin_manual/configuration/server/config_sample_php_parameters.html#save-additional-metadata-for-versions)).
 - `OWNCLOUD_SECRET=` \
   Define ownClouds internal secret (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-ownclouds-internal-secret)).
 - `OWNCLOUD_SESSION_KEEPALIVE=` \

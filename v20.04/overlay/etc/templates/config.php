@@ -201,6 +201,10 @@ function getConfigFromEnv() {
     $config['versions_retention_obligation'] = getenv('OWNCLOUD_VERSIONS_RETENTION_OBLIGATION');
   }
 
+  if (getenv('OWNCLOUD_SAVE_VERSION_METADATA') != '') {
+    $config['file_storage.save_version_metadata'] = getenv('OWNCLOUD_SAVE_VERSION_METADATA') === 'true';
+  }
+
   if (getenv('OWNCLOUD_UPDATE_CHECKER') != '') {
     $config['updatechecker'] = getenv('OWNCLOUD_UPDATE_CHECKER') === 'true';
   }
