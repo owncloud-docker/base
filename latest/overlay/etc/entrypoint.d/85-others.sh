@@ -223,6 +223,6 @@ declare -x OWNCLOUD_ENABLE_OIDC_REWRITE_URL
 [[ -z "${OWNCLOUD_ENABLE_OIDC_REWRITE_URL}" ]] && OWNCLOUD_ENABLE_OIDC_REWRITE_URL="false"
 
 declare -x OWNCLOUD_PHP_DISABLE_FUNCTIONS
-[[ -z "${OWNCLOUD_PHP_DISABLE_FUNCTIONS}" ]] && OWNCLOUD_PHP_DISABLE_FUNCTIONS="system,phpinfo,show_source,fopen_with_path,dbmopen,dbase_open,filepro_retrieve,posix_mkfifo"
+[[ -z "${OWNCLOUD_PHP_DISABLE_FUNCTIONS}" ]] && OWNCLOUD_PHP_DISABLE_FUNCTIONS="system,passthru,phpinfo,show_source,fopen_with_path,dbmopen,dbase_open,filepro_retrieve,posix_mkfifo"
 
 true
