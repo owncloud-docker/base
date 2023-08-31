@@ -13,7 +13,7 @@ default_socket_timeout = {{ .Env.OWNCLOUD_DEFAULT_SOCKET_TIMEOUT }}
 session.save_handler = "{{ .Env.OWNCLOUD_SESSION_SAVE_HANDLER }}"
 session.save_path = "{{ .Env.OWNCLOUD_SESSION_SAVE_PATH }}"
 
-disable_functions = system, phpinfo, show_source, fopen_with_path, dbmopen, dbase_open, filepro_retrieve, posix_mkfifo
+disable_functions = {{ .Env.OWNCLOUD_PHP_DISABLE_FUNCTIONS }}
 {{- if eq .Env.OWNCLOUD_SESSION_SAVE_HANDLER "redis" }}
 
 redis.session.locking_enabled = {{ .Env.OWNCLOUD_REDIS_SESSION_LOCKING_ENABLED }}
