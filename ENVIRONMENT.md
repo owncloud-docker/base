@@ -364,5 +364,5 @@
   Base data directory for ownCloud.
 - `OWNCLOUD_VOLUME_SESSIONS=${OWNCLOUD_VOLUME_ROOT}/sessions` \
   Base directory to store session files. Only used if `OWNCLOUD_SESSION_SAVE_HANDLER=file`.
-- `OWNCLOUD_PHP_DISABLE_FUNCTIONS=system,passthru,phpinfo,show_source,fopen_with_path,dbmopen,dbase_open,filepro_retrieve,posix_mkfifo` \
+- `OWNCLOUD_PHP_DISABLE_FUNCTIONS=system,phpinfo,show_source,fopen_with_path,dbmopen,dbase_open,filepro_retrieve,posix_mkfifo` \
   Some insecure PHP functions are disabled by default, and this option should not be changed for production setup. Use it with caution.
