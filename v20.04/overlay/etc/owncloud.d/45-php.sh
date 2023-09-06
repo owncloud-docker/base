@@ -9,5 +9,8 @@ echo "Writing php config..."
 gomplate \
   -f /etc/templates/owncloud.ini.tmpl \
   -o /etc/php/7.4/mods-available/owncloud.ini
+gomplate \
+  -f /etc/templates/owncloud-apache.ini.tmpl \
+  -o /etc/php/7.4/mods-available/owncloud-apache.ini
 
 true
