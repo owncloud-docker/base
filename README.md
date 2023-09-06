@@ -8,8 +8,6 @@
 
 ownCloud Docker base image.
 
-> **IMPORTANT:** We had to change the behavior of the ownCloud setting for trusted domains. Instead of automatic detection, it is now required to set all trusted domains with the environment variable "OWNCLOUD_TRUSTED_DOMAINS".
-
 ## Quick reference
 
 - **Where to file issues:**\
