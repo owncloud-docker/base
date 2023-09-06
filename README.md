@@ -1,6 +1,6 @@
 # ownCloud: Base
 
-[![Build Status](https://img.shields.io/drone/build/owncloud-docker/base?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-docker/base)
+[![Build Status](https://drone.owncloud.com/api/badges/owncloud-docker/base/status.svg)](https://drone.owncloud.com/owncloud-docker/base)
 [![Docker Hub](https://img.shields.io/docker/v/owncloud/base?logo=docker&label=dockerhub&sort=semver&logoColor=white)](https://hub.docker.com/r/owncloud/base)
 [![GitHub contributors](https://img.shields.io/github/contributors/owncloud-docker/base)](https://github.com/owncloud-docker/base/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-docker/base)
