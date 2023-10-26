@@ -173,7 +173,7 @@
   Define the maximum filesize for animated GIF´s (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-maximum-filesize-for-animated-gifs)).
 - `OWNCLOUD_MAX_INPUT_TIME=3600` \
   Sets PHP option `max_input_time`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
-- `OWNCLOUD_MAX_UPLOAD=20G` \
+- `OWNCLOUD_MAX_UPLOAD=8M` \
   Sets PHP option `upload_max_filesize` and `post_max_size`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MEMCACHED_ENABLED=false` \
   Enabled memory caching via memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)).
