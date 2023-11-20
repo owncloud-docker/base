@@ -22,8 +22,7 @@ ownCloud Docker base image.
 
 ## Docker Tags and respective Dockerfile links
 
-- [`latest`](https://github.com/owncloud-docker/base/blob/master/latest/Dockerfile.amd64) available as `owncloud/base:latest`
-- [`20.04`](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.amd64) available as `owncloud/base:20.04`
+- [`20.04`](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.multiarch) available as `owncloud/base:20.04`, `owncloud/base:latest`
 
 ## Default volumes
 
