@@ -8,7 +8,6 @@ def main(ctx):
     ]
 
     config = {
-        "version": None,
         "description": "ownCloud base image",
         "repo": ctx.repo.name,
     }
@@ -17,6 +16,7 @@ def main(ctx):
     shell = []
 
     for version in versions:
+        config["tarball"] = version["tarball"]
         config["path"] = "v%s" % version["value"]
 
         shell.extend(shellcheck(config))
@@ -156,7 +156,7 @@ def download(config):
         "name": "download",
         "image": "docker.io/plugins/download",
         "settings": {
-            "source": config["version"]["tarball"],
+            "source": config["tarball"],
             "destination": "owncloud.tar.bz2",
         },
     }]
