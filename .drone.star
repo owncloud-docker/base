@@ -8,6 +8,7 @@ def main(ctx):
     ]
 
     config = {
+        "version": None,
         "description": "ownCloud base image",
         "repo": ctx.repo.name,
     }
@@ -16,15 +17,15 @@ def main(ctx):
     shell = []
 
     for version in versions:
-        config["tarball"] = version["tarball"]
-        config["path"] = "v%s" % version["value"]
+        config["version"] = version
+        config["version"]["path"] = "v%s" % config["version"]["value"]
 
         shell.extend(shellcheck(config))
         inner = []
 
-        config["internal"] = "%s-%s-%s" % (ctx.build.commit, "${DRONE_BUILD_NUMBER}", config["path"])
-        config["tags"] = version.get("tags", [])
-        config["tags"].append(version["value"])
+        config["version"]["internal"] = "%s-%s-%s" % (ctx.build.commit, "${DRONE_BUILD_NUMBER}", config["version"]["path"])
+        config["version"]["tags"] = version.get("tags", [])
+        config["version"]["tags"].append(config["version"]["value"])
 
         d = docker(config)
         d["depends_on"].append(lint(shellcheck(config))["name"])
@@ -47,7 +48,7 @@ def docker(config):
     return {
         "kind": "pipeline",
         "type": "docker",
-        "name": "%s" % (config["path"]),
+        "name": "%s" % (config["version"]["path"]),
         "platform": {
             "os": "linux",
             "arch": "amd64",
@@ -156,7 +157,7 @@ def download(config):
         "name": "download",
         "image": "docker.io/plugins/download",
         "settings": {
-            "source": config["tarball"],
+            "source": config["version"]["tarball"],
             "destination": "owncloud.tar.bz2",
         },
     }]
@@ -187,11 +188,11 @@ def prepublish(config):
             "password": {
                 "from_secret": "internal_password",
             },
-            "tags": config["internal"],
-            "dockerfile": "%s/Dockerfile.multiarch" % (config["path"]),
+            "tags": config["version"]["internal"],
+            "dockerfile": "%s/Dockerfile.multiarch" % (config["version"]["path"]),
             "repo": "registry.drone.owncloud.com/owncloud/%s" % config["repo"],
             "registry": "registry.drone.owncloud.com",
-            "context": config["path"],
+            "context": config["version"]["path"],
             "purge": False,
         },
         "environment": {
@@ -213,7 +214,7 @@ def sleep(config):
         },
         "commands": [
             "regctl registry login registry.drone.owncloud.com --user $DOCKER_USER --pass $DOCKER_PASSWORD",
-            "retry -- 'regctl image digest registry.drone.owncloud.com/owncloud/%s:%s'" % (config["repo"], config["internal"]),
+            "retry -- 'regctl image digest registry.drone.owncloud.com/owncloud/%s:%s'" % (config["repo"], config["version"]["internal"]),
         ],
     }]
 
@@ -247,7 +248,7 @@ def trivy(config):
             },
             "commands": [
                 "trivy -v",
-                "trivy image registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
+                "trivy image registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["version"]["internal"]),
             ],
         },
     ]
@@ -255,7 +256,7 @@ def trivy(config):
 def server(config):
     return [{
         "name": "server",
-        "image": "registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
+        "image": "registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["version"]["internal"]),
         "detach": True,
         "environment": {
             "OWNCLOUD_TRUSTED_DOMAINS": "server",
@@ -304,10 +305,10 @@ def publish(config):
                 "linux/amd64",
                 "linux/arm64",
             ],
-            "tags": config["tags"],
-            "dockerfile": "%s/Dockerfile.multiarch" % (config["path"]),
+            "tags": config["version"]["tags"],
+            "dockerfile": "%s/Dockerfile.multiarch" % (config["version"]["path"]),
             "repo": "owncloud/%s" % config["repo"],
-            "context": config["path"],
+            "context": config["version"]["path"],
             "pull_image": False,
         },
         "when": {
@@ -332,7 +333,7 @@ def cleanup(config):
         },
         "commands": [
             "regctl registry login registry.drone.owncloud.com --user $DOCKER_USER --pass $DOCKER_PASSWORD",
-            "regctl tag rm registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["internal"]),
+            "regctl tag rm registry.drone.owncloud.com/owncloud/%s:%s" % (config["repo"], config["version"]["internal"]),
         ],
         "when": {
             "status": [
@@ -384,10 +385,10 @@ def lint(shell):
 def shellcheck(config):
     return [
         {
-            "name": "shellcheck-%s" % (config["path"]),
+            "name": "shellcheck-%s" % (config["version"]["path"]),
             "image": "docker.io/koalaman/shellcheck-alpine:stable",
             "commands": [
-                "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs -r shellcheck" % (config["path"]),
+                "grep -ErlI '^#!(.*/|.*env +)(sh|bash|ksh)' %s/overlay/ | xargs -r shellcheck" % (config["version"]["path"]),
             ],
         },
     ]
