@@ -169,7 +169,7 @@ def download(config):
 def extract(config):
     return [{
         "name": "extract",
-        "image"UBUNTU_IMAGE,
+        "image": UBUNTU_IMAGE,
         "commands": [
             "tar -xjf owncloud.tar.bz2 -C /var/www",
         ],
@@ -279,7 +279,7 @@ def server(config):
 def wait_server(config):
     return [{
         "name": "wait-server",
-        "image"UBUNTU_IMAGE,
+        "image": UBUNTU_IMAGE,
         "commands": [
             "wait-for-it -t 600 server:8080",
         ],
@@ -288,7 +288,7 @@ def wait_server(config):
 def tests(config):
     return [{
         "name": "test",
-        "image"UBUNTU_IMAGE,
+        "image": UBUNTU_IMAGE,
         "commands": [
             "curl -sSf http://server:8080/status.php",
         ],
