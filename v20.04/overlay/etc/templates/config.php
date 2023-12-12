@@ -315,7 +315,7 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT') != '') {
     $config['session_forced_logout_timeout'] = (int) getenv('OWNCLOUD_SESSION_FORCED_LOGOUT_TIMEOUT');
-  }  
+  }
 
   if (getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR') != '') {
     $config['dav.chunk_base_dir'] = getenv('OWNCLOUD_DAV_CHUNK_BASE_DIR');
