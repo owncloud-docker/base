@@ -41,8 +41,8 @@ function getConfigFromEnv() {
     'upgrade.disable-web' => true,
   ];
 
-  if (getenv('OWNCLOUD_INDICATORS_OF_COMPROMISE_SCANNER_CONFIRMATION') != '') {
-    $config['indicators-of-compromise-scanner.confirmation'] = getenv('OWNCLOUD_INDICATORS_OF_COMPROMISE_SCANNER_CONFIRMATION');
+  if (getenv('OWNCLOUD_IOC_SCANNER_CONFIRMATION') != '') {
+    $config['indicators-of-compromise-scanner.confirmation'] = getenv('OWNCLOUD_IOC_SCANNER_CONFIRMATION');
   }
 
   if (getenv('OWNCLOUD_CORS_ALLOWED_DOMAINS') != '') {

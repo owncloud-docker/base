@@ -366,3 +366,5 @@
   Base directory to store session files. Only used if `OWNCLOUD_SESSION_SAVE_HANDLER=file`.
 - `OWNCLOUD_PHP_DISABLE_FUNCTIONS=pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,pcntl_unshare,system,phpinfo,show_source,fopen_with_path,dbmopen,dbase_open,filepro_retrieve,posix_mkfifo` \
   Some insecure PHP functions are disabled by default, and this option should not be changed for production setup. Use it with caution.
+- `OWNCLOUD_IOC_SCANNER_CONFIRMATION=` \
+  To suppress Indicators of Compromise (IoC) messages the environment variable need to be set to `EXECUTED_ON_ALL_NODES`. This feature requires a valid `OWNCLOUD_LICENSE_KEY`.
