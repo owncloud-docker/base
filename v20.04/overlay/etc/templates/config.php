@@ -493,7 +493,7 @@ function getConfigFromEnv() {
           $config['redis.cluster']['seeds'] = explode(',', getenv('OWNCLOUD_REDIS_SEEDS'));
 
           if (getenv('OWNCLOUD_REDIS_PASSWORD') != '') {
-            $config['redis']['password'] = getenv('OWNCLOUD_REDIS_PASSWORD');
+            $config['redis.cluster']['password'] = getenv('OWNCLOUD_REDIS_PASSWORD');
           }
 
           if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
