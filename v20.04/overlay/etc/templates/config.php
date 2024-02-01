@@ -492,6 +492,10 @@ function getConfigFromEnv() {
         case getenv('OWNCLOUD_REDIS_SEEDS') != '':
           $config['redis.cluster']['seeds'] = explode(',', getenv('OWNCLOUD_REDIS_SEEDS'));
 
+          if (getenv('OWNCLOUD_REDIS_PASSWORD') != '') {
+            $config['redis.cluster']['password'] = getenv('OWNCLOUD_REDIS_PASSWORD');
+          }
+
           if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
             $config['redis.cluster']['timeout'] = (float) getenv('OWNCLOUD_REDIS_TIMEOUT');
           }
@@ -511,7 +515,7 @@ function getConfigFromEnv() {
             }
           }
 
-        case getenv('OWNCLOUD_REDIS_HOST') != '':
+        case getenv('OWNCLOUD_REDIS_HOST') != '' && getenv('OWNCLOUD_REDIS_SEEDS') == '':
           $config['redis']['host'] = getenv('OWNCLOUD_REDIS_HOST');
           $config['redis']['port'] = getenv('OWNCLOUD_REDIS_PORT');
 
