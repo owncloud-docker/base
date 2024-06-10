@@ -240,6 +240,8 @@
   Path to custom scripts that need to be executed after an ownCloud server startup.
 - `OWNCLOUD_PREVIEW_LIBREOFFICE_PATH=` \
   Define the custom path for the LibreOffice / OpenOffice binary (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-custom-path-for-the-libreoffice-openoffice-binary)).
+- `OWNCLOUD_PREVIEW_MAX_DIMENSIONS=` \
+  Define the maximum dimensions of the original image for preview generation (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-maximum-dimensions-of-the-original-image-for-preview-generation)).
 - `OWNCLOUD_PREVIEW_MAX_FILESIZE_IMAGE=` \
   Define the maximum preview filesize limit (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-maximum-preview-filesize-limit)).
 - `OWNCLOUD_PREVIEW_MAX_SCALE_FACTOR=` \

@@ -285,6 +285,10 @@ function getConfigFromEnv() {
     $config['enabledPreviewProviders'] = explode(',', getenv('OWNCLOUD_ENABLED_PREVIEW_PROVIDERS'));
   }
 
+  if (getenv('OWNCLOUD_PREVIEW_MAX_DIMENSIONS') != '') {
+    $config['preview_max_dimensions'] = getenv('OWNCLOUD_PREVIEW_MAX_DIMENSIONS');
+  }
+
   if (getenv('OWNCLOUD_COMMENTS_MANAGER_FACTORY') != '') {
     $config['comments.managerFactory'] = getenv('OWNCLOUD_COMMENTS_MANAGER_FACTORY');
   }
