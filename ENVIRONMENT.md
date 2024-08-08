@@ -6,6 +6,8 @@
   Location of the access log.
 - `OWNCLOUD_ACCOUNTS_ENABLE_MEDIAL_SEARCH=` \
   Allow medial search on user account properties (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-medial-search-on-user-account-properties)).
+- `OWNCLOUD_ACTIVITY_EXPIRE_DAYS=` \
+  Activity expiration in days (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-activity)).
 - `OWNCLOUD_ADMIN_PASSWORD=admin` \
   ownCloud admin password.
 - `OWNCLOUD_ADMIN_USERNAME=admin` \
