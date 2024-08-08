@@ -285,6 +285,10 @@ function getConfigFromEnv() {
     $config['enabledPreviewProviders'] = explode(',', getenv('OWNCLOUD_ENABLED_PREVIEW_PROVIDERS'));
   }
 
+  if (getenv('OWNCLOUD_ACTIVITY_EXPIRE_DAYS') != '') {
+    $config['activity_expire_days'] = getenv('OWNCLOUD_ACTIVITY_EXPIRE_DAYS');
+  }
+
   if (getenv('OWNCLOUD_PREVIEW_MAX_DIMENSIONS') != '') {
     $config['preview_max_dimensions'] = getenv('OWNCLOUD_PREVIEW_MAX_DIMENSIONS');
   }
