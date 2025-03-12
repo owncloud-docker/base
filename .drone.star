@@ -1,6 +1,6 @@
 DOCKER_PUSHRM_IMAGE = "docker.io/chko/docker-pushrm:1"
 DRONE_DOCKER_BUILDX_IMAGE = "docker.io/owncloudci/drone-docker-buildx:4"
-UBUNTU_IMAGE = "docker.io/owncloud/ubuntu:20.04"
+UBUNTU_IMAGE = "docker.io/owncloud/ubuntu:22.04"
 
 def main(ctx):
     versions = [
