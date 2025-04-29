@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eo pipefail
+[[ "${DEBUG}" == "true" ]] && set -x
+
+if [[ -d "${OWNCLOUD_PRE_CRONJOB_PATH}" ]]; then
+  for FILE in $(find "${OWNCLOUD_PRE_CRONJOB_PATH}" -iname "*.sh" | sort); do
+    # shellcheck disable=SC1090,SC2086
+    source ${FILE}
+  done
+fi
+
+occ system:cron
+occ dav:cleanup-chunks
+
+if [[ -d "${OWNCLOUD_POST_CRONJOB_PATH}" ]]; then
+  for FILE in $(find "${OWNCLOUD_POST_CRONJOB_PATH}" -iname "*.sh" | sort); do
+    # shellcheck disable=SC1090,SC2086
+    source ${FILE}
+  done
+fi
