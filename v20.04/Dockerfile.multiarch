@@ -17,8 +17,7 @@ ADD overlay /
 WORKDIR /var/www/owncloud
 
 RUN chgrp root /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini && \
-  chmod g+w /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini && \
-  rm -rf /var/www/owncloud/updater
+  chmod g+w /etc/apache2/sites-enabled/default.conf /etc/php/7.4/mods-available/owncloud.ini
 
 VOLUME ["/mnt/data"]
 EXPOSE 8080
