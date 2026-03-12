@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eo pipefail
+[[ "${DEBUG}" == "true" ]] && set -x
+
+if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]; then
+  for FILE in $(find /etc/entrypoint.d -iname "*.sh" | sort); do
+    # shellcheck disable=SC1090,SC2086
+    source ${FILE}
+  done
+fi
+
+CHECK="$(curl -sL -w "%{http_code}" -o /dev/null "http://localhost:${APACHE_LISTEN:-8080}/status.php")"
+
+if [[ "${CHECK}" == "200" ]]; then
+  exit 0
+fi
+
+exit 1
