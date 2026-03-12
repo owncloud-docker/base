@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+declare -x OWNCLOUD_MEMCACHE_LOCAL
+[[ -z "${OWNCLOUD_MEMCACHE_LOCAL}" ]] && OWNCLOUD_MEMCACHE_LOCAL="${OWNCLOUD_CACHING_CLASS:-\\OC\\Memcache\\APCu}"
+
+true

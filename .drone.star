@@ -5,6 +5,11 @@ UBUNTU_IMAGE = "docker.io/owncloud/ubuntu:22.04"
 def main(ctx):
     versions = [
         {
+            "value": "24.04",
+            "tarball": "https://download.owncloud.com/server/daily/owncloud-daily-master.tar.bz2",
+            "tags": [],
+        },
+        {
             "value": "22.04",
             "tarball": "https://download.owncloud.com/server/stable/owncloud-latest.tar.bz2",
             "tags": [],

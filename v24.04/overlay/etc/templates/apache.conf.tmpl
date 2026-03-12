@@ -1,0 +1,24 @@
+<VirtualHost *:${APACHE_LISTEN}>
+  ServerAdmin ${APACHE_SERVER_ADMIN}
+  DocumentRoot ${APACHE_DOCUMENT_ROOT}
+
+  ErrorLog ${APACHE_ERROR_LOG}
+  CustomLog ${APACHE_ACCESS_LOG} ${APACHE_LOG_FORMAT}
+
+  {{- if (or (ne .Env.OWNCLOUD_SUB_URL "/") (eq .Env.OWNCLOUD_ENABLE_OIDC_REWRITE_URL "true")) }}
+  RewriteEngine On
+  {{- end }}
+  {{- if ne .Env.OWNCLOUD_SUB_URL "/" }}
+  RewriteCond %{REQUEST_URI} !^${OWNCLOUD_SUB_URL}
+  RewriteRule ^(.*)$ ${OWNCLOUD_SUB_URL}$1 [R=301,L]
+  Alias ${OWNCLOUD_SUB_URL} ${APACHE_DOCUMENT_ROOT}
+  {{- end }}
+  {{- if eq .Env.OWNCLOUD_ENABLE_OIDC_REWRITE_URL "true" }}
+  RewriteRule ^\.well-known/openid-configuration /index.php/apps/openidconnect/config
+  {{- end }}
+
+  <Directory ${APACHE_DOCUMENT_ROOT}>
+    AllowOverride All
+    Options -Indexes +FollowSymlinks
+  </Directory>
+</VirtualHost>
