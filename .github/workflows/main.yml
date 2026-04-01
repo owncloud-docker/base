@@ -1,0 +1,47 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [master]
+    tags: ["*"]
+  pull_request:
+  schedule:
+    - cron: 0 0 * * 0
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - uses: editorconfig-checker/action-editorconfig-checker@840e866d93b8e032123c23bac69dece044d4d84c
+
+      - run: editorconfig-checker
+
+  build:
+    needs: lint
+    uses: owncloud-docker/ubuntu/.github/workflows/docker-build.yml@master
+    with:
+      docker-repo-name: owncloud/${{ github.event.repository.name }}
+      docker-tag: ${{ matrix.version }}
+      docker-context: v${{ matrix.version }}
+      docker-file: v${{ matrix.version }}/Dockerfile.multiarch
+      docker-hub-username: ${{ vars.DOCKERHUB_USERNAME }}
+      push: ${{ github.ref == 'refs/heads/master' }}
+    secrets:
+      docker-hub-password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    strategy:
+      matrix:
+        version: ["22.04", "24.04"]
+
+  update-docker-hub-description:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    uses: owncloud-docker/ubuntu/.github/workflows/docker-hub-desc.yml@master
+    with:
+      docker-repo-name: owncloud/${{ github.event.repository.name }}
+      docker-repo-description: ownCloud server base image
+      docker-hub-username: ${{ vars.DOCKERHUB_USERNAME }}
+    secrets:
+      docker-hub-password: ${{ secrets.DOCKERHUB_TOKEN }}
