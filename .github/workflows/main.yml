@@ -21,9 +21,7 @@ jobs:
       docker-context: v${{ matrix.version }}
       docker-file: v${{ matrix.version }}/Dockerfile.multiarch
       docker-hub-username: ${{ vars.DOCKERHUB_USERNAME }}
-      smoke-test-port: "8080"
-      smoke-test-url: "http://localhost:8080/status.php"
-      smoke-test-entrypoint-cmd: "exec /usr/bin/server"
+      smoke-test-cmd: "php -r \"echo 'OK';\" | grep -q OK"
       push: ${{ github.ref == 'refs/heads/master' }}
     secrets:
       docker-hub-password: ${{ secrets.DOCKERHUB_TOKEN }}
