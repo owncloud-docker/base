@@ -13,21 +13,25 @@ jobs:
     uses: owncloud-docker/ubuntu/.github/workflows/lint-editorconfig.yml@master
 
   build:
+    name: build (${{ matrix.version.value }})
     needs: lint
     uses: owncloud-docker/ubuntu/.github/workflows/docker-build.yml@master
     with:
       docker-repo-name: owncloud/${{ github.event.repository.name }}
-      docker-tag: ${{ matrix.version }}
-      docker-context: v${{ matrix.version }}
-      docker-file: v${{ matrix.version }}/Dockerfile.multiarch
+      docker-tag: ${{ matrix.version.value }}
+      docker-context: v${{ matrix.version.value }}
+      docker-file: v${{ matrix.version.value }}/Dockerfile.multiarch
       docker-hub-username: ${{ vars.DOCKERHUB_USERNAME }}
+      smoke-test-cmd: "php -r \"echo 'OK';\" | grep -q OK"
       push: ${{ github.ref == 'refs/heads/master' }}
     secrets:
       docker-hub-password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     strategy:
       matrix:
-        version: ["22.04", "24.04"]
+        version:
+          - value: "22.04"
+          - value: "24.04"
 
   update-docker-hub-description:
     needs: build
