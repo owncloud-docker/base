@@ -39,6 +39,7 @@ function getConfigFromEnv() {
     ],
 
     'upgrade.disable-web' => true,
+    'web-updater.enabled' => false,
   ];
 
   if (getenv('OWNCLOUD_IOC_SCANNER_CONFIRMATION') != '') {
@@ -75,6 +76,22 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME') != '') {
     $config['allow_user_to_change_display_name'] = getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_MAIL_ADDRESS') != '') {
+    $config['allow_user_to_change_mail_address'] = getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_MAIL_ADDRESS') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_STRICT_LOGIN_ENFORCED') != '') {
+    $config['strict_login_enforced'] = getenv('OWNCLOUD_STRICT_LOGIN_ENFORCED') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_GROUPS_ENABLE_MEDIAL_SEARCH') != '') {
+    $config['groups.enable_medial_search'] = getenv('OWNCLOUD_GROUPS_ENABLE_MEDIAL_SEARCH') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_USE_RELATIVE_DOMAIN_NAME') != '') {
+    $config['use_relative_domain_name'] = getenv('OWNCLOUD_USE_RELATIVE_DOMAIN_NAME') === 'true';
   }
 
   if (getenv('OWNCLOUD_REMEMBER_LOGIN_COOKIE_LIFETIME') != '') {
@@ -161,6 +178,10 @@ function getConfigFromEnv() {
     $config['mail_smtppassword'] = getenv('OWNCLOUD_MAIL_SMTP_PASSWORD');
   }
 
+  if (getenv('OWNCLOUD_MAIL_REMOVE_SENDER_DISPLAY_NAME') != '') {
+    $config['remove_sender_display_name'] = getenv('OWNCLOUD_MAIL_REMOVE_SENDER_DISPLAY_NAME') === 'true';
+  }
+
   if (getenv('OWNCLOUD_OVERWRITE_HOST') != '') {
     $config['overwritehost'] = getenv('OWNCLOUD_OVERWRITE_HOST');
   }
@@ -193,12 +214,36 @@ function getConfigFromEnv() {
     $config['proxyuserpwd'] = getenv('OWNCLOUD_PROXY_USERPWD');
   }
 
+  if (getenv('OWNCLOUD_PROXY_IGNORE') != '') {
+    $config['proxy_ignore'] = explode(',', getenv('OWNCLOUD_PROXY_IGNORE'));
+  }
+
+  if (getenv('OWNCLOUD_WEB_BASEURL') != '') {
+    $config['web.baseUrl'] = getenv('OWNCLOUD_WEB_BASEURL');
+  }
+
+  if (getenv('OWNCLOUD_WEB_REWRITE_LINKS') != '') {
+    $config['web.rewriteLinks'] = getenv('OWNCLOUD_WEB_REWRITE_LINKS') === 'true';
+  }
+
   if (getenv('OWNCLOUD_TRASHBIN_RETENTION_OBLIGATION') != '') {
     $config['trashbin_retention_obligation'] = getenv('OWNCLOUD_TRASHBIN_RETENTION_OBLIGATION');
   }
 
   if (getenv('OWNCLOUD_TRASHBIN_PURGE_LIMIT') != '') {
     $config['trashbin_purge_limit'] = (int) getenv('OWNCLOUD_TRASHBIN_PURGE_LIMIT');
+  }
+
+  if (getenv('OWNCLOUD_TRASHBIN_SKIP_DIRECTORIES') != '') {
+    $config['trashbin_skip_directories'] = explode(',', getenv('OWNCLOUD_TRASHBIN_SKIP_DIRECTORIES'));
+  }
+
+  if (getenv('OWNCLOUD_TRASHBIN_SKIP_EXTENSIONS') != '') {
+    $config['trashbin_skip_extensions'] = explode(',', getenv('OWNCLOUD_TRASHBIN_SKIP_EXTENSIONS'));
+  }
+
+  if (getenv('OWNCLOUD_TRASHBIN_SKIP_SIZE_THRESHOLD') != '') {
+    $config['trashbin_skip_size_threshold'] = getenv('OWNCLOUD_TRASHBIN_SKIP_SIZE_THRESHOLD');
   }
 
   if (getenv('OWNCLOUD_VERSIONS_RETENTION_OBLIGATION') != '') {
@@ -219,6 +264,10 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_HAS_INTERNET_CONNECTION') != '') {
     $config['has_internet_connection'] = getenv('OWNCLOUD_HAS_INTERNET_CONNECTION') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_INTERNET_CONNECTIVITY_DETECT_URL') != '') {
+    $config['internet_connectivity_detect_url'] = getenv('OWNCLOUD_INTERNET_CONNECTIVITY_DETECT_URL');
   }
 
   if (getenv('OWNCLOUD_CHECK_FOR_WORKING_WELLKNOWN_SETUP') != '') {
@@ -271,6 +320,10 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_PREVIEW_MAX_FILESIZE_IMAGE') != '') {
     $config['preview_max_filesize_image'] = getenv('OWNCLOUD_PREVIEW_MAX_FILESIZE_IMAGE');
+  }
+
+  if (getenv('OWNCLOUD_PREVIEW_JPEG_IMAGE_DISPLAY_QUALITY') != '') {
+    $config['previewJPEGImageDisplayQuality'] = (int) getenv('OWNCLOUD_PREVIEW_JPEG_IMAGE_DISPLAY_QUALITY');
   }
 
   if (getenv('OWNCLOUD_PREVIEW_LIBREOFFICE_PATH') != '') {
@@ -426,7 +479,7 @@ function getConfigFromEnv() {
   }
 
   if (getenv('OWNCLOUD_FILELOCKING_TTL') != '') {
-    $config['filelocking.ttl'] = getenv('OWNCLOUD_FILELOCKING_TTL');
+    $config['filelocking.ttl'] = (int) getenv('OWNCLOUD_FILELOCKING_TTL');
   }
 
   if (getenv('OWNCLOUD_MEMCACHE_LOCKING') != '') {
@@ -451,6 +504,42 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_DAV_ENABLE_ASYNC') != '') {
     $config['dav.enable.async'] = getenv('OWNCLOUD_DAV_ENABLE_ASYNC');
+  }
+
+  if (getenv('OWNCLOUD_DAV_PROPFIND_DEPTH_INFINITY') != '') {
+    $config['dav.propfind.depth_infinity'] = getenv('OWNCLOUD_DAV_PROPFIND_DEPTH_INFINITY') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_POLLINTERVAL') != '') {
+    $config['pollinterval'] = (int) getenv('OWNCLOUD_POLLINTERVAL');
+  }
+
+  if (getenv('OWNCLOUD_FILESYSTEM_MAX_MOUNTPOINT_MOVE_ATTEMPTS') != '') {
+    $config['filesystem.max_mountpoint_move_attempts'] = (int) getenv('OWNCLOUD_FILESYSTEM_MAX_MOUNTPOINT_MOVE_ATTEMPTS');
+  }
+
+  if (getenv('OWNCLOUD_BLACKLISTED_FILES_REGEX') != '') {
+    $config['blacklisted_files_regex'] = explode(',', getenv('OWNCLOUD_BLACKLISTED_FILES_REGEX'));
+  }
+
+  if (getenv('OWNCLOUD_EXCLUDED_DIRECTORIES_REGEX') != '') {
+    $config['excluded_directories_regex'] = explode(',', getenv('OWNCLOUD_EXCLUDED_DIRECTORIES_REGEX'));
+  }
+
+  if (getenv('OWNCLOUD_SHARING_SHOW_PUBLIC_LINK_QUICK_ACTION') != '') {
+    $config['sharing.showPublicLinkQuickAction'] = getenv('OWNCLOUD_SHARING_SHOW_PUBLIC_LINK_QUICK_ACTION') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_TELEMETRY_ENABLED') != '') {
+    $config['telemetry.enabled'] = getenv('OWNCLOUD_TELEMETRY_ENABLED') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_GRACE_PERIOD_DEMO_KEY_SHOW_POPUP') != '') {
+    $config['grace_period.demo_key.show_popup'] = getenv('OWNCLOUD_GRACE_PERIOD_DEMO_KEY_SHOW_POPUP') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_GRACE_PERIOD_DEMO_KEY_LINK') != '') {
+    $config['grace_period.demo_key.link'] = getenv('OWNCLOUD_GRACE_PERIOD_DEMO_KEY_LINK');
   }
 
   if (getenv('OWNCLOUD_LICENSE_KEY') != '') {
@@ -488,6 +577,95 @@ function getConfigFromEnv() {
       parse_str($value, $opts);
       $config['login.alternatives'][$key] = $opts;
     }
+  }
+
+  if (getenv('OWNCLOUD_LOGIN_POLICY_ORDER') != '') {
+    $config['loginPolicy.order'] = explode(',', getenv('OWNCLOUD_LOGIN_POLICY_ORDER'));
+  }
+
+  if (getenv('OWNCLOUD_OPENSSL_CONFIG') != '') {
+    $config['openssl'] = ['config' => getenv('OWNCLOUD_OPENSSL_CONFIG')];
+  }
+
+  if (getenv('OWNCLOUD_DB_PLATFORM') != '') {
+    $config['db.platform'] = getenv('OWNCLOUD_DB_PLATFORM');
+  }
+
+  // app: activity
+  if (getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS') != '') {
+    $config['admin_audit.groups'] = explode(',', getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS'));
+  }
+
+  // app: files_antivirus
+  if (getenv('OWNCLOUD_ANTIVIRUS_AV_PATH') != '') {
+    $config['files_antivirus.av_path'] = getenv('OWNCLOUD_ANTIVIRUS_AV_PATH');
+  }
+
+  if (getenv('OWNCLOUD_ANTIVIRUS_AV_CMD_OPTIONS') != '') {
+    $config['files_antivirus.av_cmd_options'] = getenv('OWNCLOUD_ANTIVIRUS_AV_CMD_OPTIONS');
+  }
+
+  // app: files_pdfviewer
+  if (getenv('OWNCLOUD_PDF_VIEWER_ENABLE_SCRIPTING') != '') {
+    $config['files_pdfviewer.enableScripting'] = getenv('OWNCLOUD_PDF_VIEWER_ENABLE_SCRIPTING');
+  }
+
+  // app: firstrunwizard
+  if (getenv('OWNCLOUD_CUSTOMCLIENT_DESKTOP') != '') {
+    $config['customclient_desktop'] = getenv('OWNCLOUD_CUSTOMCLIENT_DESKTOP');
+  }
+
+  if (getenv('OWNCLOUD_CUSTOMCLIENT_ANDROID') != '') {
+    $config['customclient_android'] = getenv('OWNCLOUD_CUSTOMCLIENT_ANDROID');
+  }
+
+  if (getenv('OWNCLOUD_CUSTOMCLIENT_IOS') != '') {
+    $config['customclient_ios'] = getenv('OWNCLOUD_CUSTOMCLIENT_IOS');
+  }
+
+  // app: user_ldap
+  if (getenv('OWNCLOUD_LDAP_IGNORE_NAMING_RULES') != '') {
+    $config['ldapIgnoreNamingRules'] = getenv('OWNCLOUD_LDAP_IGNORE_NAMING_RULES') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_USER_LDAP_ENABLE_MEDIAL_SEARCH') != '') {
+    $config['user_ldap.enable_medial_search'] = getenv('OWNCLOUD_USER_LDAP_ENABLE_MEDIAL_SEARCH') === 'true';
+  }
+
+  // app: metrics (enterprise)
+  if (getenv('OWNCLOUD_METRICS_SHARED_SECRET') != '') {
+    $config['metrics_shared_secret'] = getenv('OWNCLOUD_METRICS_SHARED_SECRET');
+  }
+
+  // app: richdocuments
+  if (getenv('OWNCLOUD_COLLABORA_GROUP') != '') {
+    $config['collabora_group'] = getenv('OWNCLOUD_COLLABORA_GROUP');
+  }
+
+  // app: workflow (enterprise)
+  if (getenv('OWNCLOUD_WORKFLOW_RETENTION_ENGINE') != '') {
+    $config['workflow.retention_engine'] = getenv('OWNCLOUD_WORKFLOW_RETENTION_ENGINE');
+  }
+
+  // app: wopi / microsoft office online (enterprise)
+  if (getenv('OWNCLOUD_WOPI_TOKEN_KEY') != '') {
+    $config['wopi.token.key'] = getenv('OWNCLOUD_WOPI_TOKEN_KEY');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER') != '') {
+    $config['wopi.office-online.server'] = getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_GROUP') != '') {
+    $config['wopi_group'] = getenv('OWNCLOUD_WOPI_GROUP');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_PROXY_URL') != '') {
+    $config['wopi.proxy.url'] = getenv('OWNCLOUD_WOPI_PROXY_URL');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED') != '') {
+    $config['wopi.business-flow.enabled'] = getenv('OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED');
   }
 
   switch (true) {
