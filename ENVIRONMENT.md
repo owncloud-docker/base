@@ -346,6 +346,26 @@
   Time to wait for a successful connection to the redis service on container startup.
 - `OWNCLOUD_REDIS_TIMEOUT=` \
   Sets the redis timeout value (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-redis-cluster-connection-details)).
+- `OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED=` \
+  Allow self-signed certificates on the Redis server (`true`/`false`) (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_CAFILE=` \
+  Path to CA certificate file for TLS-secured Redis connections (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_CAPATH=` \
+  Directory containing CA certificates for TLS-secured Redis connections (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_CIPHERS=` \
+  OpenSSL cipher list for Redis TLS connections (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_LOCAL_CERT=` \
+  Path to client certificate file for mutual TLS to Redis (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_LOCAL_PK=` \
+  Path to client private key file for mutual TLS to Redis (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_PASSPHRASE=` \
+  Passphrase for an encrypted Redis client private key (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_PEER_NAME=` \
+  Expected hostname in the Redis server certificate, overrides the connection host for SNI (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_VERIFY_PEER=` \
+  Validate the Redis server certificate against the CA (`true`/`false`) (see [phpredis docs](https://github.com/phpredis/phpredis)).
+- `OWNCLOUD_REDIS_TLS_VERIFY_PEER_NAME=` \
+  Validate that the Redis server certificate CN/SAN matches the peer name (`true`/`false`) (see [phpredis docs](https://github.com/phpredis/phpredis)).
 - `OWNCLOUD_REMEMBER_LOGIN_COOKIE_LIFETIME=` \
   Define the lifetime of the remember-login cookie (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-lifetime-of-the-remember-login-cookie)).
 - `OWNCLOUD_SAVE_VERSION_METADATA=` \

@@ -701,6 +701,46 @@ function getConfigFromEnv() {
             }
           }
 
+          if (getenv('OWNCLOUD_REDIS_TLS_CAFILE') != '') {
+            $config['redis.cluster']['connection_parameters']['cafile'] = getenv('OWNCLOUD_REDIS_TLS_CAFILE');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_CAPATH') != '') {
+            $config['redis.cluster']['connection_parameters']['capath'] = getenv('OWNCLOUD_REDIS_TLS_CAPATH');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_LOCAL_CERT') != '') {
+            $config['redis.cluster']['connection_parameters']['local_cert'] = getenv('OWNCLOUD_REDIS_TLS_LOCAL_CERT');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_LOCAL_PK') != '') {
+            $config['redis.cluster']['connection_parameters']['local_pk'] = getenv('OWNCLOUD_REDIS_TLS_LOCAL_PK');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_PASSPHRASE') != '') {
+            $config['redis.cluster']['connection_parameters']['passphrase'] = getenv('OWNCLOUD_REDIS_TLS_PASSPHRASE');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_CIPHERS') != '') {
+            $config['redis.cluster']['connection_parameters']['ciphers'] = getenv('OWNCLOUD_REDIS_TLS_CIPHERS');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_PEER_NAME') != '') {
+            $config['redis.cluster']['connection_parameters']['peer_name'] = getenv('OWNCLOUD_REDIS_TLS_PEER_NAME');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER') != '') {
+            $config['redis.cluster']['connection_parameters']['verify_peer'] = getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER') === 'true';
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER_NAME') != '') {
+            $config['redis.cluster']['connection_parameters']['verify_peer_name'] = getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER_NAME') === 'true';
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') != '') {
+            $config['redis.cluster']['connection_parameters']['allow_self_signed'] = getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') === 'true';
+          }
+
         case getenv('OWNCLOUD_REDIS_HOST') != '' && getenv('OWNCLOUD_REDIS_SEEDS') == '':
           $config['redis']['host'] = getenv('OWNCLOUD_REDIS_HOST');
           $config['redis']['port'] = getenv('OWNCLOUD_REDIS_PORT');
@@ -715,6 +755,46 @@ function getConfigFromEnv() {
 
           if (getenv('OWNCLOUD_REDIS_TIMEOUT') != '') {
             $config['redis']['timeout'] = (float) getenv('OWNCLOUD_REDIS_TIMEOUT');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_CAFILE') != '') {
+            $config['redis']['connection_parameters']['stream']['cafile'] = getenv('OWNCLOUD_REDIS_TLS_CAFILE');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_CAPATH') != '') {
+            $config['redis']['connection_parameters']['stream']['capath'] = getenv('OWNCLOUD_REDIS_TLS_CAPATH');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_LOCAL_CERT') != '') {
+            $config['redis']['connection_parameters']['stream']['local_cert'] = getenv('OWNCLOUD_REDIS_TLS_LOCAL_CERT');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_LOCAL_PK') != '') {
+            $config['redis']['connection_parameters']['stream']['local_pk'] = getenv('OWNCLOUD_REDIS_TLS_LOCAL_PK');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_PASSPHRASE') != '') {
+            $config['redis']['connection_parameters']['stream']['passphrase'] = getenv('OWNCLOUD_REDIS_TLS_PASSPHRASE');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_CIPHERS') != '') {
+            $config['redis']['connection_parameters']['stream']['ciphers'] = getenv('OWNCLOUD_REDIS_TLS_CIPHERS');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_PEER_NAME') != '') {
+            $config['redis']['connection_parameters']['stream']['peer_name'] = getenv('OWNCLOUD_REDIS_TLS_PEER_NAME');
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER') != '') {
+            $config['redis']['connection_parameters']['stream']['verify_peer'] = getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER') === 'true';
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER_NAME') != '') {
+            $config['redis']['connection_parameters']['stream']['verify_peer_name'] = getenv('OWNCLOUD_REDIS_TLS_VERIFY_PEER_NAME') === 'true';
+          }
+
+          if (getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') != '') {
+            $config['redis']['connection_parameters']['stream']['allow_self_signed'] = getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') === 'true';
           }
       }
 
