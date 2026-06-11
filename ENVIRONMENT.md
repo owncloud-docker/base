@@ -209,6 +209,8 @@
   Developer option to connect to Marketplace testing instances.
 - `OWNCLOUD_MARKETPLACE_KEY=${OWNCLOUD_MARKETPLACE_APIKEY}` \
   Developer option to get access to unreleased Apps in your Marketplace account.
+- `OWNCLOUD_MEMCACHE_LOCAL=${OWNCLOUD_CACHING_CLASS:-\\OC\\Memcache\\APCu}` \
+  Memory caching backend for locally stored data (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-locally-stored-data)).
 - `OWNCLOUD_METRICS_SHARED_SECRET=` \
   Secret required to access the Metrics dashboard (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-metrics)).
 - `OWNCLOUD_MAX_EXECUTION_TIME=3600` \

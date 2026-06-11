@@ -366,6 +366,10 @@ function getConfigFromEnv() {
     $config['enable_certificate_management'] = getenv('OWNCLOUD_ENABLE_CERTIFICATE_MANAGEMENT');
   }
 
+  if (getenv('OWNCLOUD_MEMCACHE_LOCAL') != '') {
+    $config['memcache.local'] = getenv('OWNCLOUD_MEMCACHE_LOCAL');
+  }
+
   if (getenv('OWNCLOUD_CACHE_PATH') != '') {
     $config['cache_path'] = getenv('OWNCLOUD_CACHE_PATH');
   }
