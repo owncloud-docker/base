@@ -114,8 +114,12 @@ function getConfigFromEnv() {
     $config['csrf.disabled'] = getenv('OWNCLOUD_CSRF_DISABLED') === 'true';
   }
 
-  if (getenv('OWNCLOUD_SKELETON_DIRECTORY') != '') {
-    $config['skeletondirectory'] = getenv('OWNCLOUD_SKELETON_DIRECTORY');
+  // Use the skeleton folder from the mounted volume when it holds content,
+  // otherwise leave 'skeletondirectory' unset so core falls back to its
+  // built-in core/skeleton default.
+  $skeletonDirectory = getenv('OWNCLOUD_VOLUME_ROOT') . '/skeleton';
+  if (is_dir($skeletonDirectory) && (new \FilesystemIterator($skeletonDirectory))->valid()) {
+    $config['skeletondirectory'] = $skeletonDirectory;
   }
 
   if (getenv('OWNCLOUD_LOST_PASSWORD_LINK') != '') {
