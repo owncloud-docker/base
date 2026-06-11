@@ -24,6 +24,7 @@ jobs:
       docker-hub-username: ${{ vars.DOCKERHUB_USERNAME }}
       smoke-test-cmd: "php -r \"echo 'OK';\" | grep -q OK"
       push: ${{ github.ref == 'refs/heads/master' }}
+      build-date-tag: true
     secrets:
       docker-hub-password: ${{ secrets.DOCKERHUB_TOKEN }}
 
