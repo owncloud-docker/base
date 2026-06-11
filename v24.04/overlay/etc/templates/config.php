@@ -366,10 +366,6 @@ function getConfigFromEnv() {
     $config['enable_certificate_management'] = getenv('OWNCLOUD_ENABLE_CERTIFICATE_MANAGEMENT');
   }
 
-  if (getenv('OWNCLOUD_MEMCACHE_LOCAL') != '') {
-    $config['memcache.local'] = getenv('OWNCLOUD_MEMCACHE_LOCAL');
-  }
-
   if (getenv('OWNCLOUD_CACHE_PATH') != '') {
     $config['cache_path'] = getenv('OWNCLOUD_CACHE_PATH');
   }
@@ -480,10 +476,6 @@ function getConfigFromEnv() {
 
   if (getenv('OWNCLOUD_FILELOCKING_TTL') != '') {
     $config['filelocking.ttl'] = (int) getenv('OWNCLOUD_FILELOCKING_TTL');
-  }
-
-  if (getenv('OWNCLOUD_MEMCACHE_LOCKING') != '') {
-    $config['memcache.locking'] = getenv('OWNCLOUD_MEMCACHE_LOCKING');
   }
 
   if (getenv('OWNCLOUD_UPGRADE_AUTOMATIC_APP_UPDATES') != '') {
@@ -796,28 +788,6 @@ function getConfigFromEnv() {
           if (getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') != '') {
             $config['redis']['connection_parameters']['stream']['allow_self_signed'] = getenv('OWNCLOUD_REDIS_TLS_ALLOW_SELF_SIGNED') === 'true';
           }
-      }
-
-      break;
-    case getenv('OWNCLOUD_MEMCACHED_ENABLED') && getenv('OWNCLOUD_MEMCACHED_ENABLED') === 'true':
-      $config = array_merge_recursive($config, [
-        'memcache.distributed' => '\OC\Memcache\Memcached',
-        'memcache.locking' => '\OC\Memcache\Memcached',
-
-        'memcached_servers' => [
-          [
-            getenv('OWNCLOUD_MEMCACHED_HOST'),
-            getenv('OWNCLOUD_MEMCACHED_PORT'),
-          ],
-        ],
-      ]);
-
-      if (getenv('OWNCLOUD_MEMCACHED_OPTIONS') != '') {
-        parse_str(getenv('OWNCLOUD_MEMCACHED_OPTIONS'), $opts);
-
-        foreach($opts as $key => $value) {
-          $config['memcached_options'][constant($key)] = $value;
-        }
       }
 
       break;
