@@ -8,12 +8,12 @@
   Allow medial search on user account properties (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-medial-search-on-user-account-properties)).
 - `OWNCLOUD_ACTIVITY_EXPIRE_DAYS=` \
   Activity expiration in days (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-activity)).
+- `OWNCLOUD_ADMIN_AUDIT_GROUPS=` \
+  Restrict audit logging to specific groups. Comma-separated list of group names (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-admin-audit)).
 - `OWNCLOUD_ANTIVIRUS_AV_CMD_OPTIONS=` \
   Command line options for the clamscan antivirus scanner (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-files-antivirus)).
 - `OWNCLOUD_ANTIVIRUS_AV_PATH=` \
   Path to the clamscan binary in the container (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-files-antivirus)).
-- `OWNCLOUD_ADMIN_AUDIT_GROUPS=` \
-  Restrict audit logging to specific groups. Comma-separated list of group names (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-admin-audit)).
 - `OWNCLOUD_ADMIN_PASSWORD=admin` \
   ownCloud admin password.
 - `OWNCLOUD_ADMIN_USERNAME=admin` \
@@ -74,8 +74,6 @@
   Enable or disable async DAV extensions (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-or-disable-async-dav-extensions)).
 - `OWNCLOUD_DAV_PROPFIND_DEPTH_INFINITY=` \
   Allow Depth: infinity PROPFIND requests (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-or-disable-async-dav-extensions)).
-- `OWNCLOUD_DB_PLATFORM=` \
-  Force a specific Doctrine DBAL platform class, e.g. for MariaDB compatibility (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#identify-the-database-used-with-this-installation)).
 - `OWNCLOUD_DB_FAIL=true` \
   Exit container if the database can't reached during the startup.
 - `OWNCLOUD_DB_HOST=` \
@@ -88,6 +86,8 @@
   Define the prefix for the ownCloud tables in the database (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-prefix-for-the-owncloud-tables-in-the-database)).
 - `OWNCLOUD_DB_TIMEOUT=180` \
   Time to wait for a successful connection to the database on container startup.
+- `OWNCLOUD_DB_PLATFORM=` \
+  Force a specific Doctrine DBAL platform class, e.g. for MariaDB compatibility (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#identify-the-database-used-with-this-installation)).
 - `OWNCLOUD_DB_TYPE=sqlite` \
   Identify the database used with this installation (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#identify-the-database-used-with-this-installation)).
 - `OWNCLOUD_DB_USERNAME=` \
@@ -124,28 +124,28 @@
   Enable transactional file locking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-transactional-file-locking)).
 - `OWNCLOUD_FILELOCKING_TTL=` \
   Define the TTL for file locking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-ttl-for-file-locking)).
-- `OWNCLOUD_FILESYSTEM_MAX_MOUNTPOINT_MOVE_ATTEMPTS=` \
-  Maximum number of failed mountpoint rename attempts before giving up (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-how-often-filesystem-changes-are-detected)).
 - `OWNCLOUD_FILESYSTEM_CACHE_READONLY=` \
   Prevent cache changes due to changes in the filesystem (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#prevent-cache-changes-due-to-changes-in-the-filesystem)).
 - `OWNCLOUD_FILESYSTEM_CHECK_CHANGES=` \
   Define how often filesystem changes are detected (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-how-often-filesystem-changes-are-detected)).
+- `OWNCLOUD_FILESYSTEM_MAX_MOUNTPOINT_MOVE_ATTEMPTS=` \
+  Maximum number of failed mountpoint rename attempts before giving up (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-how-often-filesystem-changes-are-detected)).
 - `OWNCLOUD_FILES_EXTERNAL_ALLOW_NEW_LOCAL=${OWNCLOUD_ALLOW_EXTERNAL_LOCAL_STORAGE}` \
   Enable or disable the files_external local mount option (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-or-disable-the-files_external-local-mount-option)).
 - `OWNCLOUD_GRACE_PERIOD_DEMO_KEY_LINK=` \
   Override the link shown in the grace period popup (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
 - `OWNCLOUD_GRACE_PERIOD_DEMO_KEY_SHOW_POPUP=` \
   Show or hide the grace period demo key popup (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
-- `OWNCLOUD_GROUPS_ENABLE_MEDIAL_SEARCH=` \
-  Allow medial search on group IDs (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-medial-search-on-user-account-properties)).
 - `OWNCLOUD_FORWARDED_FOR_HEADERS=` \
   Define forwarded_for_headers (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-forwarded_for_headers)).
+- `OWNCLOUD_GROUPS_ENABLE_MEDIAL_SEARCH=` \
+  Allow medial search on group IDs (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-medial-search-on-user-account-properties)).
 - `OWNCLOUD_HASHING_COST=` \
   Define the hashing cost (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-hashing-cost)).
-- `OWNCLOUD_INTERNET_CONNECTIVITY_DETECT_URL=` \
-  URL used to detect internet connectivity (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#check-for-an-internet-connection)).
 - `OWNCLOUD_HAS_INTERNET_CONNECTION=` \
   Check for an internet connection (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#check-for-an-internet-connection)).
+- `OWNCLOUD_INTERNET_CONNECTIVITY_DETECT_URL=` \
+  URL used to detect internet connectivity (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#check-for-an-internet-connection)).
 - `OWNCLOUD_HTACCESS_REWRITE_BASE=${OWNCLOUD_SUB_URL}` \
   Define clean URLs without /index.php (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-clean-urls-without-index-php)).
 - `OWNCLOUD_HTTP_COOKIE_SAMESITE=` \
@@ -161,10 +161,10 @@
 - `OWNCLOUD_LICENSE_KEY=` \
   ownCloud Enterprise License Key (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
 - `OWNCLOUD_LICENSE_CLASS=`
-- `OWNCLOUD_LOGIN_POLICY_ORDER=` \
-  Ordered list of login policy class names. Comma-separated (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
 - `OWNCLOUD_LOGIN_ALTERNATIVES=` \
   Define additional login buttons on the logon screen (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
+- `OWNCLOUD_LOGIN_POLICY_ORDER=` \
+  Ordered list of login policy class names. Comma-separated (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
 - `OWNCLOUD_LOG_DATE_FORMAT=` \
   Define the log date format (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-log-date-format)).
 - `OWNCLOUD_LOG_FILE=${OWNCLOUD_VOLUME_FILES}/owncloud.log` \
@@ -278,10 +278,10 @@
   Override ownClouds webroot (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#override-ownclouds-webroot)).
 - `OWNCLOUD_PDF_VIEWER_ENABLE_SCRIPTING=` \
   Allow JavaScript execution in PDF files. Security risk — only enable if required (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-files-pdf-viewer)).
-- `OWNCLOUD_POLLINTERVAL=` \
-  Suggested client polling interval in milliseconds (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-ttl-for-garbage-collection)).
 - `OWNCLOUD_PART_FILE_IN_STORAGE=` \
   Define where part files are located (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-where-part-files-are-located)).
+- `OWNCLOUD_POLLINTERVAL=` \
+  Suggested client polling interval in milliseconds (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-ttl-for-garbage-collection)).
 - `OWNCLOUD_POST_CRONJOB_PATH=/etc/post_cronjob.d` \
   Path to custom scripts that need to be executed after a cron run.
 - `OWNCLOUD_POST_INSTALL_PATH=/etc/post_install.d` \
@@ -366,14 +366,12 @@
   Sets the PHP option `session.save_path`. If `OWNCLOUD_SESSION_SAVE_HANDLER=redis` is used, this must be set to a proper connection URL including authentication parameters if required by the redis server. It usually follows the following scheme: `tcp://IPADDRESS:PORT?auth=REDISPASSWORD`.
 - `OWNCLOUD_SHARE_FOLDER=` \
   Define a default folder for shared files and folders other than root (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-a-default-folder-for-shared-files-and-folders-other-than-root)).
-- `OWNCLOUD_SHARING_SHOW_PUBLIC_LINK_QUICK_ACTION=` \
-  Show a quick-action button for creating public links in the file list (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-an-alternative-share-provider)).
 - `OWNCLOUD_SHARING_FEDERATION_ALLOW_HTTP_FALLBACK=` \
   Allow schema fallback for federated sharing servers (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-schema-fallback-for-federated-sharing-servers)).
 - `OWNCLOUD_SHARING_MANAGER_FACTORY=` \
   Define an alternative Share Provider (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-an-alternative-share-provider)).
-- `OWNCLOUD_STRICT_LOGIN_ENFORCED=` \
-  Only validate the exact login name entered by the user, not alternative formats (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enforce-token-only-authentication-for-apps-and-clients-connecting-to-owncloud)).
+- `OWNCLOUD_SHARING_SHOW_PUBLIC_LINK_QUICK_ACTION=` \
+  Show a quick-action button for creating public links in the file list (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-an-alternative-share-provider)).
 - `OWNCLOUD_SHOW_SERVER_HOSTNAME=` \
   Show or hide the server hostname in status.php (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#show-or-hide-the-server-hostname-in-status-php)).
 - `OWNCLOUD_SINGLEUSER=` \
@@ -388,6 +386,8 @@
   Enable or disable debug logging for SMB access (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-or-disable-debug-logging-for-smb-access)).
 - `OWNCLOUD_SQLITE_JOURNAL_MODE=` \
   Define sqlite3 journal mode (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-sqlite3-journal-mode)).
+- `OWNCLOUD_STRICT_LOGIN_ENFORCED=` \
+  Only validate the exact login name entered by the user, not alternative formats (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enforce-token-only-authentication-for-apps-and-clients-connecting-to-owncloud)).
 - `OWNCLOUD_SUB_URL=/` \
   URL path if ownCloud is deployed to a URL sub-path of a domain.
 - `OWNCLOUD_SYSTEMTAGS_MANAGER_FACTORY=` \

@@ -591,7 +591,7 @@ function getConfigFromEnv() {
     $config['db.platform'] = getenv('OWNCLOUD_DB_PLATFORM');
   }
 
-  // app: activity
+  // app: admin_audit
   if (getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS') != '') {
     $config['admin_audit.groups'] = explode(',', getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS'));
   }
