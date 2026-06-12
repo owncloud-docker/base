@@ -5,7 +5,8 @@ mkdir -p \
   "${OWNCLOUD_VOLUME_CONFIG}" \
   "${OWNCLOUD_VOLUME_FILES}" \
   "${OWNCLOUD_VOLUME_APPS}" \
-  "${OWNCLOUD_VOLUME_SESSIONS}"
+  "${OWNCLOUD_VOLUME_SESSIONS}" \
+  "${OWNCLOUD_VOLUME_ROOT}/skeleton"
 
 echo "Creating hook folders..."
 mkdir -p \
