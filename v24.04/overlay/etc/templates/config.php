@@ -668,6 +668,59 @@ function getConfigFromEnv() {
     $config['wopi.business-flow.enabled'] = getenv('OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED');
   }
 
+  // app: windows_network_drive (wnd) (enterprise)
+  if (getenv('OWNCLOUD_WND_ACTIVITY_REGISTER_EXTENSION') != '') {
+    $config['wnd.activity.registerExtension'] = getenv('OWNCLOUD_WND_ACTIVITY_REGISTER_EXTENSION') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_ACTIVITY_SEND_TO_SHAREES') != '') {
+    $config['wnd.activity.sendToSharees'] = getenv('OWNCLOUD_WND_ACTIVITY_SEND_TO_SHAREES') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_CONNECTOR_OPTS_TIMEOUT') != '') {
+    $config['wnd.connector.opts.timeout'] = (int) getenv('OWNCLOUD_WND_CONNECTOR_OPTS_TIMEOUT');
+  }
+
+  if (getenv('OWNCLOUD_WND_ERROR_CODES_PASSWORD_RESET') != '') {
+    $config['wnd.errorCodes.passwordReset'] = array_map('intval', explode(',', getenv('OWNCLOUD_WND_ERROR_CODES_PASSWORD_RESET')));
+  }
+
+  if (getenv('OWNCLOUD_WND_FILE_INFO_PARSE_ATTRS_MODE') != '') {
+    $config['wnd.fileInfo.parseAttrs.mode'] = getenv('OWNCLOUD_WND_FILE_INFO_PARSE_ATTRS_MODE');
+  }
+
+  if (getenv('OWNCLOUD_WND_GROUP_MEMBERSHIP_CHECK_USER_FIRST') != '') {
+    $config['wnd.groupmembership.checkUserFirst'] = getenv('OWNCLOUD_WND_GROUP_MEMBERSHIP_CHECK_USER_FIRST') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_IN_MEMORY_NOTIFIER_ENABLE') != '') {
+    $config['wnd.in_memory_notifier.enable'] = getenv('OWNCLOUD_WND_IN_MEMORY_NOTIFIER_ENABLE') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_LISTEN_EVENTS_SMB_ACL') != '') {
+    $config['wnd.listen_events.smb_acl'] = getenv('OWNCLOUD_WND_LISTEN_EVENTS_SMB_ACL') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_LISTEN_RECONNECT_AFTER_TIME') != '') {
+    $config['wnd.listen.reconnectAfterTime'] = (int) getenv('OWNCLOUD_WND_LISTEN_RECONNECT_AFTER_TIME');
+  }
+
+  if (getenv('OWNCLOUD_WND_LOGGING_ENABLE') != '') {
+    $config['wnd.logging.enable'] = getenv('OWNCLOUD_WND_LOGGING_ENABLE') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND_PERMISSION_MANAGER_CACHE_SIZE') != '') {
+    $config['wnd.permissionmanager.cache.size'] = (int) getenv('OWNCLOUD_WND_PERMISSION_MANAGER_CACHE_SIZE');
+  }
+
+  if (getenv('OWNCLOUD_WND2_CACHE_WRAPPER_NORMALIZE') != '') {
+    $config['wnd2.cachewrapper.normalize'] = getenv('OWNCLOUD_WND2_CACHE_WRAPPER_NORMALIZE') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_WND2_CACHE_WRAPPER_TTL') != '') {
+    $config['wnd2.cachewrapper.ttl'] = (int) getenv('OWNCLOUD_WND2_CACHE_WRAPPER_TTL');
+  }
+
   switch (true) {
     case getenv('OWNCLOUD_REDIS_ENABLED') && getenv('OWNCLOUD_REDIS_ENABLED') === 'true':
       $config = array_merge_recursive($config, [

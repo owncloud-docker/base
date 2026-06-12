@@ -434,6 +434,32 @@
   Base URL for the ownCloud Web UI (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#override-cli-url)).
 - `OWNCLOUD_WEB_REWRITE_LINKS=` \
   Redirect public/private links to the ownCloud Web UI (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#override-cli-url)).
+- `OWNCLOUD_WND_ACTIVITY_REGISTER_EXTENSION=` \
+  Register the Windows Network Drive app with the Activity app to report what `wnd:process-queue` is doing (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_ACTIVITY_SEND_TO_SHAREES=` \
+  Send activity notifications to sharees of Windows Network Drive files and folders; requires `OWNCLOUD_WND_ACTIVITY_REGISTER_EXTENSION` (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_CONNECTOR_OPTS_TIMEOUT=` \
+  Timeout in milliseconds applied to all Windows Network Drive backend operations and connections (default `20000`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_ERROR_CODES_PASSWORD_RESET=` \
+  Comma-separated list of error codes that trigger a password reset for Windows Network Drive (default `13` = access denied); empty disables it (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_FILE_INFO_PARSE_ATTRS_MODE=` \
+  How Windows Network Drive evaluates file attributes: `none`, `stat` (default) or `getxattr` (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_GROUP_MEMBERSHIP_CHECK_USER_FIRST=` \
+  Make the Windows Network Drive group membership component assume an ACL entry is a user and check users first (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_IN_MEMORY_NOTIFIER_ENABLE=` \
+  Enable the in-memory notifier so Windows Network Drive storages reset passwords on detecting a wrong password (`true`/`false`, default `true`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_LISTEN_EVENTS_SMB_ACL=` \
+  Listen to events from the `smb_acl` app to update Windows Network Drive storages when an ACL changes (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_LISTEN_RECONNECT_AFTER_TIME=` \
+  Interval in seconds after which the Windows Network Drive listener reconnects to the database to avoid crashes from idle connections (default `28800`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_LOGGING_ENABLE=` \
+  Enable additional debug logging for the Windows Network Drive app (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND_PERMISSION_MANAGER_CACHE_SIZE=` \
+  Maximum number of items in the Windows Network Drive permission manager per-request cache (default `512`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND2_CACHE_WRAPPER_NORMALIZE=` \
+  Probe both NFC/NFD UTF-8 forms in the Windows Network Drive collaborative cache wrapper, needed for macOS HFS+ mounts (`true`/`false`) (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
+- `OWNCLOUD_WND2_CACHE_WRAPPER_TTL=` \
+  TTL in seconds for the Windows Network Drive collaborative cache wrapper (default `1800`); use a negative value to disable (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-windows-network-drive-wnd)).
 - `OWNCLOUD_WORKFLOW_RETENTION_ENGINE=` \
   Retention engine for the workflow/tagging app: `tagbased` (default) or `userbased` (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-workflow-tagging)).
 - `OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED=` \
