@@ -209,8 +209,20 @@
   Developer option to connect to Marketplace testing instances.
 - `OWNCLOUD_MARKETPLACE_KEY=${OWNCLOUD_MARKETPLACE_APIKEY}` \
   Developer option to get access to unreleased Apps in your Marketplace account.
+- `OWNCLOUD_MEMCACHED_ENABLED=false` \
+  Enabled memory caching via memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)).
+- `OWNCLOUD_MEMCACHED_HOST=memcached` \
+  Defines the hosts for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-server-details-for-memcached-servers-to-use-for-memory-caching)).
+- `OWNCLOUD_MEMCACHED_OPTIONS=` \
+  Define connection options for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-connection-options-for-memcached)).
+- `OWNCLOUD_MEMCACHED_PORT=11211` \
+  Defines the ports for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-server-details-for-memcached-servers-to-use-for-memory-caching)).
+- `OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT=180` \
+  Time to wait for a successful connection to the memcached service on container startup.
 - `OWNCLOUD_MEMCACHE_LOCAL=${OWNCLOUD_CACHING_CLASS:-\\OC\\Memcache\\APCu}` \
   Memory caching backend for locally stored data (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-locally-stored-data)).
+- `OWNCLOUD_MEMCACHE_LOCKING=` \
+  Define the memory caching backend for file locking (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-memory-caching-backend-for-file-locking)).
 - `OWNCLOUD_METRICS_SHARED_SECRET=` \
   Secret required to access the Metrics dashboard (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-metrics)).
 - `OWNCLOUD_MAX_EXECUTION_TIME=3600` \
