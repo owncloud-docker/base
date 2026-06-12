@@ -233,6 +233,8 @@
   Sets PHP option `max_input_time`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MAX_UPLOAD=20G` \
   Sets PHP option `upload_max_filesize` and `post_max_size`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
+- `OWNCLOUD_MEMORY_LIMIT=512M` \
+  Sets PHP option `memory_limit`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MINIMUM_SUPPORTED_DESKTOP_VERSION=` \
   Define the minimum supported ownCloud desktop client version (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-minimum-supported-owncloud-desktop-client-version)).
 - `OWNCLOUD_MOUNT_FILE=`
