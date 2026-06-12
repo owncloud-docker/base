@@ -20,5 +20,6 @@
   <Directory ${APACHE_DOCUMENT_ROOT}>
     AllowOverride All
     Options -Indexes +FollowSymlinks
+    LimitRequestBody 0
   </Directory>
 </VirtualHost>
