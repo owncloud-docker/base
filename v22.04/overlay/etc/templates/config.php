@@ -253,6 +253,18 @@ function getConfigFromEnv() {
     $config['log_rotate_size'] = (int) getenv('OWNCLOUD_LOG_ROTATE_SIZE');
   }
 
+  // 'log.conditions' is a list of condition maps with mixed scalar/array
+  // values (apps, users, logfile, loglevel, shared_secret), which the flat
+  // env-var idioms used elsewhere here cannot represent. It is therefore
+  // passed as a JSON-encoded array, e.g.:
+  //   OWNCLOUD_LOG_CONDITIONS='[{"apps":["files_external"],"loglevel":0}]'
+  if (getenv('OWNCLOUD_LOG_CONDITIONS') != '') {
+    $logConditions = json_decode(getenv('OWNCLOUD_LOG_CONDITIONS'), true);
+    if (is_array($logConditions)) {
+      $config['log.conditions'] = $logConditions;
+    }
+  }
+
   if (getenv('OWNCLOUD_ENABLE_PREVIEWS') != '') {
     $config['enable_previews'] = getenv('OWNCLOUD_ENABLE_PREVIEWS') === 'true';
   }

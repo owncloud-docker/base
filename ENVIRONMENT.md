@@ -165,6 +165,8 @@
   Define additional login buttons on the logon screen (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
 - `OWNCLOUD_LOGIN_POLICY_ORDER=` \
   Ordered list of login policy class names. Comma-separated (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
+- `OWNCLOUD_LOG_CONDITIONS=` \
+  Define conditional logging rules as a JSON-encoded array of condition objects, e.g. `[{"apps":["files_external"],"loglevel":0}]` (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-log-conditions)).
 - `OWNCLOUD_LOG_DATE_FORMAT=` \
   Define the log date format (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-log-date-format)).
 - `OWNCLOUD_LOG_FILE=${OWNCLOUD_VOLUME_FILES}/owncloud.log` \
