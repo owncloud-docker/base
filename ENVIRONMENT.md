@@ -18,6 +18,8 @@
   ownCloud admin password.
 - `OWNCLOUD_ADMIN_USERNAME=admin` \
   ownCloud admin username.
+- `OWNCLOUD_ALLOW_SUBADMINS=` \
+  Enable or disable the subadmin (group admin) feature. Disabled by default in ownCloud core (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html)).
 - `OWNCLOUD_ALLOW_USER_TO_CHANGE_DISPLAY_NAME=` \
   Allow or disallow users to change their display names (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#allow-or-disallow-users-to-change-their-display-names)).
 - `OWNCLOUD_ALLOW_USER_TO_CHANGE_MAIL_ADDRESS=` \
