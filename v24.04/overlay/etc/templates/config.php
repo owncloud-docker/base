@@ -82,6 +82,10 @@ function getConfigFromEnv() {
     $config['allow_user_to_change_mail_address'] = getenv('OWNCLOUD_ALLOW_USER_TO_CHANGE_MAIL_ADDRESS') === 'true';
   }
 
+  if (getenv('OWNCLOUD_ALLOW_SUBADMINS') != '') {
+    $config['allow_subadmins'] = getenv('OWNCLOUD_ALLOW_SUBADMINS') === 'true';
+  }
+
   if (getenv('OWNCLOUD_STRICT_LOGIN_ENFORCED') != '') {
     $config['strict_login_enforced'] = getenv('OWNCLOUD_STRICT_LOGIN_ENFORCED') === 'true';
   }
