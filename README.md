@@ -20,6 +20,9 @@ ownCloud Docker base image.
   [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#environment-variables),
   [owncloud/php](https://github.com/owncloud-docker/php#environment-variables)
 
+- **Build & maintenance:**\
+  [How these images are built, scanned, updated and published](https://github.com/owncloud-docker/.github/blob/master/docs/IMAGE-LIFECYCLE.md)
+
 ## Docker Tags and respective Dockerfile links
 
 - [`20.04`](https://github.com/owncloud-docker/base/blob/master/v20.04/Dockerfile.multiarch) available as `owncloud/base:20.04`, `owncloud/base:latest`
