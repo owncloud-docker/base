@@ -5,6 +5,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/owncloud-docker/base)](https://github.com/owncloud-docker/base/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-docker/base)
 [![License: MIT](https://img.shields.io/github/license/owncloud-docker/base)](https://github.com/owncloud-docker/base/blob/master/LICENSE)
+[![ownCloud OSPO](https://img.shields.io/badge/OSPO-ownCloud-blue)](https://kiteworks.com/opensource)
 
 ownCloud Docker base image.
 
@@ -60,6 +61,60 @@ ownCloud Docker base image.
   ownCloud admin password.
 - `OWNCLOUD_LICENSE_KEY=` \
   ownCloud Enterprise License Key (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
+
+## Community & Support
+
+- [ownCloud Website](https://owncloud.com)
+- [Community Discussions](https://github.com/orgs/owncloud/discussions)
+- [Matrix Chat](https://app.element.io/#/room/#owncloud:matrix.org)
+- [Documentation](https://doc.owncloud.com)
+- [Enterprise Support](https://owncloud.com/contact-us/)
+- [OSPO Home](https://kiteworks.com/opensource)
+
+See [SUPPORT.md](SUPPORT.md) for the full list of support channels.
+
+## Contributing
+
+We welcome contributions! Please read the [Contributing Guidelines](CONTRIBUTING.md)
+and our [Code of Conduct](CODE_OF_CONDUCT.md) before getting started.
+
+- **Rebase Early, Rebase Often!** We use a rebase workflow — rebase on the target
+  branch before submitting a PR.
+- **Signed commits**: All commits **must** be PGP/GPG signed and carry a DCO
+  `Signed-off-by` line (`git commit -S -s`).
+- **Conventional Commits**: PR titles must follow the
+  [Conventional Commits](https://www.conventionalcommits.org/) format — enforced
+  by CI.
+- **GitHub Actions Policy**: Workflows may only use actions owned by `owncloud`,
+  created by GitHub (`actions/*`), or verified in the GitHub Marketplace, pinned
+  to a full commit SHA.
+
+## Security
+
+**Do not open a public GitHub issue for security vulnerabilities.**
+
+Report vulnerabilities at **<https://security.owncloud.com>** — see [SECURITY.md](SECURITY.md).
+
+Bug bounty: [YesWeHack ownCloud Program](https://yeswehack.com/programs/owncloud-bug-bounty-program)
+
+## About the ownCloud OSPO
+
+The [Kiteworks Open Source Program Office](https://kiteworks.com/opensource), operating under
+the [ownCloud](https://owncloud.com) brand, launched on May 5, 2026, to steward the open source
+ecosystem around ownCloud's products. The OSPO ensures transparent governance, license compliance,
+community health, and sustainable collaboration between the open source community and
+[Kiteworks](https://www.kiteworks.com), which acquired ownCloud in 2023.
+
+- **OSPO Home**: <https://kiteworks.com/opensource>
+- **GitHub**: <https://github.com/owncloud>
+- **ownCloud**: <https://owncloud.com>
+
+For questions about the OSPO or licensing, contact ospo@kiteworks.com.
+
+This repository is licensed under the permissive **MIT License**, which is already
+compatible with the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+that the OSPO is adopting across the ecosystem. No relicensing or copyleft
+dependency audit is required.
 
 ## License
 
