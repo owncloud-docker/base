@@ -603,8 +603,32 @@ function getConfigFromEnv() {
     $config['loginPolicy.order'] = explode(',', getenv('OWNCLOUD_LOGIN_POLICY_ORDER'));
   }
 
+  // 'loginPolicy.groupLoginPolicy.forbidMap' is a nested map keyed by login
+  // type (e.g. 'password', 'token', or an auth-module class), each holding
+  // 'allowOnly'/'reject' lists of group names. The flat env-var idioms cannot
+  // represent it, so it is passed as a JSON-encoded map, e.g.:
+  //   OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP='{"password":{"reject":["admin"]}}'
+  if (getenv('OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP') != '') {
+    $forbidMap = json_decode(getenv('OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP'), true);
+    if (is_array($forbidMap)) {
+      $config['loginPolicy.groupLoginPolicy.forbidMap'] = $forbidMap;
+    }
+  }
+
   if (getenv('OWNCLOUD_OPENSSL_CONFIG') != '') {
     $config['openssl'] = ['config' => getenv('OWNCLOUD_OPENSSL_CONFIG')];
+  }
+
+  // 'user_backends' is a list of external user-auth backend definitions, each
+  // a map of 'class' plus an 'arguments' list (provided by the user_external
+  // app). The flat env-var idioms cannot represent it, so it is passed as a
+  // JSON-encoded array, e.g.:
+  //   OWNCLOUD_USER_BACKENDS='[{"class":"OC_User_IMAP","arguments":["{imap.example.com:993/imap/ssl}"]}]'
+  if (getenv('OWNCLOUD_USER_BACKENDS') != '') {
+    $userBackends = json_decode(getenv('OWNCLOUD_USER_BACKENDS'), true);
+    if (is_array($userBackends)) {
+      $config['user_backends'] = $userBackends;
+    }
   }
 
   if (getenv('OWNCLOUD_DB_PLATFORM') != '') {
@@ -614,6 +638,15 @@ function getConfigFromEnv() {
   // app: admin_audit
   if (getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS') != '') {
     $config['admin_audit.groups'] = explode(',', getenv('OWNCLOUD_ADMIN_AUDIT_GROUPS'));
+  }
+
+  // app: customgroups
+  if (getenv('OWNCLOUD_CUSTOMGROUPS_DISALLOW_ADMIN_ACCESS_ALL') != '') {
+    $config['customgroups.disallow-admin-access-all'] = getenv('OWNCLOUD_CUSTOMGROUPS_DISALLOW_ADMIN_ACCESS_ALL') === 'true';
+  }
+
+  if (getenv('OWNCLOUD_CUSTOMGROUPS_DISALLOWED_GROUPS') != '') {
+    $config['customgroups.disallowed-groups'] = explode(',', getenv('OWNCLOUD_CUSTOMGROUPS_DISALLOWED_GROUPS'));
   }
 
   // app: files_antivirus

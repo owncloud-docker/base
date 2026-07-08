@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-07-08
+
+* Added
+  * Env variable `OWNCLOUD_USER_BACKENDS` for the `user_backends` config key
+    [#490](https://github.com/owncloud-docker/base/issues/490)
+  * Env variables `OWNCLOUD_CUSTOMGROUPS_DISALLOW_ADMIN_ACCESS_ALL` and
+    `OWNCLOUD_CUSTOMGROUPS_DISALLOWED_GROUPS` for the `customgroups.*` config keys
+    [#491](https://github.com/owncloud-docker/base/issues/491)
+  * Env variable `OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP` for the
+    `loginPolicy.groupLoginPolicy.forbidMap` config key
+    [#493](https://github.com/owncloud-docker/base/issues/493)
+
 ## 2026-07-06
 
 * Added

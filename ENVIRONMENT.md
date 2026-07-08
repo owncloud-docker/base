@@ -70,6 +70,10 @@
   Override the desktop client download URL shown in the first-run wizard (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-firstrunwizard)).
 - `OWNCLOUD_CUSTOMCLIENT_IOS=` \
   Override the iOS client download URL shown in the first-run wizard (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-firstrunwizard)).
+- `OWNCLOUD_CUSTOMGROUPS_DISALLOWED_GROUPS=` \
+  Groups whose members have the Custom Groups app hidden from their personal settings. Comma-separated list of group names (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/user/custom_groups_app.html#overriding-default-behavior)).
+- `OWNCLOUD_CUSTOMGROUPS_DISALLOW_ADMIN_ACCESS_ALL=` \
+  When set to `true`, ownCloud admins are denied access to custom groups they are not a member of (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/user/custom_groups_app.html#overriding-default-behavior)).
 - `OWNCLOUD_DAV_CHUNK_BASE_DIR=` \
   Define the DAV chunk base directory (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-the-dav-chunk-base-directory)).
 - `OWNCLOUD_DAV_ENABLE_ASYNC=` \
@@ -165,6 +169,8 @@
 - `OWNCLOUD_LICENSE_CLASS=`
 - `OWNCLOUD_LOGIN_ALTERNATIVES=` \
   Define additional login buttons on the logon screen (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
+- `OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP=` \
+  Group login policy rules as a JSON-encoded map keyed by login type (e.g. `password`, `token`), each holding `allowOnly`/`reject` lists of group names, e.g. `{"password":{"reject":["admin"]}}`. Requires the group login policy in `OWNCLOUD_LOGIN_POLICY_ORDER` (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/user/login_policies.html)).
 - `OWNCLOUD_LOGIN_POLICY_ORDER=` \
   Ordered list of login policy class names. Comma-separated (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-additional-login-buttons-on-the-logon-screen)).
 - `OWNCLOUD_LOG_CONDITIONS=` \
@@ -444,6 +450,8 @@
   Define whether or not to enable automatic update of market apps (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-whether-or-not-to-enable-automatic-update-of-market-apps)).
 - `OWNCLOUD_USE_RELATIVE_DOMAIN_NAME=` \
   Use only the short hostname (no FQDN) in `status.php` (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#show-or-hide-the-server-hostname-in-status-php)).
+- `OWNCLOUD_USER_BACKENDS=` \
+  External user authentication backends as a JSON-encoded list of `{"class":..., "arguments":[...]}` objects (provided by the `user_external` app), e.g. `[{"class":"OC_User_IMAP","arguments":["{imap.example.com:993/imap/ssl}"]}]` (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/user/user_auth_ftp_smb_imap.html)).
 - `OWNCLOUD_USER_LDAP_ENABLE_MEDIAL_SEARCH=` \
   Enable medial search in the LDAP user backend (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-ldap)).
 - `OWNCLOUD_USER_SEARCH_MIN_LENGTH=` \
