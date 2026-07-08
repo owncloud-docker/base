@@ -11,6 +11,9 @@
   * Env variable `OWNCLOUD_LOGIN_POLICY_GROUP_FORBID_MAP` for the
     `loginPolicy.groupLoginPolicy.forbidMap` config key
     [#493](https://github.com/owncloud-docker/base/issues/493)
+  * Env variable `OWNCLOUD_MEMCACHED_SERVERS` to define multiple memcached
+    servers (and optional per-server weights)
+    [#489](https://github.com/owncloud-docker/base/issues/489)
 
 ## 2026-07-06
 

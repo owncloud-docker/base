@@ -227,6 +227,8 @@
   Define connection options for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-connection-options-for-memcached)).
 - `OWNCLOUD_MEMCACHED_PORT=11211` \
   Defines the ports for memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-server-details-for-memcached-servers-to-use-for-memory-caching)).
+- `OWNCLOUD_MEMCACHED_SERVERS=` \
+  Define multiple memcached servers as a JSON-encoded list of `[host, port]` or `[host, port, weight]` tuples, e.g. `[["mem1",11211,33],["mem2",11211]]`. Overrides the single-server `OWNCLOUD_MEMCACHED_HOST`/`OWNCLOUD_MEMCACHED_PORT` pair when set. Note that the container startup readiness check still probes only `OWNCLOUD_MEMCACHED_HOST`:`OWNCLOUD_MEMCACHED_PORT` (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#define-server-details-for-memcached-servers-to-use-for-memory-caching)).
 - `OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT=180` \
   Time to wait for a successful connection to the memcached service on container startup.
 - `OWNCLOUD_MEMCACHE_LOCAL=${OWNCLOUD_CACHING_CLASS:-\\OC\\Memcache\\APCu}` \
