@@ -676,6 +676,19 @@ function getConfigFromEnv() {
     $config['customclient_ios'] = getenv('OWNCLOUD_CUSTOMCLIENT_IOS');
   }
 
+  // app: openidconnect
+  // 'openid-connect' is a deeply nested associative array (provider-url,
+  // client-id/secret, scopes, provider-params, auto-provision, ...) that the
+  // flat env-var idioms cannot represent, so it is passed as a JSON-encoded
+  // object, e.g.:
+  //   OWNCLOUD_OPENID_CONNECT='{"provider-url":"https://idp.example.net","client-id":"...","client-secret":"...","loginButtonName":"OpenID Connect"}'
+  if (getenv('OWNCLOUD_OPENID_CONNECT') != '') {
+    $openIdConnect = json_decode(getenv('OWNCLOUD_OPENID_CONNECT'), true);
+    if (is_array($openIdConnect)) {
+      $config['openid-connect'] = $openIdConnect;
+    }
+  }
+
   // app: user_ldap
   if (getenv('OWNCLOUD_LDAP_IGNORE_NAMING_RULES') != '') {
     $config['ldapIgnoreNamingRules'] = getenv('OWNCLOUD_LDAP_IGNORE_NAMING_RULES') === 'true';
