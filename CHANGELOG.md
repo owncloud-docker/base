@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-09
+
+* Added
+  * Env variable `OWNCLOUD_OPENID_CONNECT` for the `openid-connect` app config key
+    [#492](https://github.com/owncloud-docker/base/issues/492)
+
 ## 2026-07-08
 
 * Added
