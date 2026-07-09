@@ -906,16 +906,30 @@ function getConfigFromEnv() {
 
       break;
     case getenv('OWNCLOUD_MEMCACHED_ENABLED') && getenv('OWNCLOUD_MEMCACHED_ENABLED') === 'true':
+      // 'memcached_servers' is a list of [host, port] or [host, port, weight]
+      // tuples. The flat env-var idioms cannot express multiple servers or a
+      // weight, so multiple servers are passed as a JSON-encoded array, e.g.:
+      //   OWNCLOUD_MEMCACHED_SERVERS='[["mem1",11211,33],["mem2",11211]]'
+      // When unset, fall back to the single OWNCLOUD_MEMCACHED_HOST/_PORT pair.
+      $memcachedServers = [
+        [
+          getenv('OWNCLOUD_MEMCACHED_HOST'),
+          getenv('OWNCLOUD_MEMCACHED_PORT'),
+        ],
+      ];
+
+      if (getenv('OWNCLOUD_MEMCACHED_SERVERS') != '') {
+        $servers = json_decode(getenv('OWNCLOUD_MEMCACHED_SERVERS'), true);
+        if (is_array($servers)) {
+          $memcachedServers = $servers;
+        }
+      }
+
       $config = array_merge_recursive($config, [
         'memcache.distributed' => '\OC\Memcache\Memcached',
         'memcache.locking' => '\OC\Memcache\Memcached',
 
-        'memcached_servers' => [
-          [
-            getenv('OWNCLOUD_MEMCACHED_HOST'),
-            getenv('OWNCLOUD_MEMCACHED_PORT'),
-          ],
-        ],
+        'memcached_servers' => $memcachedServers,
       ]);
 
       if (getenv('OWNCLOUD_MEMCACHED_OPTIONS') != '') {
