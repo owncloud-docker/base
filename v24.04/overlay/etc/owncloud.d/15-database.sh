@@ -31,7 +31,7 @@ case ${OWNCLOUD_DB_TYPE} in
   ;;
 esac
 
-if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]]; then
+if [[ ${OWNCLOUD_MEMCACHED_ENABLED} == "true" ]] && [[ ${OWNCLOUD_MEMCACHED_SERVERS} == "" ]]; then
   echo "Waiting for Memcached..."
   wait_error=false
   wait-for-it -t "${OWNCLOUD_MEMCACHED_STARTUP_TIMEOUT}" "${OWNCLOUD_MEMCACHED_HOST}":"${OWNCLOUD_MEMCACHED_PORT}" || wait_error=true
