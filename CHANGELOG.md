@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-08-18
+
+* Fixed
+  * Apps that ship in the image are no longer sent to the marketplace, so listing
+    one in `OWNCLOUD_APPS_INSTALL` no longer aborts the container startup. A
+    failing marketplace install now logs why it failed
+    [#539](https://github.com/owncloud-docker/base/issues/539)
+
+* Changed
+  * Removed env variable `OWNCLOUD_MARKETPLACE_KEY` (and its
+    `OWNCLOUD_MARKETPLACE_APIKEY` fallback) for the `marketplace.key` config key,
+    as marketplace API keys no longer exist
+    [#540](https://github.com/owncloud-docker/base/issues/540)
+
 ## 2026-07-09
 
 * Added
