@@ -217,8 +217,6 @@
   Enable maintenance mode to disable ownCloud (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#enable-maintenance-mode-to-disable-owncloud)).
 - `OWNCLOUD_MARKETPLACE_CA=` \
   Developer option to connect to Marketplace testing instances.
-- `OWNCLOUD_MARKETPLACE_KEY=${OWNCLOUD_MARKETPLACE_APIKEY}` \
-  Developer option to get access to unreleased Apps in your Marketplace account.
 - `OWNCLOUD_MEMCACHED_ENABLED=false` \
   Enabled memory caching via memcached (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_sample_php_parameters.html#memory-caching-backend-for-distributed-data)).
 - `OWNCLOUD_MEMCACHED_HOST=memcached` \

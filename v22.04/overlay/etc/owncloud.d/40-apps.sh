@@ -18,13 +18,17 @@ if [[ -n "${OWNCLOUD_APPS_INSTALL}" ]]; then
       echo "Deleting ${NAME} tarball..."
       rm -f "/tmp/${NAME}"
     else
-      if [[ ! -d ${OWNCLOUD_VOLUME_APPS}/${VAL} ]]; then
+      if [[ ! -d ${OWNCLOUD_VOLUME_APPS}/${VAL} && ! -d /var/www/owncloud/apps/${VAL} ]]; then
         echo "Installing ${VAL} app..."
-        occ market:install -n "${VAL}"
-      fi
+        if ! occ market:install -n "${VAL}"; then
+          echo "ERROR: failed to install app '${VAL}' from the marketplace." >&2
+          echo "       If '${VAL}' ships with the image, list it in OWNCLOUD_APPS_ENABLE instead of OWNCLOUD_APPS_INSTALL." >&2
+          exit 1
+        fi
 
-      if [[ $OWNCLOUD_APPS_INSTALL_MAJOR == "true" ]]; then
-        occ market:upgrade -n -q --major "${VAL}"
+        if [[ $OWNCLOUD_APPS_INSTALL_MAJOR == "true" ]]; then
+          occ market:upgrade -n -q --major "${VAL}"
+        fi
       fi
     fi
   done
