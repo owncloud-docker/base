@@ -7,6 +7,10 @@
     one in `OWNCLOUD_APPS_INSTALL` no longer aborts the container startup. A
     failing marketplace install now logs why it failed
     [#539](https://github.com/owncloud-docker/base/issues/539)
+  * `DEBUG=true` no longer prints secrets (admin, database, redis and SMTP
+    passwords, instance secret, object storage credentials, license key), and a
+    password containing a space no longer breaks `maintenance:install`
+    [#541](https://github.com/owncloud-docker/base/issues/541)
 
 * Changed
   * Removed env variable `OWNCLOUD_MARKETPLACE_KEY` (and its
