@@ -348,6 +348,10 @@ declare -x OWNCLOUD_WOPI_TOKEN_KEY
 # ":+x" keeps the value out of the xtrace output when DEBUG=true
 [[ -z "${OWNCLOUD_WOPI_TOKEN_KEY:+x}" ]] && OWNCLOUD_WOPI_TOKEN_KEY=""
 
+declare -x OWNCLOUD_WOPI_PROXY_KEY
+# ":+x" keeps the value out of the xtrace output when DEBUG=true
+[[ -z "${OWNCLOUD_WOPI_PROXY_KEY:+x}" ]] && OWNCLOUD_WOPI_PROXY_KEY=""
+
 declare -x OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER
 [[ -z "${OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER}" ]] && OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER=""
 
