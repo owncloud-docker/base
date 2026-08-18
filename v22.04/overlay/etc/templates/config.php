@@ -473,10 +473,6 @@ function getConfigFromEnv() {
     $config['license-class'] = getenv('OWNCLOUD_LICENSE_CLASS');
   }
 
-  if (getenv('OWNCLOUD_MARKETPLACE_KEY') != '') {
-    $config['marketplace.key'] = getenv('OWNCLOUD_MARKETPLACE_KEY');
-  }
-
   if (getenv('OWNCLOUD_MARKETPLACE_CA') != '') {
     $config['marketplace.ca'] = getenv('OWNCLOUD_MARKETPLACE_CA');
   }
