@@ -11,20 +11,24 @@ fi
 
 case ${1} in
 install)
-  COMMAND="occ maintenance:install --no-interaction --data-dir ${OWNCLOUD_VOLUME_FILES}"
-  [[ -n "${OWNCLOUD_DB_TYPE}" ]] && COMMAND="${COMMAND} --database ${OWNCLOUD_DB_TYPE}"
-  [[ -n "${OWNCLOUD_DB_NAME}" ]] && COMMAND="${COMMAND} --database-name ${OWNCLOUD_DB_NAME}"
-  [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && COMMAND="${COMMAND} --database-user ${OWNCLOUD_DB_USERNAME}"
-  [[ -n "${OWNCLOUD_DB_PASSWORD}" ]] && COMMAND="${COMMAND} --database-pass ${OWNCLOUD_DB_PASSWORD}"
-  [[ -n "${OWNCLOUD_DB_HOST}" ]] && COMMAND="${COMMAND} --database-host ${OWNCLOUD_DB_HOST}"
-  [[ -n "${OWNCLOUD_DB_PREFIX}" ]] && COMMAND="${COMMAND} --database-table-prefix ${OWNCLOUD_DB_PREFIX}"
-  [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && COMMAND="${COMMAND} --admin-user ${OWNCLOUD_ADMIN_USERNAME}"
-  [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && COMMAND="${COMMAND} --admin-pass ${OWNCLOUD_ADMIN_PASSWORD}"
+  ARGS=(maintenance:install --no-interaction --data-dir "${OWNCLOUD_VOLUME_FILES}")
+  [[ -n "${OWNCLOUD_DB_TYPE}" ]] && ARGS+=(--database "${OWNCLOUD_DB_TYPE}")
+  [[ -n "${OWNCLOUD_DB_NAME}" ]] && ARGS+=(--database-name "${OWNCLOUD_DB_NAME}")
+  [[ -n "${OWNCLOUD_DB_USERNAME}" ]] && ARGS+=(--database-user "${OWNCLOUD_DB_USERNAME}")
+  [[ -n "${OWNCLOUD_DB_HOST}" ]] && ARGS+=(--database-host "${OWNCLOUD_DB_HOST}")
+  [[ -n "${OWNCLOUD_DB_PREFIX}" ]] && ARGS+=(--database-table-prefix "${OWNCLOUD_DB_PREFIX}")
+  [[ -n "${OWNCLOUD_ADMIN_USERNAME}" ]] && ARGS+=(--admin-user "${OWNCLOUD_ADMIN_USERNAME}")
+
+  # keep the credentials out of the xtrace output when DEBUG=true
+  { set +x; } 2>/dev/null
+  [[ -n "${OWNCLOUD_DB_PASSWORD}" ]] && ARGS+=(--database-pass "${OWNCLOUD_DB_PASSWORD}")
+  [[ -n "${OWNCLOUD_ADMIN_PASSWORD}" ]] && ARGS+=(--admin-pass "${OWNCLOUD_ADMIN_PASSWORD}")
 
   set +e
-  ${COMMAND}
+  occ "${ARGS[@]}"
   RES=$?
   set -e
+  [[ "${DEBUG}" == "true" ]] && set -x
 
   if [[ "${RES}" -ge "1" ]]; then
     exit ${RES}

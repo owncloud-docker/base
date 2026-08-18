@@ -13,7 +13,8 @@ declare -x OWNCLOUD_DEBUG
 [[ -z "${OWNCLOUD_DEBUG}" ]] && OWNCLOUD_DEBUG=""
 
 declare -x OWNCLOUD_SECRET
-[[ -z "${OWNCLOUD_SECRET}" ]] && OWNCLOUD_SECRET=""
+# ":+x" keeps the value out of the xtrace output when DEBUG=true
+[[ -z "${OWNCLOUD_SECRET:+x}" ]] && OWNCLOUD_SECRET=""
 
 declare -x OWNCLOUD_CIPHER
 [[ -z "${OWNCLOUD_CIPHER}" ]] && OWNCLOUD_CIPHER=""

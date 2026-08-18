@@ -13,7 +13,8 @@ declare -x OWNCLOUD_REDIS_DB
 [[ -z "${OWNCLOUD_REDIS_DB}" ]] && OWNCLOUD_REDIS_DB=""
 
 declare -x OWNCLOUD_REDIS_PASSWORD
-[[ -z "${OWNCLOUD_REDIS_PASSWORD}" ]] && OWNCLOUD_REDIS_PASSWORD=""
+# ":+x" keeps the value out of the xtrace output when DEBUG=true
+[[ -z "${OWNCLOUD_REDIS_PASSWORD:+x}" ]] && OWNCLOUD_REDIS_PASSWORD=""
 
 declare -x OWNCLOUD_REDIS_TIMEOUT
 [[ -z "${OWNCLOUD_REDIS_TIMEOUT}" ]] && OWNCLOUD_REDIS_TIMEOUT=""

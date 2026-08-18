@@ -13,7 +13,8 @@ declare -x OWNCLOUD_DB_USERNAME
 [[ -z "${OWNCLOUD_DB_USERNAME}" ]] && OWNCLOUD_DB_USERNAME=""
 
 declare -x OWNCLOUD_DB_PASSWORD
-[[ -z "${OWNCLOUD_DB_PASSWORD}" ]] && OWNCLOUD_DB_PASSWORD=""
+# ":+x" keeps the value out of the xtrace output when DEBUG=true
+[[ -z "${OWNCLOUD_DB_PASSWORD:+x}" ]] && OWNCLOUD_DB_PASSWORD=""
 
 declare -x OWNCLOUD_DB_PREFIX
 [[ -z "${OWNCLOUD_DB_PREFIX}" ]] && OWNCLOUD_DB_PREFIX="oc_"

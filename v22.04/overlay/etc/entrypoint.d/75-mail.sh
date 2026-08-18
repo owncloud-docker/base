@@ -34,6 +34,7 @@ declare -x OWNCLOUD_MAIL_SMTP_NAME
 [[ -z "${OWNCLOUD_MAIL_SMTP_NAME}" ]] && OWNCLOUD_MAIL_SMTP_NAME=""
 
 declare -x OWNCLOUD_MAIL_SMTP_PASSWORD
-[[ -z "${OWNCLOUD_MAIL_SMTP_PASSWORD}" ]] && OWNCLOUD_MAIL_SMTP_PASSWORD=""
+# ":+x" keeps the value out of the xtrace output when DEBUG=true
+[[ -z "${OWNCLOUD_MAIL_SMTP_PASSWORD:+x}" ]] && OWNCLOUD_MAIL_SMTP_PASSWORD=""
 
 true

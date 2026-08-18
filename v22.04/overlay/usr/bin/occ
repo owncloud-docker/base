@@ -9,6 +9,10 @@ if [[ -z "${OWNCLOUD_ENTRYPOINT_INITIALIZED}" ]]; then
   done
 fi
 
+# the argument list can carry credentials, e.g. "maintenance:install --admin-pass",
+# so it must not be echoed by xtrace. The caller already traces its own "occ ..." line.
+{ set +x; } 2>/dev/null
+
 if [[ "$(id -u)" == "0" ]]; then
   setpriv --reuid=www-data --regid=www-data --init-groups php /var/www/owncloud/occ "$@"
 else
