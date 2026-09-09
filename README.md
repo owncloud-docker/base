@@ -62,6 +62,34 @@ ownCloud Docker base image.
 - `OWNCLOUD_LICENSE_KEY=` \
   ownCloud Enterprise License Key (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/enterprise/installation/install.html#license-keys)).
 
+## Custom hook scripts
+
+Executable `*.sh` files placed in one of the hook directories are sourced in
+alphabetical order at a defined point of the startup. `/etc/owncloud.d` runs on
+every container start before the actual command is executed, `/etc/entrypoint.d`
+runs even earlier and is meant for environment defaults only.
+`/etc/pre_install.d` and
+`/etc/post_install.d` wrap the initial `maintenance:install`,
+`/etc/pre_server.d` and `/etc/post_server.d` wrap the server start, and
+`/etc/pre_cronjob.d` and `/etc/post_cronjob.d` wrap each cronjob run. All paths
+can be relocated with the matching `OWNCLOUD_*_PATH` variable.
+
+Prefer a documented environment variable over a hook whenever one exists: the
+generated config file is never echoed, while a secret handed to `occ` on the
+command line is printed at least twice — once by the shell trace if
+`DEBUG=true`, once by `occ` itself, which echoes the value back. If a hook has
+to pass a secret to `occ`, suppress both:
+
+```bash
+{ set +x; } 2>/dev/null                                            # no shell trace
+occ config:app:set onlyoffice jwt_secret --value "${SECRET}" -q     # no echo
+[[ "${DEBUG}" == "true" ]] && set -x
+```
+
+Note that this still does not stop the `admin_audit` app from recording the full
+`occ` argument list in `owncloud.log`, including the secret. Only ownCloud itself
+can redact that.
+
 ## Community & Support
 
 - [ownCloud Website](https://owncloud.com)

@@ -496,6 +496,8 @@
   Restrict Microsoft Office Online access to a specific group (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-microsoft-office-online-wopi)).
 - `OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER=` \
   URL of the Microsoft Office Online server (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-microsoft-office-online-wopi)).
+- `OWNCLOUD_WOPI_PROXY_KEY=` \
+  Random key (minimum 32 bytes) used to verify business proxy tokens, must differ from `OWNCLOUD_WOPI_TOKEN_KEY` (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-microsoft-office-online-wopi)).
 - `OWNCLOUD_WOPI_PROXY_URL=` \
   Business proxy URL for Microsoft Office 365 (Enterprise only) (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/config_apps_sample_php_parameters.html#app-microsoft-office-online-wopi)).
 - `OWNCLOUD_WOPI_TOKEN_KEY=` \
