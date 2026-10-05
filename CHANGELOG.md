@@ -2,7 +2,21 @@
 
 ## 2026-08-18
 
+* Added
+  * Env variable `OWNCLOUD_WOPI_PROXY_KEY` for the `wopi.proxy.key` config key,
+    and the `OWNCLOUD_WOPI_*` variables are now also available for Ubuntu 22.04
+    (ownCloud 10.16.x), so the WOPI signing keys no longer have to be set from a
+    custom hook script
+    [#545](https://github.com/owncloud-docker/base/issues/545)
+  * README section describing the hook directories, and how to keep a secret out
+    of the log when a hook has to pass it to `occ`
+    [#545](https://github.com/owncloud-docker/base/issues/545)
+
 * Fixed
+  * `DEBUG=true` no longer prints `OWNCLOUD_WOPI_TOKEN_KEY`,
+    `OWNCLOUD_METRICS_SHARED_SECRET` and `OWNCLOUD_PROXY_USERPWD`, which were
+    missed by the previous xtrace fix
+    [#544](https://github.com/owncloud-docker/base/issues/544)
   * Apps that ship in the image are no longer sent to the marketplace, so listing
     one in `OWNCLOUD_APPS_INSTALL` no longer aborts the container startup. A
     failing marketplace install now logs why it failed

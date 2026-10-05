@@ -714,6 +714,10 @@ function getConfigFromEnv() {
     $config['wopi.token.key'] = getenv('OWNCLOUD_WOPI_TOKEN_KEY');
   }
 
+  if (getenv('OWNCLOUD_WOPI_PROXY_KEY') != '') {
+    $config['wopi.proxy.key'] = getenv('OWNCLOUD_WOPI_PROXY_KEY');
+  }
+
   if (getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER') != '') {
     $config['wopi.office-online.server'] = getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER');
   }
