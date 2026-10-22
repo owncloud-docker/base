@@ -13,6 +13,7 @@ default_socket_timeout = {{ .Env.OWNCLOUD_DEFAULT_SOCKET_TIMEOUT }}
 
 expose_php = Off
 max_input_nesting_level = 6
+session.upload_progress.enabled = Off
 
 session.save_handler = "{{ .Env.OWNCLOUD_SESSION_SAVE_HANDLER }}"
 session.save_path = "{{ .Env.OWNCLOUD_SESSION_SAVE_PATH }}"

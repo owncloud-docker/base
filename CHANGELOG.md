@@ -9,7 +9,9 @@
     ownCloud's `.htaccess` can no longer raise it to 513M. It used to follow
     `OWNCLOUD_MAX_UPLOAD` (20G). `max_input_nesting_level` is lowered from 64 to
     6, and `expose_php = Off` is now set explicitly; Ubuntu's `php.ini` already
-    had it off. File uploads use WebDAV `PUT` and are not affected
+    had it off. `session.upload_progress.enabled` is off: the advisory names it as
+    an attack path, and ownCloud does not use it. File uploads use WebDAV `PUT`
+    and are not affected
 
 ## 2026-08-18
 
