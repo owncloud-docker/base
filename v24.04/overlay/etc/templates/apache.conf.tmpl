@@ -23,6 +23,6 @@
     LimitRequestBody 0
     # php_admin_value: ownCloud's .htaccess sets php_value post_max_size, which
     # would otherwise win over php.ini
-    php_admin_value post_max_size {{ .Env.OWNCLOUD_POST_MAX_SIZE }}
+    php_admin_value post_max_size "{{ .Env.OWNCLOUD_POST_MAX_SIZE }}"
   </Directory>
 </VirtualHost>

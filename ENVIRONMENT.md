@@ -242,7 +242,7 @@
 - `OWNCLOUD_MAX_INPUT_TIME=3600` \
   Sets PHP option `max_input_time`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MAX_UPLOAD=20G` \
-  Sets PHP option `upload_max_filesize`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
+  Sets PHP option `upload_max_filesize`. On ownCloud 10 the web server uses 513M instead, because ownCloud's `.htaccess` sets it. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MEMORY_LIMIT=512M` \
   Sets PHP option `memory_limit`. It is recommended to keep the default (see [documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/files/big_file_upload_configuration.html#configuring-via-php-global-settings)).
 - `OWNCLOUD_MINIMUM_SUPPORTED_DESKTOP_VERSION=` \
@@ -301,7 +301,7 @@
 - `OWNCLOUD_POST_INSTALL_PATH=/etc/post_install.d` \
   Path to custom scripts that need to be executed after an ownCoud installation command.
 - `OWNCLOUD_POST_MAX_SIZE=100M` \
-  Sets PHP option `post_max_size`, the size limit for form and multipart POST bodies that PHP parses. File uploads go through WebDAV `PUT` and are not affected, and the body of other POST requests is still readable. Keep it below a quarter of `OWNCLOUD_MEMORY_LIMIT`, so that parsing a large request cannot reach PHP's memory limit.
+  Sets PHP option `post_max_size`, the size limit for form and multipart POST bodies that PHP parses. File uploads go through WebDAV `PUT` and are not affected, and the body of other POST requests is still readable. Keep it below a quarter of PHP's `memory_limit`, so that parsing a large request cannot reach it. That is `OWNCLOUD_MEMORY_LIMIT` on ownCloud 11, but on ownCloud 10 the web server always uses 512M, because ownCloud's `.htaccess` sets it.
 - `OWNCLOUD_POST_SERVER_PATH=/etc/post_server.d` \
   Path to custom scripts that need to be executed after an ownCloud server startup.
 - `OWNCLOUD_PREVIEW_JPEG_IMAGE_DISPLAY_QUALITY=` \
