@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-22
+
+* Security
+  * Hardened PHP's request parsing as recommended after CVE-2026-109618 and
+    CVE-2026-109619: `post_max_size` now defaults to `100M`, configurable with
+    the new `OWNCLOUD_POST_MAX_SIZE` and enforced with `php_admin_value`, so
+    ownCloud's `.htaccess` can no longer raise it to 513M. It used to follow
+    `OWNCLOUD_MAX_UPLOAD` (20G). `max_input_nesting_level` is lowered from 64 to
+    6, and `expose_php = Off` is now set explicitly; Ubuntu's `php.ini` already
+    had it off. `session.upload_progress.enabled` is off: the advisory names it as
+    an attack path, and ownCloud does not use it. File uploads use WebDAV `PUT`
+    and are not affected
+
 ## 2026-08-18
 
 * Fixed
