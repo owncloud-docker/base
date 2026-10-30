@@ -498,6 +498,30 @@ function getConfigFromEnv() {
     }
   }
 
+  if (getenv('OWNCLOUD_WOPI_TOKEN_KEY') != '') {
+    $config['wopi.token.key'] = getenv('OWNCLOUD_WOPI_TOKEN_KEY');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_PROXY_KEY') != '') {
+    $config['wopi.proxy.key'] = getenv('OWNCLOUD_WOPI_PROXY_KEY');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER') != '') {
+    $config['wopi.office-online.server'] = getenv('OWNCLOUD_WOPI_OFFICE_ONLINE_SERVER');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_GROUP') != '') {
+    $config['wopi_group'] = getenv('OWNCLOUD_WOPI_GROUP');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_PROXY_URL') != '') {
+    $config['wopi.proxy.url'] = getenv('OWNCLOUD_WOPI_PROXY_URL');
+  }
+
+  if (getenv('OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED') != '') {
+    $config['wopi.business-flow.enabled'] = getenv('OWNCLOUD_WOPI_BUSINESS_FLOW_ENABLED');
+  }
+
   switch (true) {
     case getenv('OWNCLOUD_REDIS_ENABLED') && getenv('OWNCLOUD_REDIS_ENABLED') === 'true':
       $config = array_merge_recursive($config, [
