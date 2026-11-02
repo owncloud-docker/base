@@ -17,7 +17,7 @@ Images are multi-architecture and built via GitHub Actions.
 
 ## Architecture & Key Paths
 
-- `v20.04/`, `v22.04/`, `v24.04/` — one directory per Ubuntu base release
+- `v22.04/`, `v24.04/` — one directory per Ubuntu base release
   - `<version>/Dockerfile.multiarch` — image definition (`FROM owncloud/php:<version>`)
   - `<version>/overlay/` — files copied into the image root (`ADD overlay /`)
 - `ENVIRONMENT.md` — full reference of the environment variables this image

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-02
+
+* Removed
+  * The Ubuntu 20.04 image. It has not been published since November 2023,
+    Ubuntu 20.04 reached the end of its standard support in May 2025, and it no
+    longer gets security fixes without Ubuntu Pro (for example CVE-2026-111497
+    in Brotli). `owncloud/base:22.04` is the drop-in replacement for ownCloud 10
+    (PHP 7.4), `owncloud/base:24.04` is for ownCloud 11 (PHP 8.3)
+    [#596](https://github.com/owncloud-docker/base/pull/596)
+
 ## 2026-10-22
 
 * Security
